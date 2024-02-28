@@ -130,3 +130,6 @@ def get_model_table(verbose: bool = True, force_reload: bool = True) -> pd.DataF
         model_table: pd.DataFrame = pd.read_json(_MODEL_TABLE_PATH, orient="records", lines=True)
 
     return model_table
+
+if __name__ == "__main__":
+    get_model_table(verbose=True, force_reload=True)
