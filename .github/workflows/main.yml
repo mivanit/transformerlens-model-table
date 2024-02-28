@@ -1,4 +1,4 @@
-name: Generate and Commit File
+name: generate and commit table data
 
 on:
   schedule:
