@@ -6,7 +6,7 @@ You can also get the table as:
 - [markdown](docs/model_table.md)
 - a Pandas dataframe -- see the code in [`demo.ipynb`](demo.ipynb)
 
-The webpage should update daily at midnight UTC -- if this doesn't happen, or if a new TransformerLens version is out and you want the table updated now, make an issue.
+The data for all of these should update daily at midnight UTC. If this appears not to have worked, or if there has been a new TransformerLens release and you want to force an update sooner, make any comment on [this issue](https://github.com/mivanit/transformerlens-model-table/issues/1) and the action should run automatically.
 
 ![A screenshot of the table](docs/screenshot.png)
 
