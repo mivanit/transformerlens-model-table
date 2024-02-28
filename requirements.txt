@@ -6,3 +6,5 @@ muutils
 pandas
 # for writing the pandas dataframe to markdown
 tabulate
+# transfromer_lens crashes without pytest, no idea why
+pytest
