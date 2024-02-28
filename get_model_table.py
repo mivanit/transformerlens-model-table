@@ -9,7 +9,7 @@ from transformer_lens.loading_from_pretrained import (
     get_pretrained_model_config
 )
 
-_MODEL_TABLE_PATH: Path = Path("data/model_table.jsonl")
+_MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
 
 KNOWN_MODEL_TYPES: list[str] = [
     "gpt2",

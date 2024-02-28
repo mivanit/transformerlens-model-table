@@ -31,7 +31,7 @@
         }
 
         async function setupGrid() {			
-			const rowData = await fetchJsonlData('../data/model_table.jsonl');
+			const rowData = await fetchJsonlData('https://miv.name/transformerlens-model-table/model_table.jsonl');
 			
 			// get the column names from the first row
 			const columnDefs = Object.keys(rowData[0]).map(key => {
