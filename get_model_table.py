@@ -1,13 +1,26 @@
 from pathlib import Path
+import warnings
 
 import pandas as pd
 import tqdm
+
+# pytorch
+import torch
+
+# transformerlens
 import transformer_lens
-from muutils.misc import shorten_numerical_to_str
 from transformer_lens import HookedTransformer, HookedTransformerConfig
 from transformer_lens.loading_from_pretrained import (
     get_pretrained_model_config
 )
+
+# muutils
+from muutils.misc import shorten_numerical_to_str
+from muutils.dictmagic import condense_tensor_dict
+
+# forces everything to meta tensors
+DEVICE: torch.device = torch.device("meta")
+torch.set_default_device(DEVICE)
 
 _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
 
@@ -46,9 +59,15 @@ CONFIG_ATTRS_COPY: list[str] = [
     "positional_embedding_type",
     "parallel_attn_mlp",
     "original_architecture",
+    "normalization_type",
 ]
 
-def get_model_info(model_name: str, include_cfg: bool = False) -> dict:
+def get_model_info(
+        model_name: str, 
+        include_cfg: bool = False,
+        include_tensor_dims: bool = True,
+        tensor_dims_fmt: str = "yaml",
+    ) -> dict:
     # assumes the input is a default alias
     if model_name not in transformer_lens.loading.DEFAULT_MODEL_ALIASES:
         raise ValueError(f"Model name {model_name} not found in default aliases")
@@ -84,6 +103,25 @@ def get_model_info(model_name: str, include_cfg: bool = False) -> dict:
     if include_cfg:
         model_info["cfg"] = model_cfg
 
+    # get the model as a meta tensor
+    if include_tensor_dims:
+        try:
+            model_cfg.device = DEVICE
+            model: HookedTransformer = HookedTransformer(model_cfg, move_to_device=True)
+            model_info["state_dict"] = condense_tensor_dict(model.state_dict(), return_format=tensor_dims_fmt)
+            input_shape: tuple[int, int, int] = (847, model_cfg.n_ctx - 7)
+            _, cache = model.run_with_cache(torch.empty(input_shape, dtype=torch.long, device=DEVICE))
+            model_info["activation_cache"] = condense_tensor_dict(
+                cache, 
+                return_format=tensor_dims_fmt,
+                dims_names_map={input_shape[0]: "batch", input_shape[1]: "seq_len"},
+            )
+        except Exception as e:
+            warnings.warn(f"Failed to get tensor shapes for model {model_name}: {e}")
+            for k in ["state_dict", "activation_cache"]:
+                if k not in model_info:
+                    model_info[k] = None
+
     # update model info from config
     model_info.update(dict(
         cfg_model_name=model_cfg.model_name,
@@ -98,15 +136,21 @@ def get_model_info(model_name: str, include_cfg: bool = False) -> dict:
 
 
 
-def make_model_table(verbose: bool) -> pd.DataFrame:
+def make_model_table(verbose: bool, **kwargs) -> pd.DataFrame:
+    """make table of all models. kwargs passed to `get_model_info()`"""
     model_data: list[dict] = list()
 
-    for model_name in tqdm.tqdm(
+    with tqdm.tqdm(
         transformer_lens.loading.DEFAULT_MODEL_ALIASES,
         desc="Loading model info",
         disable=not verbose,
-    ):
-        model_data.append(get_model_info(model_name))
+    ) as pbar:
+        for model_name in pbar:
+            pbar.set_postfix_str(f"model: {model_name}")
+            try:
+                model_data.append(get_model_info(model_name, **kwargs))
+            except Exception as e:
+                warnings.warn(f"Failed to get model info for {model_name}: {e}")
 
     model_table: pd.DataFrame = pd.DataFrame(model_data)
 
@@ -122,10 +166,36 @@ def write_model_table(model_table: pd.DataFrame, path: Path = _MODEL_TABLE_PATH)
     model_table.to_markdown(path.with_suffix(".md"), index=False)
 
 
-def get_model_table(verbose: bool = True, force_reload: bool = True) -> pd.DataFrame:
+def get_model_table(
+        verbose: bool = True, 
+        force_reload: bool = True,
+        do_write: bool = True,
+        **kwargs,
+    ) -> pd.DataFrame:
+    """get the model table either by generating or reading from jsonl file
+
+    # Parameters:
+     - `verbose : bool`   
+        whether to show progress bar
+       (defaults to `True`)
+     - `force_reload : bool`   
+        force creating the table from scratch, even if file exists
+       (defaults to `True`)
+     - `do_write : bool`   
+        whether to write the table to disk, if generating
+       (defaults to `True`)
+     - `**kwargs`
+        eventually passed to `get_model_info()`
+    
+    # Returns:
+     - `pd.DataFrame` 
+        the model table. rows are models, columns are model attributes
+    """    
+    
     if not _MODEL_TABLE_PATH.exists() or force_reload:
         model_table: pd.DataFrame = make_model_table(verbose)
-        write_model_table(model_table, _MODEL_TABLE_PATH)
+        if do_write:
+            write_model_table(model_table, _MODEL_TABLE_PATH)
     else:
         model_table: pd.DataFrame = pd.read_json(_MODEL_TABLE_PATH, orient="records", lines=True)
 

@@ -30,12 +30,18 @@
             return text.trim().split('\n').map(line => JSON.parse(line));
         }
 
+        function yamlTooltipCellRenderer(params) {
+            // Escape the YAML content to prevent HTML injection
+            const escapedContent = params.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            return `<span title="${escapedContent}">${params.value}</span>`;
+        }
+
         async function setupGrid() {			
-			const rowData = await fetchJsonlData('https://miv.name/transformerlens-model-table/model_table.jsonl');
+			const rowData = await fetchJsonlData('model_table.jsonl');
 			
 			// get the column names from the first row
 			const columnDefs = Object.keys(rowData[0]).map(key => {
-				return {
+				col = {
 					headerName: key,
 					field: key,
 				};
