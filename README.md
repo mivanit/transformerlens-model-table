@@ -36,3 +36,12 @@ The tables contain:
 ![screenshot of the table](docs/img/s1.png)
 
 ![pretty printing of tensor shapes](docs/img/s2.png)
+
+
+# TODO:
+
+ - [ ] proper CLI interface for script
+ - [ ] truncated version (no config or tensor shapes) for markdown table, csv (not legible anyway)
+	 - [ ] interface to choose which formats to write in
+ - [ ] add config as json to jsonl data
+ - [ ] make PR to TransformerLens docs
