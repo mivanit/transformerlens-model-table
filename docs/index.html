@@ -34,31 +34,25 @@
     <div id="modelTable" class="ag-theme-alpine"></div>
 
     <script>
-        // Assuming your JSONL data is an array of objects
+        // read a jsonl file
         async function fetchJsonlData(url) {
             const response = await fetch(url);
             const text = await response.text();
             return text.trim().split('\n').map(line => JSON.parse(line));
         }
-
+        
+        // fancy cell rendering -- hover/copy/open the data, make it emojis if its too long
         function myCellRenderer(params) {
             // Create the div element
             var div = document.createElement('div');
             div.title = params.value;
             div.textContent = params.value;
             div.style.cursor = 'pointer';
-            // if not null
+            // if its too long, make it emojis
             if (params.value !== null) {
                 if (params.value.length > 50) {
                     div.textContent = String.fromCodePoint(0x1F446) + String.fromCodePoint(0x1F4CB);
-                    div.style.fontSize = '20px';
-                    div.style.display = 'flex';
-                    div.style.justifyContent = 'center';
-                    div.style.backgroundColor = '#f4f4f4';
-                    div.style.border = '1px solid #d4d4d4';
-                    div.style.borderRadius = '5px';
-                    div.style.height = '30px';
-                    div.style.width = '60px';
+                    div.style.cssText = 'font-size: 20px; display: flex; justify-content: center; align-items: center; background-color: #f4f4f4; border: 1px solid #d4d4d4; border-radius: 5px; height: 30px; width: 60px;';
                 }
             }
 
@@ -82,21 +76,24 @@
             return div;
         }
 
-        async function setupGrid() {			
+        async function setupGrid() {
+            // read the data
 			const rowData = await fetchJsonlData('model_table.jsonl');
-            
             const columnGroups = {};
-
+            
+            // create the column definitions
 			Object.keys(rowData[0]).forEach(key => {
-                // if key ends with "__", then ignore it
+                // if key ends with "__", then ignore it (raw tensor shapes)
                 if (key.endsWith('__')) {
                     return;
                 }
+                // treat dot separated keys as column groups
                 const keyParts = key.split('.');
                 if (keyParts.length === 2) {
                     // column in a group
                     const groupName = keyParts[0];
                     const fieldName = keyParts[1];
+                    // init an empty group if it doesn't exist
                     if (!columnGroups[groupName]) {
                         columnGroups[groupName] = {
                             headerName: groupName,
@@ -104,12 +101,17 @@
                             marryChildren: true,
                         };
                     }
+                    // add the column to the group
                     columnGroups[groupName].children.push({
                         headerName: fieldName,
                         field: key,
+                        // if it's an object, stringify it
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
+                        // custom cell renderer
                         cellRenderer: myCellRenderer,
+                        // only show the first child if there are many (we modify this later in some special cases)
                         columnGroupShow: columnGroups[groupName].children.length < 1 ? null : 'open',
+                        // hacky width calculation (doesn't work great)
                         width: Math.min(Math.max(130, key.length * 5), 500),
                         // numeric if it's a number
                         type: typeof rowData[0][key] === 'number' ? 'numericColumn' : 'textColumn',
@@ -128,9 +130,10 @@
             // special modifications
             columnGroups['model_type'].width = 130;
             columnGroups['cfg'].width = 110;
-            columnGroups['config'].openByDefault = true;
             columnGroups['tensor_shapes'].width = 200;
+            // open these groups by default
             columnGroups['tensor_shapes'].openByDefault = true;
+            columnGroups['config'].openByDefault = true;
 
             const columnDefs = Object.values(columnGroups);
 
@@ -138,26 +141,31 @@
             const gridOptions = {
                 columnDefs: columnDefs,
                 rowData: rowData,
-                // enableRangeSelection: true,
                 rowSelection: 'multiple',
+                // customize pagination
 				pagination: true,
 				paginationPageSize: 500,
 				paginationPageSizeSelector: [10, 25, 50, 100, 500, 1000],
 				enableCellTextSelection: true,
 				enableBrowserTooltips: true,
+                // default column options
                 defaultColDef: {
                     resizable: true,
                     filter: true,
+                    // always show the floating filter
                     floatingFilter: true,
                     // disable filter hamburger menu (for space)
                     menuTabs: [],
                 },
+                // we assume dots are groups, don't treat them as field notation
                 suppressFieldDotNotation: true,
                 domLayout: 'autoHeight',
+                // try to prevent having two scrollbars (this is broken)
                 suppressHorizontalScroll: false,
                 suppressAutoSize: false,
             };
-
+            
+            // create the grid
             new agGrid.createGrid(document.getElementById('modelTable'), gridOptions);
         }
 

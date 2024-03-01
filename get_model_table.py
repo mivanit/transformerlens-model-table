@@ -30,6 +30,7 @@ torch.set_default_device(DEVICE)
 
 _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
 
+# manually defined known model types
 KNOWN_MODEL_TYPES: list[str] = [
     "gpt2",
     "distillgpt2",
@@ -55,6 +56,7 @@ KNOWN_MODEL_TYPES: list[str] = [
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
 
+# these will be copied as table columns
 CONFIG_ATTRS_COPY: list[str] = [
     "n_params",
     "n_layers",
@@ -74,10 +76,26 @@ def get_model_info(
         include_tensor_dims: bool = True,
         tensor_dims_fmt: str = "yaml",
     ) -> dict:
+    """get information about the model from the default alias model name
+    
+    # Parameters:
+     - `model_name : str`   
+        the default alias model name
+     - `include_cfg : bool`   
+        whether to include the model config as a yaml string
+       (defaults to `True`)
+     - `include_tensor_dims : bool`   
+        whether to include the model tensor shapes
+       (defaults to `True`)
+     - `tensor_dims_fmt : str`   
+        the format of the tensor shapes. one of "yaml", "json", "dict"
+       (defaults to `"yaml"`)
+    """    
     # assumes the input is a default alias
     if model_name not in transformer_lens.loading.DEFAULT_MODEL_ALIASES:
         raise ValueError(f"Model name {model_name} not found in default aliases")
 
+    # get the names and model types
     official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
     model_info: dict = {
         "name.default_alias": model_name,
@@ -95,7 +113,7 @@ def get_model_info(
             model_info["model_type"] = known_type
             break
 
-    # Search for model size
+    # search for model size in name
     param_count_from_name: str|None = None
     for part in parts:
         if (
@@ -118,9 +136,7 @@ def get_model_info(
         },
     })
 
-
-
-    # get the whole config
+    # put the whole config as yaml (for readability)
     if include_cfg:
         model_info["cfg"] = yaml.dump(
             json_serialize(model_cfg.to_dict()),
@@ -129,26 +145,36 @@ def get_model_info(
             width=1000,
         )
 
-    # get the model as a meta tensor
+    # get tensor shapes
     if include_tensor_dims:
         try:
+            # copy the config, so we can modify it
             model_cfg_copy: HookedTransformerConfig = deepcopy(model_cfg)
+            # set device to "meta" -- don't actually initialize the model with real tensors
             model_cfg_copy.device = DEVICE
+            # don't need to download the tokenizer 
             model_cfg_copy.tokenizer_name = None
+            # init the fake model
             model: HookedTransformer = HookedTransformer(model_cfg_copy, move_to_device=True)
+            # state dict
             model_info["tensor_shapes.state_dict"] = condense_tensor_dict(model.state_dict(), return_format=tensor_dims_fmt)
             model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(model.state_dict(), return_format="dict")
+            # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
             input_shape: tuple[int, int, int] = (847, model_cfg.n_ctx - 7)
+            # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
+            dims_names_map: dict[int, str] = {input_shape[0]: "batch", input_shape[1]: "seq_len"}
+            # run with cache to activation cache
             _, cache = model.run_with_cache(torch.empty(input_shape, dtype=torch.long, device=DEVICE))
+            # condense using muutils and store
             model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
                 cache, 
                 return_format=tensor_dims_fmt,
-                dims_names_map={input_shape[0]: "batch", input_shape[1]: "seq_len"},
+                dims_names_map=dims_names_map,
             )
             model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
                 cache, 
                 return_format="dict",
-                dims_names_map={input_shape[0]: "batch", input_shape[1]: "seq_len"},
+                dims_names_map=dims_names_map,
             )
 
         except Exception as e:
@@ -159,6 +185,7 @@ def get_model_info(
 
 
 def safe_try_get_model_info(model_name: str, kwargs: dict|None = None) -> dict|None:
+    """for parallel processing, to catch exceptions and return None instead of raising them"""
     if kwargs is None:
         kwargs = {}
     try:
@@ -196,7 +223,7 @@ def make_model_table(
         model_data = imap_results
     
     else:
-
+        # serial
         with tqdm.tqdm(
             transformer_lens.loading.DEFAULT_MODEL_ALIASES,
             desc="Loading model info",
@@ -210,17 +237,18 @@ def make_model_table(
                     warnings.warn(f"Failed to get model info for {model_name}: {e}")
                     model_data.append(None)
 
+    # figure out what to do with failed models
     failed_models: list[str] = [model_name for model_name, result in model_data if result is None]
-
     msg: str = f"Failed to get model info for {len(failed_models)}/{len(model_names)} models: {failed_models}"
     if not allow_except:
         if failed_models:
+            # raise exception if we don't allow exceptions
             raise ValueError(msg)        
     else:
         warnings.warn(msg)
-    
-    model_data_filtered: list[dict] = [result for _, result in model_data if result is not None]
 
+    # filter out failed models if we allow exceptions
+    model_data_filtered: list[dict] = [result for _, result in model_data if result is not None]
     return pd.DataFrame(model_data_filtered)
 
 def write_model_table(model_table: pd.DataFrame, path: Path = _MODEL_TABLE_PATH) -> None:
@@ -260,10 +288,12 @@ def get_model_table(
     """    
     
     if not _MODEL_TABLE_PATH.exists() or force_reload:
+        # read the table from jsonl
         model_table: pd.DataFrame = make_model_table(verbose=verbose, parallelize=parallelize, **kwargs)
         if do_write:
             write_model_table(model_table, _MODEL_TABLE_PATH)
     else:
+        # generate it from scratch
         model_table: pd.DataFrame = pd.read_json(_MODEL_TABLE_PATH, orient="records", lines=True)
 
     return model_table
