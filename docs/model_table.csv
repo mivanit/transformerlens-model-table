@@ -25,7 +25,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -138,7 +138,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -251,7 +251,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -364,7 +364,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -477,7 +477,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -590,7 +590,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -703,7 +703,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -816,7 +816,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -929,7 +929,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1042,7 +1042,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1155,7 +1155,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1268,7 +1268,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1393,7 +1393,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1530,7 +1530,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1675,7 +1675,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1788,7 +1788,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -1901,7 +1901,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2014,7 +2014,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2127,7 +2127,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2240,7 +2240,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2353,7 +2353,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2466,7 +2466,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2579,7 +2579,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2692,7 +2692,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2805,7 +2805,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -2918,7 +2918,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3031,7 +3031,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3144,7 +3144,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3257,7 +3257,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3370,7 +3370,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3483,7 +3483,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3596,7 +3596,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3709,7 +3709,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3822,7 +3822,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -3935,7 +3935,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4048,7 +4048,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4161,7 +4161,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4274,7 +4274,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4387,7 +4387,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4500,7 +4500,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4613,7 +4613,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4726,7 +4726,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4839,7 +4839,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -4952,7 +4952,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5065,7 +5065,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5178,7 +5178,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5291,7 +5291,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5404,7 +5404,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5517,7 +5517,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5630,7 +5630,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5743,7 +5743,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5856,7 +5856,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -5969,7 +5969,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6082,7 +6082,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6195,7 +6195,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6308,7 +6308,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6421,7 +6421,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6534,7 +6534,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6647,7 +6647,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6760,7 +6760,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6873,7 +6873,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -6986,7 +6986,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7099,7 +7099,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7212,7 +7212,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7325,7 +7325,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7443,7 +7443,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LNPre
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7553,7 +7553,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LNPre
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7663,7 +7663,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LNPre
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7773,7 +7773,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LNPre
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7883,7 +7883,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LNPre
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -7993,7 +7993,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8111,7 +8111,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8229,7 +8229,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8347,7 +8347,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8465,7 +8465,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8583,7 +8583,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8701,7 +8701,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8819,7 +8819,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -8937,7 +8937,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -9055,7 +9055,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -9168,7 +9168,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -9281,7 +9281,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -9394,7 +9394,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -9507,7 +9507,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -9607,7 +9607,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -9707,7 +9707,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -9807,7 +9807,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -9907,7 +9907,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: null
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -9997,7 +9997,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10115,7 +10115,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10207,7 +10207,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-redwood_attn_2l,ArthurConmy/redwood_attn_2l,['redwood_attn_2l'],,redwood_attn_2l,524k,524288,,524288,2,8,256,50259,gelu_new,shortformer,False,neel,LN,"n_layers: 2
+redwood_attn_2l,ArthurConmy/redwood_attn_2l,['redwood_attn_2l'],,redwood_attn_2l,524K,524288,,524288,2,8,256,50259,gelu_new,shortformer,False,neel,LN,"n_layers: 2
 d_model: 256
 n_ctx: 2048
 d_head: 32
@@ -10233,7 +10233,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: true
@@ -10333,7 +10333,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10446,7 +10446,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10559,7 +10559,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10672,7 +10672,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10785,7 +10785,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -10898,7 +10898,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11011,7 +11011,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11124,7 +11124,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11237,7 +11237,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11350,7 +11350,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11463,7 +11463,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11576,7 +11576,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11689,7 +11689,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: bidirectional
 attn_only: false
@@ -11776,7 +11776,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-tiny-stories-1M,,[],tiny-stories,TinyStories-1M,393k,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-1M,,[],tiny-stories,TinyStories-1M,393K,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 64
 n_ctx: 2048
 d_head: 4
@@ -11810,7 +11810,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -11931,7 +11931,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12052,7 +12052,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12173,7 +12173,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12290,7 +12290,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12377,7 +12377,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 48)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-tiny-stories-instruct-1M,,[],tiny-stories,TinyStories-Instruct-1M,393k,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-instruct-1M,,[],tiny-stories,TinyStories-Instruct-1M,393K,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 64
 n_ctx: 2048
 d_head: 4
@@ -12411,7 +12411,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12532,7 +12532,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12653,7 +12653,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12774,7 +12774,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -12891,7 +12891,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13005,7 +13005,7 @@ attn_types:
 - global
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13120,7 +13120,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13234,7 +13234,7 @@ attn_types:
 - global
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13349,7 +13349,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13462,7 +13462,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13575,7 +13575,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13688,7 +13688,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13801,7 +13801,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -13946,7 +13946,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14014,7 +14014,27 @@ ln_final:
 unembed:
   W_U: (4096, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}",,
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_rot_q, hook_z]': (batch, seq_len, 32, 128)
+      '[hook_k, hook_v, hook_rot_k]': (batch, seq_len, 8, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 14336)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_rot_q, hook_z]': '(batch, seq_len, 32, 128)', '[hook_k, hook_v, hook_rot_k]': '(batch, seq_len, 8, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 14336)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
 mistral-7b-instruct,mistralai/Mistral-7B-Instruct-v0.1,['mistral-7b-instruct'],mistral,Mistral-7B-Instruct-v0.1,5.9B,5905580032,7b,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
@@ -14073,7 +14093,7 @@ attn_types:
 - local
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14141,7 +14161,27 @@ ln_final:
 unembed:
   W_U: (4096, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}",,
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_rot_q, hook_z]': (batch, seq_len, 32, 128)
+      '[hook_k, hook_v, hook_rot_k]': (batch, seq_len, 8, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 14336)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_rot_q, hook_z]': '(batch, seq_len, 32, 128)', '[hook_k, hook_v, hook_rot_k]': '(batch, seq_len, 8, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 14336)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
 bloom-560m,bigscience/bloom-560m,['bloom-560m'],bloom,bloom-560m,302M,301989888,560m,301989888,24,16,1024,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
@@ -14168,7 +14208,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14287,7 +14327,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14406,7 +14446,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14525,7 +14565,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14644,7 +14684,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14763,7 +14803,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: LN
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14876,7 +14916,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -14973,7 +15013,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -15070,7 +15110,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -15167,7 +15207,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -15264,7 +15304,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
@@ -15361,7 +15401,7 @@ window_size: null
 attn_types: null
 init_mode: gpt2
 normalization_type: RMS
-device: cuda
+device: cpu
 n_devices: 1
 attention_dir: causal
 attn_only: false
