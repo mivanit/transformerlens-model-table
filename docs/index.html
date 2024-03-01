@@ -9,15 +9,26 @@
             padding: 10px;
             text-align: left;
         }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%; /* Ensure the body takes up full viewport width */
+        }
         .ag-theme-alpine {
-            height: 500px;
-            width: 100%;
+            height: 90%;
+            width: 100%; /* This should already keep the grid within the page width */
+            box-sizing: border-box; /* Ensure padding and borders are included in the width */
+        }
+        .ag-paging-panel {
+            /* Aligns children (the pagination buttons) to the start of the container, i.e., left side */
+            justify-content: flex-start; 
+            align-items: center; 
         }
     </style>
 </head>
 <body>
     <header>
-        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>.
+        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, click to copy to clipboard.
     </header>
 
     <div id="modelTable" class="ag-theme-alpine"></div>
@@ -30,28 +41,73 @@
             return text.trim().split('\n').map(line => JSON.parse(line));
         }
 
-        function yamlTooltipCellRenderer(params) {
-            // Escape the YAML content to prevent HTML injection
-            const escapedContent = params.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            return `<span title="${escapedContent}">${params.value}</span>`;
+        function myCellRenderer(params) {
+            // Create the div element
+            var div = document.createElement('div');
+            div.title = params.value;
+            div.textContent = params.value;
+            div.style.cursor = 'pointer';
+
+
+            // Add click event listener to copy text to the clipboard
+            div.onclick = function() {
+                navigator.clipboard.writeText(params.value).then(function() {
+                    console.log('Successfully copied to clipboard');
+                }).catch(function(err) {
+                    console.error('Could not copy text to clipboard: ', err);
+                });
+            };
+
+            // Return the div as the cell's DOM
+            return div;
         }
 
         async function setupGrid() {			
 			const rowData = await fetchJsonlData('model_table.jsonl');
-			
-			// get the column names from the first row
-			const columnDefs = Object.keys(rowData[0]).map(key => {
-				col = {
-					headerName: key,
-					field: key,
-				};
-			});
+			console.log(rowData)
+            
+            const columnGroups = {};
+
+			Object.keys(rowData[0]).forEach(key => {
+                // if key ends with "__", then ignore it
+                if (key.endsWith('__')) {
+                    return;
+                }
+                const keyParts = key.split('.');
+                if (keyParts.length === 2) {
+                    const groupName = keyParts[0];
+                    const fieldName = keyParts[1];
+                    if (!columnGroups[groupName]) {
+                        columnGroups[groupName] = {
+                            headerName: groupName,
+                            children: [],
+                            marryChildren: true,
+                        };
+                    }
+                    columnGroups[groupName].children.push({
+                        headerName: fieldName,
+                        field: key,
+                        valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
+                        cellRenderer: myCellRenderer,
+                        columnGroupShow: 'open',
+                    });
+                } else {
+                    columnGroups[key] = {
+                        headerName: key,
+                        field: key,
+                        valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
+                        cellRenderer: myCellRenderer,
+                    };
+                }
+            });
+
+            const columnDefs = Object.values(columnGroups);
 
 			// create the grid
             const gridOptions = {
                 columnDefs: columnDefs,
                 rowData: rowData,
-                enableRangeSelection: true,
+                // enableRangeSelection: true,
                 rowSelection: 'multiple',
 				pagination: true,
 				paginationPageSize: 500,
@@ -62,10 +118,12 @@
                     resizable: true,
                     filter: true,
                 },
+                suppressFieldDotNotation: true,
                 domLayout: 'autoHeight',
+                suppressHorizontalScroll: true,
             };
 
-            new agGrid.Grid(document.getElementById('modelTable'), gridOptions);
+            new agGrid.createGrid(document.getElementById('modelTable'), gridOptions);
         }
 
         setupGrid();
