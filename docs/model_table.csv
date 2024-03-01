@@ -1,5 +1,5 @@
-name.default_alias,name.official,name.aliases,param_count.from_name,model_type,name.from_cfg,param_count.n_params_str,param_count.n_params,config.n_params,config.n_layers,config.n_heads,config.d_model,config.d_vocab,config.act_fn,config.positional_embedding_type,config.parallel_attn_mlp,config.original_architecture,config.normalization_type,cfg,tensor_shapes.state_dict,tensor_shapes.state_dict.raw__,tensor_shapes.activation_cache,tensor_shapes.activation_cache.raw__
-gpt2-small,gpt2,['gpt2-small'],,gpt2,gpt2,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+name.default_alias,name.official,name.aliases,model_type,name.from_cfg,n_params.as_str,n_params.as_int,n_params.from_name,config.n_params,config.n_layers,config.n_heads,config.d_model,config.d_vocab,config.act_fn,config.positional_embedding_type,config.parallel_attn_mlp,config.original_architecture,config.normalization_type,cfg,tensor_shapes.state_dict,tensor_shapes.state_dict.raw__,tensor_shapes.activation_cache,tensor_shapes.activation_cache.raw__
+gpt2-small,gpt2,['gpt2-small'],gpt2,gpt2,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -112,7 +112,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-gpt2-medium,gpt2-medium,[],,gpt2,gpt2-medium,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+gpt2-medium,gpt2-medium,[],gpt2,gpt2-medium,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -225,7 +225,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-gpt2-large,gpt2-large,[],,gpt2,gpt2-large,708M,707788800,707788800,36,20,1280,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 36
+gpt2-large,gpt2-large,[],gpt2,gpt2-large,708M,707788800,,707788800,36,20,1280,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 36
 d_model: 1280
 n_ctx: 1024
 d_head: 64
@@ -338,7 +338,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1280)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1280)
 ","{'blocks': {'[0-35]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 20, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 20, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 5120)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1280)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1280)'}"
-gpt2-xl,gpt2-xl,[],,gpt2,gpt2-xl,1.5B,1474560000,1474560000,48,25,1600,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 48
+gpt2-xl,gpt2-xl,[],gpt2,gpt2-xl,1.5B,1474560000,,1474560000,48,25,1600,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 48
 d_model: 1600
 n_ctx: 1024
 d_head: 64
@@ -451,7 +451,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1600)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1600)
 ","{'blocks': {'[0-47]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1600)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 25, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 25, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1600)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 6400)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1600)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1600)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1600)'}"
-distillgpt2,distilgpt2,"['distillgpt2', 'distill-gpt2', 'distil-gpt2', 'gpt2-xs']",,gpt2,distilgpt2,42M,42467328,42467328,6,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 6
+distillgpt2,distilgpt2,"['distillgpt2', 'distill-gpt2', 'distil-gpt2', 'gpt2-xs']",gpt2,distilgpt2,42M,42467328,,42467328,6,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 6
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -564,7 +564,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-opt-125m,facebook/opt-125m,"['opt-125m', 'opt-small', 'opt']",125m,opt,opt-125m,85M,84934656,84934656,12,12,768,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 12
+opt-125m,facebook/opt-125m,"['opt-125m', 'opt-small', 'opt']",opt,opt-125m,85M,84934656,125m,84934656,12,12,768,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -677,7 +677,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-opt-1.3b,facebook/opt-1.3b,"['opt-1.3b', 'opt-medium']",1.3b,opt,opt-1.3b,1.2B,1207959552,1207959552,24,32,2048,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 24
+opt-1.3b,facebook/opt-1.3b,"['opt-1.3b', 'opt-medium']",opt,opt-1.3b,1.2B,1207959552,1.3b,1207959552,24,32,2048,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 64
@@ -790,7 +790,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 32, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 2048)'}"
-opt-2.7b,facebook/opt-2.7b,"['opt-2.7b', 'opt-large']",2.7b,opt,opt-2.7b,2.5B,2516582400,2516582400,32,32,2560,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 32
+opt-2.7b,facebook/opt-2.7b,"['opt-2.7b', 'opt-large']",opt,opt-2.7b,2.5B,2516582400,2.7b,2516582400,32,32,2560,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -903,7 +903,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 2560)'}"
-opt-6.7b,facebook/opt-6.7b,"['opt-6.7b', 'opt-xl']",6.7b,opt,opt-6.7b,6.4B,6442450944,6442450944,32,32,4096,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 32
+opt-6.7b,facebook/opt-6.7b,"['opt-6.7b', 'opt-xl']",opt,opt-6.7b,6.4B,6442450944,6.7b,6442450944,32,32,4096,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -1016,7 +1016,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 4096)'}"
-opt-13b,facebook/opt-13b,"['opt-13b', 'opt-xxl']",13b,opt,opt-13b,13B,12582912000,12582912000,40,40,5120,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 40
+opt-13b,facebook/opt-13b,"['opt-13b', 'opt-xxl']",opt,opt-13b,13B,12582912000,13b,12582912000,40,40,5120,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 40
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -1129,7 +1129,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 5120)
 ","{'blocks': {'[0-39]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 20480)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 5120)'}"
-opt-30b,facebook/opt-30b,"['opt-30b', 'opt-xxxl']",30b,opt,opt-30b,30B,29595009024,29595009024,48,56,7168,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 48
+opt-30b,facebook/opt-30b,"['opt-30b', 'opt-xxxl']",opt,opt-30b,30B,29595009024,30b,29595009024,48,56,7168,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 48
 d_model: 7168
 n_ctx: 2048
 d_head: 128
@@ -1242,7 +1242,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 7168)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 7168)
 ","{'blocks': {'[0-47]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 7168)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 56, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 56, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 7168)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 28672)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 7168)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 7168)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 7168)'}"
-opt-66b,facebook/opt-66b,"['opt-66b', 'opt-xxxxl']",66b,opt,opt-66b,65B,65229815808,65229815808,64,72,9216,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 64
+opt-66b,facebook/opt-66b,"['opt-66b', 'opt-xxxxl']",opt,opt-66b,65B,65229815808,66b,65229815808,64,72,9216,50272,relu,standard,False,OPTForCausalLM,LN,"n_layers: 64
 d_model: 9216
 n_ctx: 2048
 d_head: 128
@@ -1355,7 +1355,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 9216)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 9216)
 ","{'blocks': {'[0-63]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 9216)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 72, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 72, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 9216)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 36864)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 9216)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 9216)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 9216)'}"
-gpt-neo-125M,,[],125M,gpt-neo,gpt-neo-125M,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 12
+gpt-neo-125M,,[],gpt-neo,gpt-neo-125M,85M,84934656,125M,84934656,12,12,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -1480,7 +1480,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-gpt-neo-1.3B,,[],1.3B,gpt-neo,gpt-neo-1.3B,1.2B,1207959552,1207959552,24,16,2048,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 24
+gpt-neo-1.3B,,[],gpt-neo,gpt-neo-1.3B,1.2B,1207959552,1.3B,1207959552,24,16,2048,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -1617,7 +1617,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 2048)'}"
-gpt-neo-2.7B,,[],2.7B,gpt-neo,gpt-neo-2.7B,2.5B,2516582400,2516582400,32,20,2560,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 32
+gpt-neo-2.7B,,[],gpt-neo,gpt-neo-2.7B,2.5B,2516582400,2.7B,2516582400,32,20,2560,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 128
@@ -1762,7 +1762,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 20, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 20, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 2560)'}"
-gpt-j-6B,,[],6B,gpt-j,gpt-j-6B,5.6B,5637144576,5637144576,28,16,4096,50400,gelu_new,rotary,True,GPTJForCausalLM,LN,"n_layers: 28
+gpt-j-6B,,[],gpt-j,gpt-j-6B,5.6B,5637144576,6B,5637144576,28,16,4096,50400,gelu_new,rotary,True,GPTJForCausalLM,LN,"n_layers: 28
 d_model: 4096
 n_ctx: 2048
 d_head: 256
@@ -1875,7 +1875,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-27]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 256)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-gpt-neox-20b,EleutherAI/gpt-neox-20b,"['gpt-neox-20b', 'gpt-neox', 'neox']",20b,gpt-neo,gpt-neox-20b,20B,19931332608,19931332608,44,64,6144,50432,gelu_fast,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 44
+gpt-neox-20b,EleutherAI/gpt-neox-20b,"['gpt-neox-20b', 'gpt-neox', 'neox']",gpt-neo,gpt-neox-20b,20B,19931332608,20b,19931332608,44,64,6144,50432,gelu_fast,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 44
 d_model: 6144
 n_ctx: 2048
 d_head: 96
@@ -1988,7 +1988,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 6144)
 hook_embed: (batch, seq_len, 6144)
 ","{'blocks': {'[0-43]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 64, 96)', '[hook_attn_scores, hook_pattern]': '(batch, 64, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 24576)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 6144)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'hook_embed': '(batch, seq_len, 6144)'}"
-stanford-gpt2-small-a,stanford-crfm/alias-gpt2-small-x21,"['stanford-gpt2-small-a', 'alias-gpt2-small-x21', 'gpt2-mistral-small-a', 'gpt2-stanford-small-a']",,gpt2,alias-gpt2-small-x21,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+stanford-gpt2-small-a,stanford-crfm/alias-gpt2-small-x21,"['stanford-gpt2-small-a', 'alias-gpt2-small-x21', 'gpt2-mistral-small-a', 'gpt2-stanford-small-a']",gpt2,alias-gpt2-small-x21,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -2101,7 +2101,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-stanford-gpt2-small-b,stanford-crfm/battlestar-gpt2-small-x49,"['stanford-gpt2-small-b', 'battlestar-gpt2-small-x49', 'gpt2-mistral-small-b', 'gpt2-mistral-small-b']",,gpt2,battlestar-gpt2-small-x49,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+stanford-gpt2-small-b,stanford-crfm/battlestar-gpt2-small-x49,"['stanford-gpt2-small-b', 'battlestar-gpt2-small-x49', 'gpt2-mistral-small-b', 'gpt2-mistral-small-b']",gpt2,battlestar-gpt2-small-x49,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -2214,7 +2214,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-stanford-gpt2-small-c,stanford-crfm/caprica-gpt2-small-x81,"['stanford-gpt2-small-c', 'caprica-gpt2-small-x81', 'gpt2-mistral-small-c', 'gpt2-stanford-small-c']",,gpt2,caprica-gpt2-small-x81,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+stanford-gpt2-small-c,stanford-crfm/caprica-gpt2-small-x81,"['stanford-gpt2-small-c', 'caprica-gpt2-small-x81', 'gpt2-mistral-small-c', 'gpt2-stanford-small-c']",gpt2,caprica-gpt2-small-x81,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -2327,7 +2327,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-stanford-gpt2-small-d,stanford-crfm/darkmatter-gpt2-small-x343,"['stanford-gpt2-small-d', 'darkmatter-gpt2-small-x343', 'gpt2-mistral-small-d', 'gpt2-mistral-small-d']",,gpt2,darkmatter-gpt2-small-x343,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+stanford-gpt2-small-d,stanford-crfm/darkmatter-gpt2-small-x343,"['stanford-gpt2-small-d', 'darkmatter-gpt2-small-x343', 'gpt2-mistral-small-d', 'gpt2-mistral-small-d']",gpt2,darkmatter-gpt2-small-x343,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -2440,7 +2440,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-stanford-gpt2-small-e,stanford-crfm/expanse-gpt2-small-x777,"['stanford-gpt2-small-e', 'expanse-gpt2-small-x777', 'gpt2-mistral-small-e', 'gpt2-mistral-small-e']",,gpt2,expanse-gpt2-small-x777,85M,84934656,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
+stanford-gpt2-small-e,stanford-crfm/expanse-gpt2-small-x777,"['stanford-gpt2-small-e', 'expanse-gpt2-small-x777', 'gpt2-mistral-small-e', 'gpt2-mistral-small-e']",gpt2,expanse-gpt2-small-x777,85M,84934656,,84934656,12,12,768,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 12
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -2553,7 +2553,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-stanford-gpt2-medium-a,stanford-crfm/arwen-gpt2-medium-x21,"['stanford-gpt2-medium-a', 'arwen-gpt2-medium-x21', 'gpt2-medium-small-a', 'gpt2-stanford-medium-a']",,gpt2,arwen-gpt2-medium-x21,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+stanford-gpt2-medium-a,stanford-crfm/arwen-gpt2-medium-x21,"['stanford-gpt2-medium-a', 'arwen-gpt2-medium-x21', 'gpt2-medium-small-a', 'gpt2-stanford-medium-a']",gpt2,arwen-gpt2-medium-x21,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -2666,7 +2666,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-stanford-gpt2-medium-b,stanford-crfm/beren-gpt2-medium-x49,"['stanford-gpt2-medium-b', 'beren-gpt2-medium-x49', 'gpt2-medium-small-b', 'gpt2-stanford-medium-b']",,gpt2,beren-gpt2-medium-x49,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+stanford-gpt2-medium-b,stanford-crfm/beren-gpt2-medium-x49,"['stanford-gpt2-medium-b', 'beren-gpt2-medium-x49', 'gpt2-medium-small-b', 'gpt2-stanford-medium-b']",gpt2,beren-gpt2-medium-x49,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -2779,7 +2779,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-stanford-gpt2-medium-c,stanford-crfm/celebrimbor-gpt2-medium-x81,"['stanford-gpt2-medium-c', 'celebrimbor-gpt2-medium-x81', 'gpt2-medium-small-c', 'gpt2-medium-small-c']",,gpt2,celebrimbor-gpt2-medium-x81,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+stanford-gpt2-medium-c,stanford-crfm/celebrimbor-gpt2-medium-x81,"['stanford-gpt2-medium-c', 'celebrimbor-gpt2-medium-x81', 'gpt2-medium-small-c', 'gpt2-medium-small-c']",gpt2,celebrimbor-gpt2-medium-x81,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -2892,7 +2892,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-stanford-gpt2-medium-d,stanford-crfm/durin-gpt2-medium-x343,"['stanford-gpt2-medium-d', 'durin-gpt2-medium-x343', 'gpt2-medium-small-d', 'gpt2-stanford-medium-d']",,gpt2,durin-gpt2-medium-x343,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+stanford-gpt2-medium-d,stanford-crfm/durin-gpt2-medium-x343,"['stanford-gpt2-medium-d', 'durin-gpt2-medium-x343', 'gpt2-medium-small-d', 'gpt2-stanford-medium-d']",gpt2,durin-gpt2-medium-x343,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -3005,7 +3005,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-stanford-gpt2-medium-e,stanford-crfm/eowyn-gpt2-medium-x777,"['stanford-gpt2-medium-e', 'eowyn-gpt2-medium-x777', 'gpt2-medium-small-e', 'gpt2-stanford-medium-e']",,gpt2,eowyn-gpt2-medium-x777,302M,301989888,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
+stanford-gpt2-medium-e,stanford-crfm/eowyn-gpt2-medium-x777,"['stanford-gpt2-medium-e', 'eowyn-gpt2-medium-x777', 'gpt2-medium-small-e', 'gpt2-stanford-medium-e']",gpt2,eowyn-gpt2-medium-x777,302M,301989888,,301989888,24,16,1024,50257,gelu_new,standard,False,GPT2LMHeadModel,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -3118,7 +3118,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-pythia-14m,EleutherAI/pythia-14m,['pythia-14m'],14m,pythia,pythia-14m,1.2M,1179648,1179648,6,4,128,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-14m,EleutherAI/pythia-14m,['pythia-14m'],pythia,pythia-14m,1.2M,1179648,14m,1179648,6,4,128,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 128
 n_ctx: 2048
 d_head: 32
@@ -3231,7 +3231,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 128)
 hook_embed: (batch, seq_len, 128)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 4, 32)', '[hook_attn_scores, hook_pattern]': '(batch, 4, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 512)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 128)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'hook_embed': '(batch, seq_len, 128)'}"
-pythia-31m,EleutherAI/pythia-31m,['pythia-31m'],31m,pythia,pythia-31m,4.7M,4718592,4718592,6,8,256,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-31m,EleutherAI/pythia-31m,['pythia-31m'],pythia,pythia-31m,4.7M,4718592,31m,4718592,6,8,256,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 256
 n_ctx: 2048
 d_head: 32
@@ -3344,7 +3344,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 256)
 hook_embed: (batch, seq_len, 256)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 32)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 1024)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 256)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'hook_embed': '(batch, seq_len, 256)'}"
-pythia-70m,EleutherAI/pythia-70m,"['pythia-70m', 'pythia', 'EleutherAI/pythia-19m', 'pythia-19m']",70m,pythia,pythia-70m,19M,18874368,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-70m,EleutherAI/pythia-70m,"['pythia-70m', 'pythia', 'EleutherAI/pythia-19m', 'pythia-19m']",pythia,pythia-70m,19M,18874368,70m,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 512
 n_ctx: 2048
 d_head: 64
@@ -3457,7 +3457,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 hook_embed: (batch, seq_len, 512)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'hook_embed': '(batch, seq_len, 512)'}"
-pythia-160m,EleutherAI/pythia-160m,"['pythia-160m', 'EleutherAI/pythia-125m', 'pythia-125m']",160m,pythia,pythia-160m,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m,EleutherAI/pythia-160m,"['pythia-160m', 'EleutherAI/pythia-125m', 'pythia-125m']",pythia,pythia-160m,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -3570,7 +3570,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-410m,EleutherAI/pythia-410m,"['pythia-410m', 'EleutherAI/pythia-350m', 'pythia-350m']",410m,pythia,pythia-410m,302M,301989888,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-410m,EleutherAI/pythia-410m,"['pythia-410m', 'EleutherAI/pythia-350m', 'pythia-350m']",pythia,pythia-410m,302M,301989888,410m,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -3683,7 +3683,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 hook_embed: (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'hook_embed': '(batch, seq_len, 1024)'}"
-pythia-1b,EleutherAI/pythia-1b,"['pythia-1b', 'EleutherAI/pythia-800m', 'pythia-800m']",1b,pythia,pythia-1b,805M,805306368,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+pythia-1b,EleutherAI/pythia-1b,"['pythia-1b', 'EleutherAI/pythia-800m', 'pythia-800m']",pythia,pythia-1b,805M,805306368,1b,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 2048
 n_ctx: 2048
 d_head: 256
@@ -3796,7 +3796,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 256)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-1.4b,EleutherAI/pythia-1.4b,"['pythia-1.4b', 'EleutherAI/pythia-1.3b', 'pythia-1.3b']",1.4b,pythia,pythia-1.4b,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-1.4b,EleutherAI/pythia-1.4b,"['pythia-1.4b', 'EleutherAI/pythia-1.3b', 'pythia-1.3b']",pythia,pythia-1.4b,1.2B,1207959552,1.4b,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -3909,7 +3909,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-2.8b,EleutherAI/pythia-2.8b,"['pythia-2.8b', 'EleutherAI/pythia-2.7b', 'pythia-2.7b']",2.8b,pythia,pythia-2.8b,2.5B,2516582400,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-2.8b,EleutherAI/pythia-2.8b,"['pythia-2.8b', 'EleutherAI/pythia-2.7b', 'pythia-2.7b']",pythia,pythia-2.8b,2.5B,2516582400,2.8b,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -4022,7 +4022,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 hook_embed: (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'hook_embed': '(batch, seq_len, 2560)'}"
-pythia-6.9b,EleutherAI/pythia-6.9b,"['pythia-6.9b', 'EleutherAI/pythia-6.7b', 'pythia-6.7b']",6.9b,pythia,pythia-6.9b,6.4B,6442450944,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-6.9b,EleutherAI/pythia-6.9b,"['pythia-6.9b', 'EleutherAI/pythia-6.7b', 'pythia-6.7b']",pythia,pythia-6.9b,6.4B,6442450944,6.9b,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -4135,7 +4135,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-pythia-12b,EleutherAI/pythia-12b,"['pythia-12b', 'EleutherAI/pythia-13b', 'pythia-13b']",12b,pythia,pythia-12b,11B,11324620800,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
+pythia-12b,EleutherAI/pythia-12b,"['pythia-12b', 'EleutherAI/pythia-13b', 'pythia-13b']",pythia,pythia-12b,11B,11324620800,12b,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -4248,7 +4248,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 hook_embed: (batch, seq_len, 5120)
 ","{'blocks': {'[0-35]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 20480)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
-pythia-70m-deduped,EleutherAI/pythia-70m-deduped,"['pythia-70m-deduped', 'EleutherAI/pythia-19m-deduped', 'pythia-19m-deduped']",70m,pythia,pythia-70m-deduped,19M,18874368,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-70m-deduped,EleutherAI/pythia-70m-deduped,"['pythia-70m-deduped', 'EleutherAI/pythia-19m-deduped', 'pythia-19m-deduped']",pythia,pythia-70m-deduped,19M,18874368,70m,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 512
 n_ctx: 2048
 d_head: 64
@@ -4361,7 +4361,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 hook_embed: (batch, seq_len, 512)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'hook_embed': '(batch, seq_len, 512)'}"
-pythia-160m-deduped,EleutherAI/pythia-160m-deduped,"['pythia-160m-deduped', 'EleutherAI/pythia-125m-deduped', 'pythia-125m-deduped']",160m,pythia,pythia-160m-deduped,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-deduped,EleutherAI/pythia-160m-deduped,"['pythia-160m-deduped', 'EleutherAI/pythia-125m-deduped', 'pythia-125m-deduped']",pythia,pythia-160m-deduped,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -4474,7 +4474,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-410m-deduped,EleutherAI/pythia-410m-deduped,"['pythia-410m-deduped', 'EleutherAI/pythia-350m-deduped', 'pythia-350m-deduped']",410m,pythia,pythia-410m-deduped,302M,301989888,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-410m-deduped,EleutherAI/pythia-410m-deduped,"['pythia-410m-deduped', 'EleutherAI/pythia-350m-deduped', 'pythia-350m-deduped']",pythia,pythia-410m-deduped,302M,301989888,410m,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -4587,7 +4587,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 hook_embed: (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'hook_embed': '(batch, seq_len, 1024)'}"
-pythia-1b-deduped,EleutherAI/pythia-1b-deduped,"['pythia-1b-deduped', 'EleutherAI/pythia-800m-deduped', 'pythia-800m-deduped']",1b,pythia,pythia-1b-deduped,805M,805306368,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+pythia-1b-deduped,EleutherAI/pythia-1b-deduped,"['pythia-1b-deduped', 'EleutherAI/pythia-800m-deduped', 'pythia-800m-deduped']",pythia,pythia-1b-deduped,805M,805306368,1b,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 2048
 n_ctx: 2048
 d_head: 256
@@ -4700,7 +4700,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 256)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-1.4b-deduped,EleutherAI/pythia-1.4b-deduped,"['pythia-1.4b-deduped', 'EleutherAI/pythia-1.3b-deduped', 'pythia-1.3b-deduped']",1.4b,pythia,pythia-1.4b-deduped,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-1.4b-deduped,EleutherAI/pythia-1.4b-deduped,"['pythia-1.4b-deduped', 'EleutherAI/pythia-1.3b-deduped', 'pythia-1.3b-deduped']",pythia,pythia-1.4b-deduped,1.2B,1207959552,1.4b,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -4813,7 +4813,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-2.8b-deduped,EleutherAI/pythia-2.8b-deduped,"['pythia-2.8b-deduped', 'EleutherAI/pythia-2.7b-deduped', 'pythia-2.7b-deduped']",2.8b,pythia,pythia-2.8b-deduped,2.5B,2516582400,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-2.8b-deduped,EleutherAI/pythia-2.8b-deduped,"['pythia-2.8b-deduped', 'EleutherAI/pythia-2.7b-deduped', 'pythia-2.7b-deduped']",pythia,pythia-2.8b-deduped,2.5B,2516582400,2.8b,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -4926,7 +4926,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 hook_embed: (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'hook_embed': '(batch, seq_len, 2560)'}"
-pythia-6.9b-deduped,EleutherAI/pythia-6.9b-deduped,"['pythia-6.9b-deduped', 'EleutherAI/pythia-6.7b-deduped', 'pythia-6.7b-deduped']",6.9b,pythia,pythia-6.9b-deduped,6.4B,6442450944,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-6.9b-deduped,EleutherAI/pythia-6.9b-deduped,"['pythia-6.9b-deduped', 'EleutherAI/pythia-6.7b-deduped', 'pythia-6.7b-deduped']",pythia,pythia-6.9b-deduped,6.4B,6442450944,6.9b,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -5039,7 +5039,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-pythia-12b-deduped,EleutherAI/pythia-12b-deduped,"['pythia-12b-deduped', 'EleutherAI/pythia-13b-deduped', 'pythia-13b-deduped']",12b,pythia,pythia-12b-deduped,11B,11324620800,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
+pythia-12b-deduped,EleutherAI/pythia-12b-deduped,"['pythia-12b-deduped', 'EleutherAI/pythia-13b-deduped', 'pythia-13b-deduped']",pythia,pythia-12b-deduped,11B,11324620800,12b,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -5152,7 +5152,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 hook_embed: (batch, seq_len, 5120)
 ","{'blocks': {'[0-35]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 20480)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
-pythia-70m-v0,EleutherAI/pythia-70m-v0,"['pythia-70m-v0', 'pythia-v0', 'EleutherAI/pythia-19m-v0', 'pythia-19m-v0']",70m,pythia,pythia-70m-v0,19M,18874368,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-70m-v0,EleutherAI/pythia-70m-v0,"['pythia-70m-v0', 'pythia-v0', 'EleutherAI/pythia-19m-v0', 'pythia-19m-v0']",pythia,pythia-70m-v0,19M,18874368,70m,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 512
 n_ctx: 2048
 d_head: 64
@@ -5265,7 +5265,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 hook_embed: (batch, seq_len, 512)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'hook_embed': '(batch, seq_len, 512)'}"
-pythia-160m-v0,EleutherAI/pythia-160m-v0,"['pythia-160m-v0', 'EleutherAI/pythia-125m-v0', 'pythia-125m-v0']",160m,pythia,pythia-160m-v0,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-v0,EleutherAI/pythia-160m-v0,"['pythia-160m-v0', 'EleutherAI/pythia-125m-v0', 'pythia-125m-v0']",pythia,pythia-160m-v0,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -5378,7 +5378,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-410m-v0,EleutherAI/pythia-410m-v0,"['pythia-410m-v0', 'EleutherAI/pythia-350m-v0', 'pythia-350m-v0']",410m,pythia,pythia-410m-v0,302M,301989888,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-410m-v0,EleutherAI/pythia-410m-v0,"['pythia-410m-v0', 'EleutherAI/pythia-350m-v0', 'pythia-350m-v0']",pythia,pythia-410m-v0,302M,301989888,410m,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -5491,7 +5491,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 hook_embed: (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'hook_embed': '(batch, seq_len, 1024)'}"
-pythia-1b-v0,EleutherAI/pythia-1b-v0,"['pythia-1b-v0', 'EleutherAI/pythia-800m-v0', 'pythia-800m-v0']",1b,pythia,pythia-1b-v0,805M,805306368,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+pythia-1b-v0,EleutherAI/pythia-1b-v0,"['pythia-1b-v0', 'EleutherAI/pythia-800m-v0', 'pythia-800m-v0']",pythia,pythia-1b-v0,805M,805306368,1b,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 2048
 n_ctx: 2048
 d_head: 256
@@ -5604,7 +5604,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 256)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-1.4b-v0,EleutherAI/pythia-1.4b-v0,"['pythia-1.4b-v0', 'EleutherAI/pythia-1.3b-v0', 'pythia-1.3b-v0']",1.4b,pythia,pythia-1.4b-v0,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-1.4b-v0,EleutherAI/pythia-1.4b-v0,"['pythia-1.4b-v0', 'EleutherAI/pythia-1.3b-v0', 'pythia-1.3b-v0']",pythia,pythia-1.4b-v0,1.2B,1207959552,1.4b,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -5717,7 +5717,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-2.8b-v0,EleutherAI/pythia-2.8b-v0,"['pythia-2.8b-v0', 'EleutherAI/pythia-2.7b-v0', 'pythia-2.7b-v0']",2.8b,pythia,pythia-2.8b-v0,2.5B,2516582400,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-2.8b-v0,EleutherAI/pythia-2.8b-v0,"['pythia-2.8b-v0', 'EleutherAI/pythia-2.7b-v0', 'pythia-2.7b-v0']",pythia,pythia-2.8b-v0,2.5B,2516582400,2.8b,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -5830,7 +5830,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 hook_embed: (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'hook_embed': '(batch, seq_len, 2560)'}"
-pythia-6.9b-v0,EleutherAI/pythia-6.9b-v0,"['pythia-6.9b-v0', 'EleutherAI/pythia-6.7b-v0', 'pythia-6.7b-v0']",6.9b,pythia,pythia-6.9b-v0,6.4B,6442450944,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-6.9b-v0,EleutherAI/pythia-6.9b-v0,"['pythia-6.9b-v0', 'EleutherAI/pythia-6.7b-v0', 'pythia-6.7b-v0']",pythia,pythia-6.9b-v0,6.4B,6442450944,6.9b,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -5943,7 +5943,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-pythia-12b-v0,EleutherAI/pythia-12b-v0,"['pythia-12b-v0', 'EleutherAI/pythia-13b-v0', 'pythia-13b-v0']",12b,pythia,pythia-12b-v0,11B,11324620800,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
+pythia-12b-v0,EleutherAI/pythia-12b-v0,"['pythia-12b-v0', 'EleutherAI/pythia-13b-v0', 'pythia-13b-v0']",pythia,pythia-12b-v0,11B,11324620800,12b,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -6056,7 +6056,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 hook_embed: (batch, seq_len, 5120)
 ","{'blocks': {'[0-35]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 20480)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
-pythia-70m-deduped-v0,EleutherAI/pythia-70m-deduped-v0,"['pythia-70m-deduped-v0', 'EleutherAI/pythia-19m-deduped-v0', 'pythia-19m-deduped-v0']",70m,pythia,pythia-70m-deduped-v0,19M,18874368,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
+pythia-70m-deduped-v0,EleutherAI/pythia-70m-deduped-v0,"['pythia-70m-deduped-v0', 'EleutherAI/pythia-19m-deduped-v0', 'pythia-19m-deduped-v0']",pythia,pythia-70m-deduped-v0,19M,18874368,70m,18874368,6,8,512,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 6
 d_model: 512
 n_ctx: 2048
 d_head: 64
@@ -6169,7 +6169,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 hook_embed: (batch, seq_len, 512)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'hook_embed': '(batch, seq_len, 512)'}"
-pythia-160m-deduped-v0,EleutherAI/pythia-160m-deduped-v0,"['pythia-160m-deduped-v0', 'EleutherAI/pythia-125m-deduped-v0', 'pythia-125m-deduped-v0']",160m,pythia,pythia-160m-deduped-v0,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-deduped-v0,EleutherAI/pythia-160m-deduped-v0,"['pythia-160m-deduped-v0', 'EleutherAI/pythia-125m-deduped-v0', 'pythia-125m-deduped-v0']",pythia,pythia-160m-deduped-v0,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -6282,7 +6282,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-410m-deduped-v0,EleutherAI/pythia-410m-deduped-v0,"['pythia-410m-deduped-v0', 'EleutherAI/pythia-350m-deduped-v0', 'pythia-350m-deduped-v0']",410m,pythia,pythia-410m-deduped-v0,302M,301989888,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-410m-deduped-v0,EleutherAI/pythia-410m-deduped-v0,"['pythia-410m-deduped-v0', 'EleutherAI/pythia-350m-deduped-v0', 'pythia-350m-deduped-v0']",pythia,pythia-410m-deduped-v0,302M,301989888,410m,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -6395,7 +6395,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 hook_embed: (batch, seq_len, 1024)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'hook_embed': '(batch, seq_len, 1024)'}"
-pythia-1b-deduped-v0,EleutherAI/pythia-1b-deduped-v0,"['pythia-1b-deduped-v0', 'EleutherAI/pythia-800m-deduped-v0', 'pythia-800m-deduped-v0']",1b,pythia,pythia-1b-deduped-v0,805M,805306368,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+pythia-1b-deduped-v0,EleutherAI/pythia-1b-deduped-v0,"['pythia-1b-deduped-v0', 'EleutherAI/pythia-800m-deduped-v0', 'pythia-800m-deduped-v0']",pythia,pythia-1b-deduped-v0,805M,805306368,1b,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 2048
 n_ctx: 2048
 d_head: 256
@@ -6508,7 +6508,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 8, 256)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-1.4b-deduped-v0,EleutherAI/pythia-1.4b-deduped-v0,"['pythia-1.4b-deduped-v0', 'EleutherAI/pythia-1.3b-deduped-v0', 'pythia-1.3b-deduped-v0']",1.4b,pythia,pythia-1.4b-deduped-v0,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
+pythia-1.4b-deduped-v0,EleutherAI/pythia-1.4b-deduped-v0,"['pythia-1.4b-deduped-v0', 'EleutherAI/pythia-1.3b-deduped-v0', 'pythia-1.3b-deduped-v0']",pythia,pythia-1.4b-deduped-v0,1.2B,1207959552,1.4b,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -6621,7 +6621,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-pythia-2.8b-deduped-v0,EleutherAI/pythia-2.8b-deduped-v0,"['pythia-2.8b-deduped-v0', 'EleutherAI/pythia-2.7b-deduped-v0', 'pythia-2.7b-deduped-v0']",2.8b,pythia,pythia-2.8b-deduped-v0,2.5B,2516582400,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-2.8b-deduped-v0,EleutherAI/pythia-2.8b-deduped-v0,"['pythia-2.8b-deduped-v0', 'EleutherAI/pythia-2.7b-deduped-v0', 'pythia-2.7b-deduped-v0']",pythia,pythia-2.8b-deduped-v0,2.5B,2516582400,2.8b,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -6734,7 +6734,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 hook_embed: (batch, seq_len, 2560)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'hook_embed': '(batch, seq_len, 2560)'}"
-pythia-6.9b-deduped-v0,EleutherAI/pythia-6.9b-deduped-v0,"['pythia-6.9b-deduped-v0', 'EleutherAI/pythia-6.7b-deduped-v0', 'pythia-6.7b-deduped-v0']",6.9b,pythia,pythia-6.9b-deduped-v0,6.4B,6442450944,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
+pythia-6.9b-deduped-v0,EleutherAI/pythia-6.9b-deduped-v0,"['pythia-6.9b-deduped-v0', 'EleutherAI/pythia-6.7b-deduped-v0', 'pythia-6.7b-deduped-v0']",pythia,pythia-6.9b-deduped-v0,6.4B,6442450944,6.9b,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -6847,7 +6847,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-pythia-12b-deduped-v0,EleutherAI/pythia-12b-deduped-v0,"['pythia-12b-deduped-v0', 'EleutherAI/pythia-13b-deduped-v0', 'pythia-13b-deduped-v0']",12b,pythia,pythia-12b-deduped-v0,11B,11324620800,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
+pythia-12b-deduped-v0,EleutherAI/pythia-12b-deduped-v0,"['pythia-12b-deduped-v0', 'EleutherAI/pythia-13b-deduped-v0', 'pythia-13b-deduped-v0']",pythia,pythia-12b-deduped-v0,11B,11324620800,12b,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 36
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -6960,7 +6960,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 hook_embed: (batch, seq_len, 5120)
 ","{'blocks': {'[0-35]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 20480)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
-pythia-160m-seed1,EleutherAI/pythia-160m-seed1,"['pythia-160m-seed1', 'EleutherAI/pythia-125m-seed1', 'pythia-125m-seed1']",160m,pythia,pythia-160m-seed1,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-seed1,EleutherAI/pythia-160m-seed1,"['pythia-160m-seed1', 'EleutherAI/pythia-125m-seed1', 'pythia-125m-seed1']",pythia,pythia-160m-seed1,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -7073,7 +7073,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-160m-seed2,EleutherAI/pythia-160m-seed2,"['pythia-160m-seed2', 'EleutherAI/pythia-125m-seed2', 'pythia-125m-seed2']",160m,pythia,pythia-160m-seed2,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-seed2,EleutherAI/pythia-160m-seed2,"['pythia-160m-seed2', 'EleutherAI/pythia-125m-seed2', 'pythia-125m-seed2']",pythia,pythia-160m-seed2,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -7186,7 +7186,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-pythia-160m-seed3,EleutherAI/pythia-160m-seed3,"['pythia-160m-seed3', 'EleutherAI/pythia-125m-seed3', 'pythia-125m-seed3']",160m,pythia,pythia-160m-seed3,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
+pythia-160m-seed3,EleutherAI/pythia-160m-seed3,"['pythia-160m-seed3', 'EleutherAI/pythia-125m-seed3', 'pythia-125m-seed3']",pythia,pythia-160m-seed3,85M,84934656,160m,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 2048
 d_head: 64
@@ -7299,7 +7299,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 hook_embed: (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'hook_embed': '(batch, seq_len, 768)'}"
-solu-1l-pile,NeelNanda/SoLU_1L_v9_old,"['solu-1l-pile', 'solu-1l-old']",,solu,SoLU_1L_v9_old,13M,12582912,12582912,1,16,1024,50278,solu_ln,standard,False,neel-solu-old,LN,"n_layers: 1
+solu-1l-pile,NeelNanda/SoLU_1L_v9_old,"['solu-1l-pile', 'solu-1l-old']",solu,SoLU_1L_v9_old,13M,12582912,,12582912,1,16,1024,50278,solu_ln,standard,False,neel-solu-old,LN,"n_layers: 1
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -7417,7 +7417,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-solu-2l-pile,NeelNanda/SoLU_2L_v10_old,"['solu-2l-pile', 'solu-2l-old']",,solu,SoLU_2L_v10_old,13M,12812288,12812288,2,11,736,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 2
+solu-2l-pile,NeelNanda/SoLU_2L_v10_old,"['solu-2l-pile', 'solu-2l-old']",solu,SoLU_2L_v10_old,13M,12812288,,12812288,2,11,736,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 2
 d_model: 736
 n_ctx: 1024
 d_head: 64
@@ -7527,7 +7527,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 736)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 736)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 736)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 11, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 11, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 736)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2944)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2944)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 736)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 736)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 736)'}"
-solu-4l-pile,NeelNanda/SoLU_4L_v11_old,"['solu-4l-pile', 'solu-4l-old']",,solu,SoLU_4L_v11_old,13M,12582912,12582912,4,8,512,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 4
+solu-4l-pile,NeelNanda/SoLU_4L_v11_old,"['solu-4l-pile', 'solu-4l-old']",solu,SoLU_4L_v11_old,13M,12582912,,12582912,4,8,512,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 4
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -7637,7 +7637,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-6l-pile,NeelNanda/SoLU_6L_v13_old,"['solu-6l-pile', 'solu-6l-old']",,solu,SoLU_6L_v13_old,42M,42467328,42467328,6,12,768,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 6
+solu-6l-pile,NeelNanda/SoLU_6L_v13_old,"['solu-6l-pile', 'solu-6l-old']",solu,SoLU_6L_v13_old,42M,42467328,,42467328,6,12,768,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 6
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -7747,7 +7747,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 3072)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-solu-8l-pile,NeelNanda/SoLU_8L_v21_old,"['solu-8l-pile', 'solu-8l-old']",,solu,SoLU_8L_v21_old,101M,100663296,100663296,8,16,1024,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 8
+solu-8l-pile,NeelNanda/SoLU_8L_v21_old,"['solu-8l-pile', 'solu-8l-old']",solu,SoLU_8L_v21_old,101M,100663296,,100663296,8,16,1024,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 8
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -7857,7 +7857,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-solu-10l-pile,NeelNanda/SoLU_10L_v22_old,"['solu-10l-pile', 'solu-10l-old']",,solu,SoLU_10L_v22_old,197M,196608000,196608000,10,20,1280,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 10
+solu-10l-pile,NeelNanda/SoLU_10L_v22_old,"['solu-10l-pile', 'solu-10l-old']",solu,SoLU_10L_v22_old,197M,196608000,,196608000,10,20,1280,50278,solu_ln,standard,False,neel-solu-old,LNPre,"n_layers: 10
 d_model: 1280
 n_ctx: 1024
 d_head: 64
@@ -7967,7 +7967,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1280)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1280)
 ","{'blocks': {'[0-9]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 20, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 20, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 5120)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1280)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1280)'}"
-solu-12l-pile,NeelNanda/SoLU_12L_v23_old,"['solu-12l-pile', 'solu-12l-old']",,solu,SoLU_12L_v23_old,340M,339738624,339738624,12,24,1536,50278,solu_ln,standard,False,neel-solu-old,LN,"n_layers: 12
+solu-12l-pile,NeelNanda/SoLU_12L_v23_old,"['solu-12l-pile', 'solu-12l-old']",solu,SoLU_12L_v23_old,340M,339738624,,339738624,12,24,1536,50278,solu_ln,standard,False,neel-solu-old,LN,"n_layers: 12
 d_model: 1536
 n_ctx: 1024
 d_head: 64
@@ -8085,7 +8085,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1536)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1536)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 24, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 24, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 6144)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1536)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1536)'}"
-solu-1l,NeelNanda/SoLU_1L512W_C4_Code,"['solu-1l', 'solu-1l-new', 'solu-1l-c4-code']",,solu,SoLU_1L512W_C4_Code,3.1M,3145728,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
+solu-1l,NeelNanda/SoLU_1L512W_C4_Code,"['solu-1l', 'solu-1l-new', 'solu-1l-c4-code']",solu,SoLU_1L512W_C4_Code,3.1M,3145728,,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -8203,7 +8203,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-2l,NeelNanda/SoLU_2L512W_C4_Code,"['solu-2l', 'solu-2l-new', 'solu-2l-c4-code']",,solu,SoLU_2L512W_C4_Code,6.3M,6291456,6291456,2,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 2
+solu-2l,NeelNanda/SoLU_2L512W_C4_Code,"['solu-2l', 'solu-2l-new', 'solu-2l-c4-code']",solu,SoLU_2L512W_C4_Code,6.3M,6291456,,6291456,2,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 2
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -8321,7 +8321,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-3l,NeelNanda/SoLU_3L512W_C4_Code,"['solu-3l', 'solu-3l-new', 'solu-3l-c4-code']",,solu,SoLU_3L512W_C4_Code,9.4M,9437184,9437184,3,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 3
+solu-3l,NeelNanda/SoLU_3L512W_C4_Code,"['solu-3l', 'solu-3l-new', 'solu-3l-c4-code']",solu,SoLU_3L512W_C4_Code,9.4M,9437184,,9437184,3,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 3
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -8439,7 +8439,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-2]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-4l,NeelNanda/SoLU_4L512W_C4_Code,"['solu-4l', 'solu-4l-new', 'solu-4l-c4-code']",,solu,SoLU_4L512W_C4_Code,13M,12582912,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
+solu-4l,NeelNanda/SoLU_4L512W_C4_Code,"['solu-4l', 'solu-4l-new', 'solu-4l-c4-code']",solu,SoLU_4L512W_C4_Code,13M,12582912,,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -8557,7 +8557,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-6l,NeelNanda/SoLU_6L768W_C4_Code,"['solu-6l', 'solu-6l-new', 'solu-6l-c4-code']",,solu,SoLU_6L768W_C4_Code,42M,42467328,42467328,6,12,768,48262,solu_ln,standard,False,neel,LN,"n_layers: 6
+solu-6l,NeelNanda/SoLU_6L768W_C4_Code,"['solu-6l', 'solu-6l-new', 'solu-6l-c4-code']",solu,SoLU_6L768W_C4_Code,42M,42467328,,42467328,6,12,768,48262,solu_ln,standard,False,neel,LN,"n_layers: 6
 d_model: 768
 n_ctx: 1024
 d_head: 64
@@ -8675,7 +8675,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-5]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 3072)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-solu-8l,NeelNanda/SoLU_8L1024W_C4_Code,"['solu-8l', 'solu-8l-new', 'solu-8l-c4-code']",,solu,SoLU_8L1024W_C4_Code,101M,100663296,100663296,8,16,1024,48262,solu_ln,standard,False,neel,LN,"n_layers: 8
+solu-8l,NeelNanda/SoLU_8L1024W_C4_Code,"['solu-8l', 'solu-8l-new', 'solu-8l-c4-code']",solu,SoLU_8L1024W_C4_Code,101M,100663296,,100663296,8,16,1024,48262,solu_ln,standard,False,neel,LN,"n_layers: 8
 d_model: 1024
 n_ctx: 1024
 d_head: 64
@@ -8793,7 +8793,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-solu-10l,NeelNanda/SoLU_10L1280W_C4_Code,"['solu-10l', 'solu-10l-new', 'solu-10l-c4-code']",,solu,SoLU_10L1280W_C4_Code,197M,196608000,196608000,10,20,1280,48262,solu_ln,standard,False,neel,LN,"n_layers: 10
+solu-10l,NeelNanda/SoLU_10L1280W_C4_Code,"['solu-10l', 'solu-10l-new', 'solu-10l-c4-code']",solu,SoLU_10L1280W_C4_Code,197M,196608000,,196608000,10,20,1280,48262,solu_ln,standard,False,neel,LN,"n_layers: 10
 d_model: 1280
 n_ctx: 1024
 d_head: 64
@@ -8911,7 +8911,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1280)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1280)
 ","{'blocks': {'[0-9]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 20, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 20, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 5120)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1280)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1280)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1280)'}"
-solu-12l,NeelNanda/SoLU_12L1536W_C4_Code,"['solu-12l', 'solu-12l-new', 'solu-12l-c4-code']",,solu,SoLU_12L1536W_C4_Code,340M,339738624,339738624,12,24,1536,48262,solu_ln,standard,False,neel,LN,"n_layers: 12
+solu-12l,NeelNanda/SoLU_12L1536W_C4_Code,"['solu-12l', 'solu-12l-new', 'solu-12l-c4-code']",solu,SoLU_12L1536W_C4_Code,340M,339738624,,339738624,12,24,1536,48262,solu_ln,standard,False,neel,LN,"n_layers: 12
 d_model: 1536
 n_ctx: 1024
 d_head: 64
@@ -9029,7 +9029,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1536)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1536)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 24, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 24, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 6144)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1536)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1536)'}"
-gelu-1l,NeelNanda/GELU_1L512W_C4_Code,"['gelu-1l', 'gelu-1l-new', 'gelu-1l-c4-code']",,gelu,GELU_1L512W_C4_Code,3.1M,3145728,3145728,1,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 1
+gelu-1l,NeelNanda/GELU_1L512W_C4_Code,"['gelu-1l', 'gelu-1l-new', 'gelu-1l-c4-code']",gelu,GELU_1L512W_C4_Code,3.1M,3145728,,3145728,1,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 1
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9142,7 +9142,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-gelu-2l,NeelNanda/GELU_2L512W_C4_Code,"['gelu-2l', 'gelu-2l-new', 'gelu-2l-c4-code']",,gelu,GELU_2L512W_C4_Code,6.3M,6291456,6291456,2,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 2
+gelu-2l,NeelNanda/GELU_2L512W_C4_Code,"['gelu-2l', 'gelu-2l-new', 'gelu-2l-c4-code']",gelu,GELU_2L512W_C4_Code,6.3M,6291456,,6291456,2,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 2
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9255,7 +9255,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-gelu-3l,NeelNanda/GELU_3L512W_C4_Code,"['gelu-3l', 'gelu-3l-new', 'gelu-3l-c4-code']",,gelu,GELU_3L512W_C4_Code,9.4M,9437184,9437184,3,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 3
+gelu-3l,NeelNanda/GELU_3L512W_C4_Code,"['gelu-3l', 'gelu-3l-new', 'gelu-3l-c4-code']",gelu,GELU_3L512W_C4_Code,9.4M,9437184,,9437184,3,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 3
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9368,7 +9368,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-2]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-gelu-4l,NeelNanda/GELU_4L512W_C4_Code,"['gelu-4l', 'gelu-4l-new', 'gelu-4l-c4-code']",,gelu,GELU_4L512W_C4_Code,13M,12582912,12582912,4,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 4
+gelu-4l,NeelNanda/GELU_4L512W_C4_Code,"['gelu-4l', 'gelu-4l-new', 'gelu-4l-c4-code']",gelu,GELU_4L512W_C4_Code,13M,12582912,,12582912,4,8,512,48262,gelu,standard,False,neel,LN,"n_layers: 4
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9481,7 +9481,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-attn-only-1l,NeelNanda/Attn_Only_1L512W_C4_Code,"['attn-only-1l', 'attn-only-1l-new', 'attn-only-1l-c4-code']",,attn-only,Attn_Only_1L512W_C4_Code,1.0M,1048576,1048576,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
+attn-only-1l,NeelNanda/Attn_Only_1L512W_C4_Code,"['attn-only-1l', 'attn-only-1l-new', 'attn-only-1l-c4-code']",attn-only,Attn_Only_1L512W_C4_Code,1.0M,1048576,,1048576,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9581,7 +9581,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-attn-only-2l,NeelNanda/Attn_Only_2L512W_C4_Code,"['attn-only-2l', 'attn-only-2l-new', 'attn-only-2l-c4-code']",,attn-only,Attn_Only_2L512W_C4_Code,2.1M,2097152,2097152,2,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 2
+attn-only-2l,NeelNanda/Attn_Only_2L512W_C4_Code,"['attn-only-2l', 'attn-only-2l-new', 'attn-only-2l-c4-code']",attn-only,Attn_Only_2L512W_C4_Code,2.1M,2097152,,2097152,2,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 2
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9681,7 +9681,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-attn-only-3l,NeelNanda/Attn_Only_3L512W_C4_Code,"['attn-only-3l', 'attn-only-3l-new', 'attn-only-3l-c4-code']",,attn-only,Attn_Only_3L512W_C4_Code,3.1M,3145728,3145728,3,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 3
+attn-only-3l,NeelNanda/Attn_Only_3L512W_C4_Code,"['attn-only-3l', 'attn-only-3l-new', 'attn-only-3l-c4-code']",attn-only,Attn_Only_3L512W_C4_Code,3.1M,3145728,,3145728,3,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 3
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9781,7 +9781,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-2]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-attn-only-4l,NeelNanda/Attn_Only_4L512W_C4_Code,"['attn-only-4l', 'attn-only-4l-new', 'attn-only-4l-c4-code']",,attn-only,Attn_Only_4L512W_C4_Code,4.2M,4194304,4194304,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
+attn-only-4l,NeelNanda/Attn_Only_4L512W_C4_Code,"['attn-only-4l', 'attn-only-4l-new', 'attn-only-4l-c4-code']",attn-only,Attn_Only_4L512W_C4_Code,4.2M,4194304,,4194304,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9881,7 +9881,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-attn-only-2l-demo,NeelNanda/Attn-Only-2L512W-Shortformer-6B-big-lr,"['attn-only-2l-demo', 'attn-only-2l-shortformer-6b-big-lr', 'attn-only-2l-induction-demo', 'attn-only-demo']",,attn-only,Attn-Only-2L512W-Shortformer-6B-big-lr,2.1M,2097152,2097152,2,8,512,50277,solu_ln,shortformer,False,neel,,"n_layers: 2
+attn-only-2l-demo,NeelNanda/Attn-Only-2L512W-Shortformer-6B-big-lr,"['attn-only-2l-demo', 'attn-only-2l-shortformer-6b-big-lr', 'attn-only-2l-induction-demo', 'attn-only-demo']",attn-only,Attn-Only-2L512W-Shortformer-6B-big-lr,2.1M,2097152,,2097152,2,8,512,50277,solu_ln,shortformer,False,neel,,"n_layers: 2
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -9971,7 +9971,7 @@ unembed:
     '[hook_resid_pre, hook_attn_out, hook_resid_post]': (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-1]': {'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 512)'}}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-1l-wiki,NeelNanda/SoLU_1L512W_Wiki_Finetune,"['solu-1l-wiki', 'solu-1l-wiki-finetune', 'solu-1l-finetune']",,solu,SoLU_1L512W_Wiki_Finetune,3.1M,3145728,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
+solu-1l-wiki,NeelNanda/SoLU_1L512W_Wiki_Finetune,"['solu-1l-wiki', 'solu-1l-wiki-finetune', 'solu-1l-finetune']",solu,SoLU_1L512W_Wiki_Finetune,3.1M,3145728,,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 1
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -10089,7 +10089,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-solu-4l-wiki,NeelNanda/SoLU_4L512W_Wiki_Finetune,"['solu-4l-wiki', 'solu-4l-wiki-finetune', 'solu-4l-finetune']",,solu,SoLU_4L512W_Wiki_Finetune,13M,12582912,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
+solu-4l-wiki,NeelNanda/SoLU_4L512W_Wiki_Finetune,"['solu-4l-wiki', 'solu-4l-wiki-finetune', 'solu-4l-finetune']",solu,SoLU_4L512W_Wiki_Finetune,13M,12582912,,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN,"n_layers: 4
 d_model: 512
 n_ctx: 1024
 d_head: 64
@@ -10207,7 +10207,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_pre, hook_mid, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-redwood_attn_2l,ArthurConmy/redwood_attn_2l,['redwood_attn_2l'],,redwood_attn,redwood_attn_2l,524k,524288,524288,2,8,256,50259,gelu_new,shortformer,False,neel,LN,"n_layers: 2
+redwood_attn_2l,ArthurConmy/redwood_attn_2l,['redwood_attn_2l'],,redwood_attn_2l,524k,524288,,524288,2,8,256,50259,gelu_new,shortformer,False,neel,LN,"n_layers: 2
 d_model: 256
 n_ctx: 2048
 d_head: 32
@@ -10307,7 +10307,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 256)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 256)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 32)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, '[hook_resid_pre, hook_attn_out, hook_resid_post]': '(batch, seq_len, 256)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 256)'}"
-llama-7b,llama-7b-hf,['llama-7b'],7b,llama,llama-7b-hf,5.0B,5033164800,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+llama-7b,llama-7b-hf,['llama-7b'],llama,llama-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -10399,8 +10399,28 @@ ln_final:
 unembed:
   W_U: (4096, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}",,
-llama-13b,llama-13b-hf,['llama-13b'],13b,llama,llama-13b-hf,9.9B,9856614400,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+llama-13b,llama-13b-hf,['llama-13b'],llama,llama-13b-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -10492,8 +10512,28 @@ ln_final:
 unembed:
   W_U: (5120, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 5120)'}, 'blocks': {'[0-39]': {'ln1': {'w': '(5120,)'}, 'ln2': {'w': '(5120,)'}, 'attn': {'[W_Q, W_K, W_V]': '(40, 5120, 128)', 'W_O': '(40, 128, 5120)', '[b_Q, b_K, b_V]': '(40, 128)', 'b_O': '(5120,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(5120, 13824)', 'b_in': '(13824,)', 'W_out': '(13824, 5120)', 'b_out': '(5120,)'}}}, 'ln_final': {'w': '(5120,)'}, 'unembed': {'W_U': '(5120, 32000)', 'b_U': '(32000,)'}}",,
-llama-30b,llama-30b-hf,['llama-30b'],30b,llama,llama-30b-hf,25B,24945623040,24945623040,60,52,6656,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 60
+","{'embed': {'W_E': '(32000, 5120)'}, 'blocks': {'[0-39]': {'ln1': {'w': '(5120,)'}, 'ln2': {'w': '(5120,)'}, 'attn': {'[W_Q, W_K, W_V]': '(40, 5120, 128)', 'W_O': '(40, 128, 5120)', '[b_Q, b_K, b_V]': '(40, 128)', 'b_O': '(5120,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(5120, 13824)', 'b_in': '(13824,)', 'W_out': '(13824, 5120)', 'b_out': '(5120,)'}}}, 'ln_final': {'w': '(5120,)'}, 'unembed': {'W_U': '(5120, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-39]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        40, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 40, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 13824)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 5120)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 5120)
+hook_embed: (batch, seq_len, 5120)
+","{'blocks': {'[0-39]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 13824)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
+llama-30b,llama-30b-hf,['llama-30b'],llama,llama-30b-hf,25B,24945623040,30b,24945623040,60,52,6656,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 60
 d_model: 6656
 n_ctx: 2048
 d_head: 128
@@ -10585,8 +10625,28 @@ ln_final:
 unembed:
   W_U: (6656, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 6656)'}, 'blocks': {'[0-59]': {'ln1': {'w': '(6656,)'}, 'ln2': {'w': '(6656,)'}, 'attn': {'[W_Q, W_K, W_V]': '(52, 6656, 128)', 'W_O': '(52, 128, 6656)', '[b_Q, b_K, b_V]': '(52, 128)', 'b_O': '(6656,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(6656, 17920)', 'b_in': '(17920,)', 'W_out': '(17920, 6656)', 'b_out': '(6656,)'}}}, 'ln_final': {'w': '(6656,)'}, 'unembed': {'W_U': '(6656, 32000)', 'b_U': '(32000,)'}}",,
-llama-65b,llama-65b-hf,['llama-65b'],65b,llama,llama-65b-hf,50B,50331648000,50331648000,80,64,8192,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 80
+","{'embed': {'W_E': '(32000, 6656)'}, 'blocks': {'[0-59]': {'ln1': {'w': '(6656,)'}, 'ln2': {'w': '(6656,)'}, 'attn': {'[W_Q, W_K, W_V]': '(52, 6656, 128)', 'W_O': '(52, 128, 6656)', '[b_Q, b_K, b_V]': '(52, 128)', 'b_O': '(6656,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(6656, 17920)', 'b_in': '(17920,)', 'W_out': '(17920, 6656)', 'b_out': '(6656,)'}}}, 'ln_final': {'w': '(6656,)'}, 'unembed': {'W_U': '(6656, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-59]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 6656)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        52, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 52, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 6656)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 17920)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 6656)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 6656)
+hook_embed: (batch, seq_len, 6656)
+","{'blocks': {'[0-59]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6656)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 52, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 52, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6656)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 17920)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 6656)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6656)'}, 'hook_embed': '(batch, seq_len, 6656)'}"
+llama-65b,llama-65b-hf,['llama-65b'],llama,llama-65b-hf,50B,50331648000,65b,50331648000,80,64,8192,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 80
 d_model: 8192
 n_ctx: 2048
 d_head: 128
@@ -10678,8 +10738,28 @@ ln_final:
 unembed:
   W_U: (8192, 32000)
   b_U: (32000,)
-","{'embed': {'W_E': '(32000, 8192)'}, 'blocks': {'[0-79]': {'ln1': {'w': '(8192,)'}, 'ln2': {'w': '(8192,)'}, 'attn': {'[W_Q, W_K, W_V]': '(64, 8192, 128)', 'W_O': '(64, 128, 8192)', '[b_Q, b_K, b_V]': '(64, 128)', 'b_O': '(8192,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(8192, 22016)', 'b_in': '(22016,)', 'W_out': '(22016, 8192)', 'b_out': '(8192,)'}}}, 'ln_final': {'w': '(8192,)'}, 'unembed': {'W_U': '(8192, 32000)', 'b_U': '(32000,)'}}",,
-Llama-2-7b,,[],7b,Llama-2,Llama-2-7b-hf,5.0B,5033164800,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+","{'embed': {'W_E': '(32000, 8192)'}, 'blocks': {'[0-79]': {'ln1': {'w': '(8192,)'}, 'ln2': {'w': '(8192,)'}, 'attn': {'[W_Q, W_K, W_V]': '(64, 8192, 128)', 'W_O': '(64, 128, 8192)', '[b_Q, b_K, b_V]': '(64, 128)', 'b_O': '(8192,)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(8192, 22016)', 'b_in': '(22016,)', 'W_out': '(22016, 8192)', 'b_out': '(8192,)'}}}, 'ln_final': {'w': '(8192,)'}, 'unembed': {'W_U': '(8192, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-79]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 8192)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        64, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 64, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 8192)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 22016)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 8192)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 8192)
+hook_embed: (batch, seq_len, 8192)
+","{'blocks': {'[0-79]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 8192)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 64, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 64, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 8192)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 22016)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 8192)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 8192)'}, 'hook_embed': '(batch, seq_len, 8192)'}"
+Llama-2-7b,,[],Llama-2,Llama-2-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -10745,8 +10825,54 @@ post_embedding_ln: false
 rotary_base: 10000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-Llama-2-7b-chat,,[],7b,Llama-2,Llama-2-7b-chat-hf,5.0B,5033164800,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+","embed:
+  W_E: (32000, 4096)
+blocks:
+  '[0-31]':
+    ln1:
+      w: (4096,)
+    ln2:
+      w: (4096,)
+    attn:
+      '[W_Q, W_K, W_V]': (32, 4096, 128)
+      W_O: (32, 128, 4096)
+      '[b_Q, b_K, b_V]': (32, 128)
+      b_O: (4096,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (4096, 11008)
+      b_in: (11008,)
+      W_out: (11008, 4096)
+      b_out: (4096,)
+ln_final:
+  w: (4096,)
+unembed:
+  W_U: (4096, 32000)
+  b_U: (32000,)
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+Llama-2-7b-chat,,[],Llama-2,Llama-2-7b-chat-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -10812,8 +10938,54 @@ post_embedding_ln: false
 rotary_base: 10000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-Llama-2-13b,,[],13b,Llama-2,Llama-2-13b-hf,9.9B,9856614400,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
+","embed:
+  W_E: (32000, 4096)
+blocks:
+  '[0-31]':
+    ln1:
+      w: (4096,)
+    ln2:
+      w: (4096,)
+    attn:
+      '[W_Q, W_K, W_V]': (32, 4096, 128)
+      W_O: (32, 128, 4096)
+      '[b_Q, b_K, b_V]': (32, 128)
+      b_O: (4096,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (4096, 11008)
+      b_in: (11008,)
+      W_out: (11008, 4096)
+      b_out: (4096,)
+ln_final:
+  w: (4096,)
+unembed:
+  W_U: (4096, 32000)
+  b_U: (32000,)
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+Llama-2-13b,,[],Llama-2,Llama-2-13b-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
 d_model: 5120
 n_ctx: 4096
 d_head: 128
@@ -10879,8 +11051,54 @@ post_embedding_ln: false
 rotary_base: 10000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-Llama-2-13b-chat,,[],13b,Llama-2,Llama-2-13b-chat-hf,9.9B,9856614400,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
+","embed:
+  W_E: (32000, 5120)
+blocks:
+  '[0-39]':
+    ln1:
+      w: (5120,)
+    ln2:
+      w: (5120,)
+    attn:
+      '[W_Q, W_K, W_V]': (40, 5120, 128)
+      W_O: (40, 128, 5120)
+      '[b_Q, b_K, b_V]': (40, 128)
+      b_O: (5120,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (5120, 13824)
+      b_in: (13824,)
+      W_out: (13824, 5120)
+      b_out: (5120,)
+ln_final:
+  w: (5120,)
+unembed:
+  W_U: (5120, 32000)
+  b_U: (32000,)
+","{'embed': {'W_E': '(32000, 5120)'}, 'blocks': {'[0-39]': {'ln1': {'w': '(5120,)'}, 'ln2': {'w': '(5120,)'}, 'attn': {'[W_Q, W_K, W_V]': '(40, 5120, 128)', 'W_O': '(40, 128, 5120)', '[b_Q, b_K, b_V]': '(40, 128)', 'b_O': '(5120,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(5120, 13824)', 'b_in': '(13824,)', 'W_out': '(13824, 5120)', 'b_out': '(5120,)'}}}, 'ln_final': {'w': '(5120,)'}, 'unembed': {'W_U': '(5120, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-39]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        40, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 40, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 13824)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 5120)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 5120)
+hook_embed: (batch, seq_len, 5120)
+","{'blocks': {'[0-39]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 13824)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
+Llama-2-13b-chat,,[],Llama-2,Llama-2-13b-chat-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 40
 d_model: 5120
 n_ctx: 4096
 d_head: 128
@@ -10946,8 +11164,54 @@ post_embedding_ln: false
 rotary_base: 10000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-CodeLlamallama-2-7b,,[],7b,llama,CodeLlama-7b-hf,5.0B,5033164800,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+","embed:
+  W_E: (32000, 5120)
+blocks:
+  '[0-39]':
+    ln1:
+      w: (5120,)
+    ln2:
+      w: (5120,)
+    attn:
+      '[W_Q, W_K, W_V]': (40, 5120, 128)
+      W_O: (40, 128, 5120)
+      '[b_Q, b_K, b_V]': (40, 128)
+      b_O: (5120,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (5120, 13824)
+      b_in: (13824,)
+      W_out: (13824, 5120)
+      b_out: (5120,)
+ln_final:
+  w: (5120,)
+unembed:
+  W_U: (5120, 32000)
+  b_U: (32000,)
+","{'embed': {'W_E': '(32000, 5120)'}, 'blocks': {'[0-39]': {'ln1': {'w': '(5120,)'}, 'ln2': {'w': '(5120,)'}, 'attn': {'[W_Q, W_K, W_V]': '(40, 5120, 128)', 'W_O': '(40, 128, 5120)', '[b_Q, b_K, b_V]': '(40, 128)', 'b_O': '(5120,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(5120, 13824)', 'b_in': '(13824,)', 'W_out': '(13824, 5120)', 'b_out': '(5120,)'}}}, 'ln_final': {'w': '(5120,)'}, 'unembed': {'W_U': '(5120, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-39]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        40, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 40, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 5120)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 13824)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 5120)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 5120)
+hook_embed: (batch, seq_len, 5120)
+","{'blocks': {'[0-39]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 13824)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
+CodeLlamallama-2-7b,,[],llama,CodeLlama-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -11013,8 +11277,54 @@ post_embedding_ln: false
 rotary_base: 1000000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-CodeLlama-7b-python,,[],7b,,CodeLlama-7b-Python-hf,5.0B,5033164800,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+","embed:
+  W_E: (32016, 4096)
+blocks:
+  '[0-31]':
+    ln1:
+      w: (4096,)
+    ln2:
+      w: (4096,)
+    attn:
+      '[W_Q, W_K, W_V]': (32, 4096, 128)
+      W_O: (32, 128, 4096)
+      '[b_Q, b_K, b_V]': (32, 128)
+      b_O: (4096,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (4096, 11008)
+      b_in: (11008,)
+      W_out: (11008, 4096)
+      b_out: (4096,)
+ln_final:
+  w: (4096,)
+unembed:
+  W_U: (4096, 32016)
+  b_U: (32016,)
+","{'embed': {'W_E': '(32016, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32016)', 'b_U': '(32016,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+CodeLlama-7b-python,,[],CodeLlama,CodeLlama-7b-Python-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -11080,8 +11390,54 @@ post_embedding_ln: false
 rotary_base: 1000000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-CodeLlama-7b-instruct,,[],7b,,CodeLlama-7b-Instruct-hf,5.0B,5033164800,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
+","embed:
+  W_E: (32000, 4096)
+blocks:
+  '[0-31]':
+    ln1:
+      w: (4096,)
+    ln2:
+      w: (4096,)
+    attn:
+      '[W_Q, W_K, W_V]': (32, 4096, 128)
+      W_O: (32, 128, 4096)
+      '[b_Q, b_K, b_V]': (32, 128)
+      b_O: (4096,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (4096, 11008)
+      b_in: (11008,)
+      W_out: (11008, 4096)
+      b_out: (4096,)
+ln_final:
+  w: (4096,)
+unembed:
+  W_U: (4096, 32000)
+  b_U: (32000,)
+","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+CodeLlama-7b-instruct,,[],CodeLlama,CodeLlama-7b-Instruct-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -11147,8 +11503,54 @@ post_embedding_ln: false
 rotary_base: 1000000
 trust_remote_code: false
 rotary_adjacent_pairs: false
-",,,,
-othello-gpt,Baidicoot/Othello-GPT-Transformer-Lens,['othello-gpt'],,othello-gpt,Othello-GPT-Transformer-Lens,25M,25165824,25165824,8,8,512,61,gelu,standard,False,mingpt,LN,"n_layers: 8
+","embed:
+  W_E: (32016, 4096)
+blocks:
+  '[0-31]':
+    ln1:
+      w: (4096,)
+    ln2:
+      w: (4096,)
+    attn:
+      '[W_Q, W_K, W_V]': (32, 4096, 128)
+      W_O: (32, 128, 4096)
+      '[b_Q, b_K, b_V]': (32, 128)
+      b_O: (4096,)
+      mask: (4096, 4096)
+      IGNORE: ()
+      '[rotary_sin, rotary_cos]': (4096, 128)
+    mlp:
+      '[W_in, W_gate]': (4096, 11008)
+      b_in: (11008,)
+      W_out: (11008, 4096)
+      b_out: (4096,)
+ln_final:
+  w: (4096,)
+unembed:
+  W_U: (4096, 32016)
+  b_U: (32016,)
+","{'embed': {'W_E': '(32016, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'[W_Q, W_K, W_V]': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', '[b_Q, b_K, b_V]': '(32, 128)', 'b_O': '(4096,)', 'mask': '(4096, 4096)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(4096, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 11008)', 'b_in': '(11008,)', 'W_out': '(11008, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32016)', 'b_U': '(32016,)'}}","blocks:
+  '[0-31]':
+    ln1:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    attn:
+      '[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': (batch, seq_len,
+        32, 128)
+      '[hook_attn_scores, hook_pattern]': (batch, 32, seq_len, seq_len)
+    ln2:
+      hook_scale: (batch, seq_len, 1)
+      hook_normalized: (batch, seq_len, 4096)
+    mlp:
+      '[hook_pre, hook_pre_linear, hook_post]': (batch, seq_len, 11008)
+    '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': (batch,
+      seq_len, 4096)
+ln_final:
+  hook_scale: (batch, seq_len, 1)
+  hook_normalized: (batch, seq_len, 4096)
+hook_embed: (batch, seq_len, 4096)
+","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
+othello-gpt,Baidicoot/Othello-GPT-Transformer-Lens,['othello-gpt'],,Othello-GPT-Transformer-Lens,25M,25165824,,25165824,8,8,512,61,gelu,standard,False,mingpt,LN,"n_layers: 8
 d_model: 512
 n_ctx: 59
 d_head: 64
@@ -11261,7 +11663,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 8, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 8, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-bert-base-cased,bert-base-cased,[],,bert,bert-base-cased,85M,84934656,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN,"n_layers: 12
+bert-base-cased,bert-base-cased,[],bert,bert-base-cased,85M,84934656,,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN,"n_layers: 12
 d_model: 768
 n_ctx: 512
 d_head: 64
@@ -11374,7 +11776,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-11]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 12, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 12, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-tiny-stories-1M,,[],1M,tiny-stories,TinyStories-1M,393k,393216,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-1M,,[],tiny-stories,TinyStories-1M,393k,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 64
 n_ctx: 2048
 d_head: 4
@@ -11495,7 +11897,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 64)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 64)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 4)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 256)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 64)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 64)'}"
-tiny-stories-3M,,[],3M,tiny-stories,TinyStories-3M,1.6M,1572864,1572864,8,16,128,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-3M,,[],tiny-stories,TinyStories-3M,1.6M,1572864,3M,1572864,8,16,128,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 128
 n_ctx: 2048
 d_head: 8
@@ -11616,7 +12018,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 128)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 128)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 8)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 512)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 128)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 128)'}"
-tiny-stories-8M,,[],8M,tiny-stories,TinyStories-8M,6.3M,6291456,6291456,8,16,256,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-8M,,[],tiny-stories,TinyStories-8M,6.3M,6291456,8M,6291456,8,16,256,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 256
 n_ctx: 2048
 d_head: 16
@@ -11737,7 +12139,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 256)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 256)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 16)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 1024)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 256)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 256)'}"
-tiny-stories-28M,,[],28M,tiny-stories,TinyStories-28M,25M,25165824,25165824,8,16,512,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-28M,,[],tiny-stories,TinyStories-28M,25M,25165824,28M,25165824,8,16,512,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 512
 n_ctx: 2048
 d_head: 32
@@ -11858,7 +12260,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 32)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-tiny-stories-33M,,[],33M,tiny-stories,TinyStories-33M,28M,28311552,28311552,4,16,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 4
+tiny-stories-33M,,[],tiny-stories,TinyStories-33M,28M,28311552,33M,28311552,4,16,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 4
 d_model: 768
 n_ctx: 2048
 d_head: 48
@@ -11975,7 +12377,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 48)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-tiny-stories-instruct-1M,,[],1M,tiny-stories,TinyStories-Instruct-1M,393k,393216,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-instruct-1M,,[],tiny-stories,TinyStories-Instruct-1M,393k,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 64
 n_ctx: 2048
 d_head: 4
@@ -12096,7 +12498,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 64)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 64)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 4)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 256)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 64)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 64)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 64)'}"
-tiny-stories-instruct-3M,,[],3M,tiny-stories,TinyStories-Instruct-3M,1.6M,1572864,1572864,8,16,128,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-instruct-3M,,[],tiny-stories,TinyStories-Instruct-3M,1.6M,1572864,3M,1572864,8,16,128,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 128
 n_ctx: 2048
 d_head: 8
@@ -12217,7 +12619,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 128)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 128)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 8)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 512)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 128)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 128)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 128)'}"
-tiny-stories-instruct-8M,,[],8M,tiny-stories,TinyStories-Instruct-8M,6.3M,6291456,6291456,8,16,256,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-instruct-8M,,[],tiny-stories,TinyStories-Instruct-8M,6.3M,6291456,8M,6291456,8,16,256,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 256
 n_ctx: 2048
 d_head: 16
@@ -12338,7 +12740,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 256)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 256)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 16)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 1024)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 256)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 256)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 256)'}"
-tiny-stories-instruct-28M,,[],28M,tiny-stories,TinyStories-Instruct-28M,25M,25165824,25165824,8,16,512,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
+tiny-stories-instruct-28M,,[],tiny-stories,TinyStories-Instruct-28M,25M,25165824,28M,25165824,8,16,512,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 8
 d_model: 512
 n_ctx: 2048
 d_head: 32
@@ -12459,7 +12861,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 512)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 512)
 ","{'blocks': {'[0-7]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 32)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 2048)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 512)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 512)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 512)'}"
-tiny-stories-instruct-33M,,[],33M,tiny-stories,TinyStories-Instruct-33M,28M,28311552,28311552,4,16,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 4
+tiny-stories-instruct-33M,,[],tiny-stories,TinyStories-Instruct-33M,28M,28311552,33M,28311552,4,16,768,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 4
 d_model: 768
 n_ctx: 2048
 d_head: 48
@@ -12576,7 +12978,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 768)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 768)
 ","{'blocks': {'[0-3]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 48)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 3072)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 768)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 768)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 768)'}"
-tiny-stories-1L-21M,,[],21M,tiny-stories,TinyStories-1Layer-21M,13M,12582912,12582912,1,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 1
+tiny-stories-1L-21M,,[],tiny-stories,TinyStories-1Layer-21M,13M,12582912,21M,12582912,1,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 1
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -12690,7 +13092,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-tiny-stories-2L-33M,,[],33M,tiny-stories,TinyStories-2Layers-33M,25M,25165824,25165824,2,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 2
+tiny-stories-2L-33M,,[],tiny-stories,TinyStories-2Layers-33M,25M,25165824,33M,25165824,2,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 2
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -12805,7 +13207,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-tiny-stories-instruct-1L-21M,,[],21M,tiny-stories,TinyStories-Instuct-1Layer-21M,13M,12582912,12582912,1,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 1
+tiny-stories-instruct-1L-21M,,[],tiny-stories,TinyStories-Instuct-1Layer-21M,13M,12582912,21M,12582912,1,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 1
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -12919,7 +13321,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'0': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-tiny-stories-instruct-2L-33M,,[],33M,tiny-stories,TinyStories-Instruct-2Layers-33M,25M,25165824,25165824,2,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 2
+tiny-stories-instruct-2L-33M,,[],tiny-stories,TinyStories-Instruct-2Layers-33M,25M,25165824,33M,25165824,2,16,1024,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,"n_layers: 2
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -13034,7 +13436,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 1024)
 ","{'blocks': {'[0-1]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 1024)'}"
-stablelm-base-alpha-3b,stabilityai/stablelm-base-alpha-3b,"['stablelm-base-alpha-3b', 'stablelm-base-3b']",3b,stablelm,stablelm-base-alpha-3b,3.2B,3221225472,3221225472,16,32,4096,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+stablelm-base-alpha-3b,stabilityai/stablelm-base-alpha-3b,"['stablelm-base-alpha-3b', 'stablelm-base-3b']",stablelm,stablelm-base-alpha-3b,3.2B,3221225472,3b,3221225472,16,32,4096,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -13147,7 +13549,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-stablelm-base-alpha-7b,stabilityai/stablelm-base-alpha-7b,"['stablelm-base-alpha-7b', 'stablelm-base-7b']",7b,stablelm,stablelm-base-alpha-7b,7.2B,7247757312,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+stablelm-base-alpha-7b,stabilityai/stablelm-base-alpha-7b,"['stablelm-base-alpha-7b', 'stablelm-base-7b']",stablelm,stablelm-base-alpha-7b,7.2B,7247757312,7b,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 6144
 n_ctx: 4096
 d_head: 128
@@ -13260,7 +13662,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 6144)
 hook_embed: (batch, seq_len, 6144)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 48, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 48, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 24576)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 6144)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'hook_embed': '(batch, seq_len, 6144)'}"
-stablelm-tuned-alpha-3b,stabilityai/stablelm-tuned-alpha-3b,"['stablelm-tuned-alpha-3b', 'stablelm-tuned-3b']",3b,stablelm,stablelm-tuned-alpha-3b,3.2B,3221225472,3221225472,16,32,4096,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+stablelm-tuned-alpha-3b,stabilityai/stablelm-tuned-alpha-3b,"['stablelm-tuned-alpha-3b', 'stablelm-tuned-3b']",stablelm,stablelm-tuned-alpha-3b,3.2B,3221225472,3b,3221225472,16,32,4096,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 4096
 n_ctx: 4096
 d_head: 128
@@ -13373,7 +13775,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-stablelm-tuned-alpha-7b,stabilityai/stablelm-tuned-alpha-7b,"['stablelm-tuned-alpha-7b', 'stablelm-tuned-7b']",7b,stablelm,stablelm-tuned-alpha-7b,7.2B,7247757312,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
+stablelm-tuned-alpha-7b,stabilityai/stablelm-tuned-alpha-7b,"['stablelm-tuned-alpha-7b', 'stablelm-tuned-7b']",stablelm,stablelm-tuned-alpha-7b,7.2B,7247757312,7b,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,"n_layers: 16
 d_model: 6144
 n_ctx: 4096
 d_head: 128
@@ -13486,7 +13888,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 6144)
 hook_embed: (batch, seq_len, 6144)
 ","{'blocks': {'[0-15]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 48, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 48, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 24576)'}, '[hook_resid_pre, hook_attn_out, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 6144)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 6144)'}, 'hook_embed': '(batch, seq_len, 6144)'}"
-mistral-7b,mistralai/Mistral-7B-v0.1,['mistral-7b'],7b,,Mistral-7B-v0.1,5.9B,5905580032,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,"n_layers: 32
+mistral-7b,mistralai/Mistral-7B-v0.1,['mistral-7b'],mistral,Mistral-7B-v0.1,5.9B,5905580032,7b,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -13613,7 +14015,7 @@ unembed:
   W_U: (4096, 32000)
   b_U: (32000,)
 ","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}",,
-mistral-7b-instruct,mistralai/Mistral-7B-Instruct-v0.1,['mistral-7b-instruct'],7b,,Mistral-7B-Instruct-v0.1,5.9B,5905580032,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,"n_layers: 32
+mistral-7b-instruct,mistralai/Mistral-7B-Instruct-v0.1,['mistral-7b-instruct'],mistral,Mistral-7B-Instruct-v0.1,5.9B,5905580032,7b,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -13740,7 +14142,7 @@ unembed:
   W_U: (4096, 32000)
   b_U: (32000,)
 ","{'embed': {'W_E': '(32000, 4096)'}, 'blocks': {'[0-31]': {'ln1': {'w': '(4096,)'}, 'ln2': {'w': '(4096,)'}, 'attn': {'W_Q': '(32, 4096, 128)', 'W_O': '(32, 128, 4096)', 'b_Q': '(32, 128)', 'b_O': '(4096,)', '[_W_K, _W_V]': '(8, 4096, 128)', '[_b_K, _b_V]': '(8, 128)', 'mask': '(2048, 2048)', 'IGNORE': '()', '[rotary_sin, rotary_cos]': '(2048, 128)'}, 'mlp': {'[W_in, W_gate]': '(4096, 14336)', 'b_in': '(14336,)', 'W_out': '(14336, 4096)', 'b_out': '(4096,)'}}}, 'ln_final': {'w': '(4096,)'}, 'unembed': {'W_U': '(4096, 32000)', 'b_U': '(32000,)'}}",,
-bloom-560m,bigscience/bloom-560m,['bloom-560m'],560m,bloom,bloom-560m,302M,301989888,301989888,24,16,1024,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
+bloom-560m,bigscience/bloom-560m,['bloom-560m'],bloom,bloom-560m,302M,301989888,560m,301989888,24,16,1024,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
 d_model: 1024
 n_ctx: 2048
 d_head: 64
@@ -13859,7 +14261,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1024)
 hook_embed: (batch, seq_len, 1024)
 ","{'embed': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}}, 'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 64)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 4096)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1024)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1024)'}, 'hook_embed': '(batch, seq_len, 1024)'}"
-bloom-1b1,bigscience/bloom-1b1,['bloom-1b1'],,bloom,bloom-1b1,679M,679477248,679477248,24,16,1536,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
+bloom-1b1,bigscience/bloom-1b1,['bloom-1b1'],bloom,bloom-1b1,679M,679477248,,679477248,24,16,1536,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
 d_model: 1536
 n_ctx: 2048
 d_head: 96
@@ -13978,7 +14380,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 1536)
 hook_embed: (batch, seq_len, 1536)
 ","{'embed': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}}, 'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 96)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 6144)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 1536)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 1536)'}, 'hook_embed': '(batch, seq_len, 1536)'}"
-bloom-1b7,bigscience/bloom-1b7,['bloom-1b7'],,bloom,bloom-1b7,1.2B,1207959552,1207959552,24,16,2048,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
+bloom-1b7,bigscience/bloom-1b7,['bloom-1b7'],bloom,bloom-1b7,1.2B,1207959552,,1207959552,24,16,2048,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -14097,7 +14499,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'embed': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}}, 'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-bloom-3b,bigscience/bloom-3b,['bloom-3b'],3b,bloom,bloom-3b,2.4B,2359296000,2359296000,30,32,2560,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 30
+bloom-3b,bigscience/bloom-3b,['bloom-3b'],bloom,bloom-3b,2.4B,2359296000,3b,2359296000,30,32,2560,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 30
 d_model: 2560
 n_ctx: 2048
 d_head: 80
@@ -14216,7 +14618,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2560)
 hook_embed: (batch, seq_len, 2560)
 ","{'embed': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}}, 'blocks': {'[0-29]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 32, 80)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 10240)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2560)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2560)'}, 'hook_embed': '(batch, seq_len, 2560)'}"
-bloom-7b1,bigscience/bloom-7b1,['bloom-7b1'],,bloom,bloom-7b1,6.0B,6039797760,6039797760,30,32,4096,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 30
+bloom-7b1,bigscience/bloom-7b1,['bloom-7b1'],bloom,bloom-7b1,6.0B,6039797760,,6039797760,30,32,4096,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,"n_layers: 30
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -14335,7 +14737,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'embed': {'ln': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}}, 'blocks': {'[0-29]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 16384)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-santacoder,bigcode/santacoder,['santacoder'],,santacoder,santacoder,1.2B,1207959552,1207959552,24,16,2048,49280,gelu_fast,standard,False,GPT2LMHeadCustomModel,LN,"n_layers: 24
+santacoder,bigcode/santacoder,['santacoder'],,santacoder,1.2B,1207959552,,1207959552,24,16,2048,49280,gelu_fast,standard,False,GPT2LMHeadCustomModel,LN,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -14448,7 +14850,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 '[hook_embed, hook_pos_embed]': (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_post]': '(batch, seq_len, 8192)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, '[hook_embed, hook_pos_embed]': '(batch, seq_len, 2048)'}"
-qwen-1.8b,Qwen/Qwen-1_8B,['qwen-1.8b'],1.8b,,Qwen-1_8B,944M,943718400,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 24
+qwen-1.8b,Qwen/Qwen-1_8B,['qwen-1.8b'],qwen,Qwen-1_8B,944M,943718400,1.8b,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -14545,7 +14947,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 5504)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-qwen-7b,Qwen/Qwen-7B,['qwen-7b'],7b,,Qwen-7B,5.0B,5033164800,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 32
+qwen-7b,Qwen/Qwen-7B,['qwen-7b'],qwen,Qwen-7B,5.0B,5033164800,7b,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -14642,7 +15044,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-qwen-14b,Qwen/Qwen-14B,['qwen-14b'],14b,,Qwen-14B,9.8B,9804185600,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 40
+qwen-14b,Qwen/Qwen-14B,['qwen-14b'],qwen,Qwen-14B,9.8B,9804185600,14b,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 40
 d_model: 5120
 n_ctx: 2048
 d_head: 128
@@ -14739,7 +15141,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 5120)
 hook_embed: (batch, seq_len, 5120)
 ","{'blocks': {'[0-39]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 40, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 40, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 13696)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 5120)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 5120)'}, 'hook_embed': '(batch, seq_len, 5120)'}"
-qwen-1.8b-chat,Qwen/Qwen-1_8B-Chat,['qwen-1.8b-chat'],1.8b,,Qwen-1_8B-Chat,944M,943718400,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 24
+qwen-1.8b-chat,Qwen/Qwen-1_8B-Chat,['qwen-1.8b-chat'],qwen,Qwen-1_8B-Chat,944M,943718400,1.8b,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 24
 d_model: 2048
 n_ctx: 2048
 d_head: 128
@@ -14836,7 +15238,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 2048)
 hook_embed: (batch, seq_len, 2048)
 ","{'blocks': {'[0-23]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 16, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 16, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 5504)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 2048)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 2048)'}, 'hook_embed': '(batch, seq_len, 2048)'}"
-qwen-7b-chat,Qwen/Qwen-7B-Chat,['qwen-7b-chat'],7b,,Qwen-7B-Chat,5.0B,5033164800,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 32
+qwen-7b-chat,Qwen/Qwen-7B-Chat,['qwen-7b-chat'],qwen,Qwen-7B-Chat,5.0B,5033164800,7b,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 32
 d_model: 4096
 n_ctx: 2048
 d_head: 128
@@ -14933,7 +15335,7 @@ ln_final:
   hook_normalized: (batch, seq_len, 4096)
 hook_embed: (batch, seq_len, 4096)
 ","{'blocks': {'[0-31]': {'ln1': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'attn': {'[hook_q, hook_k, hook_v, hook_rot_q, hook_rot_k, hook_z]': '(batch, seq_len, 32, 128)', '[hook_attn_scores, hook_pattern]': '(batch, 32, seq_len, seq_len)'}, 'ln2': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'mlp': {'[hook_pre, hook_pre_linear, hook_post]': '(batch, seq_len, 11008)'}, '[hook_resid_pre, hook_attn_out, hook_resid_mid, hook_mlp_out, hook_resid_post]': '(batch, seq_len, 4096)'}}, 'ln_final': {'hook_scale': '(batch, seq_len, 1)', 'hook_normalized': '(batch, seq_len, 4096)'}, 'hook_embed': '(batch, seq_len, 4096)'}"
-qwen-14b-chat,Qwen/Qwen-14B-Chat,['qwen-14b-chat'],14b,,Qwen-14B-Chat,9.8B,9804185600,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 40
+qwen-14b-chat,Qwen/Qwen-14B-Chat,['qwen-14b-chat'],qwen,Qwen-14B-Chat,9.8B,9804185600,14b,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS,"n_layers: 40
 d_model: 5120
 n_ctx: 2048
 d_head: 128
