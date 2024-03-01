@@ -3,6 +3,7 @@ import warnings
 import multiprocessing
 from multiprocessing import Pool
 from functools import partial
+from copy import deepcopy
 
 import pandas as pd
 import tqdm
@@ -41,15 +42,15 @@ KNOWN_MODEL_TYPES: list[str] = [
     "solu",
     "gelu",
     "attn-only",
-    "redwood_attn",
     "llama",
     "Llama-2",
-    "othello-gpt",
     "bert",
     "tiny-stories",
     "stablelm",
     "bloom",
-    "santacoder",
+    "qwen",
+    "mistral",
+    "CodeLlama",
 ]
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
@@ -77,33 +78,16 @@ def get_model_info(
     if model_name not in transformer_lens.loading.DEFAULT_MODEL_ALIASES:
         raise ValueError(f"Model name {model_name} not found in default aliases")
 
-    # output
-    # model_info: dict = dict(
-    #     default_alias=model_name,
-    #     official_name=MODEL_ALIASES_MAP.get(model_name, None),
-    #     model_size_info=None,
-    #     model_type=None,
-    # )
     official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
     model_info: dict = {
         "name.default_alias": model_name,
         "name.official": official_name,
         "name.aliases": list(transformer_lens.loading.MODEL_ALIASES.get(official_name, [])),
-        "param_count.from_name": None,
         "model_type": None,
     }
 
     # Split the model name into parts
     parts: list[str] = model_name.split("-")
-
-    # Search for model size
-    for part in parts:
-        if (
-            part[-1].lower() in ["m", "b", "k"]
-            and part[:-1].replace(".", "", 1).isdigit()
-        ):
-            model_info["param_count.from_name"] = part
-            break
 
     # identify model type by known types
     for known_type in KNOWN_MODEL_TYPES:
@@ -111,17 +95,30 @@ def get_model_info(
             model_info["model_type"] = known_type
             break
 
+    # Search for model size
+    param_count_from_name: str|None = None
+    for part in parts:
+        if (
+            part[-1].lower() in ["m", "b", "k"]
+            and part[:-1].replace(".", "", 1).isdigit()
+        ):
+            param_count_from_name = part
+            break
+
     # update model info from config
     model_cfg: HookedTransformerConfig = get_pretrained_model_config(model_name)
     model_info.update({
         "name.from_cfg": model_cfg.model_name,
-        "param_count.n_params_str": shorten_numerical_to_str(model_cfg.n_params),
-        "param_count.n_params": model_cfg.n_params,
+        "n_params.as_str": shorten_numerical_to_str(model_cfg.n_params),
+        "n_params.as_int": model_cfg.n_params,
+        "n_params.from_name": param_count_from_name,
         **{
             f"config.{attr}": getattr(model_cfg, attr)
             for attr in CONFIG_ATTRS_COPY
         },
     })
+
+
 
     # get the whole config
     if include_cfg:
@@ -135,8 +132,10 @@ def get_model_info(
     # get the model as a meta tensor
     if include_tensor_dims:
         try:
-            model_cfg.device = DEVICE
-            model: HookedTransformer = HookedTransformer(model_cfg, move_to_device=True)
+            model_cfg_copy: HookedTransformerConfig = deepcopy(model_cfg)
+            model_cfg_copy.device = DEVICE
+            model_cfg_copy.tokenizer_name = None
+            model: HookedTransformer = HookedTransformer(model_cfg_copy, move_to_device=True)
             model_info["tensor_shapes.state_dict"] = condense_tensor_dict(model.state_dict(), return_format=tensor_dims_fmt)
             model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(model.state_dict(), return_format="dict")
             input_shape: tuple[int, int, int] = (847, model_cfg.n_ctx - 7)

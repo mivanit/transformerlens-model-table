@@ -15,7 +15,7 @@
             width: 100%; /* Ensure the body takes up full viewport width */
         }
         .ag-theme-alpine {
-            height: 90%;
+            height: 80%;
             width: 100%; /* This should already keep the grid within the page width */
             box-sizing: border-box; /* Ensure padding and borders are included in the width */
         }
@@ -28,7 +28,7 @@
 </head>
 <body>
     <header>
-        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, click to copy to clipboard.
+        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, left click to copy to clipboard, right click to open contents in new tab.
     </header>
 
     <div id="modelTable" class="ag-theme-alpine"></div>
@@ -47,7 +47,20 @@
             div.title = params.value;
             div.textContent = params.value;
             div.style.cursor = 'pointer';
-
+            // if not null
+            if (params.value !== null) {
+                if (params.value.length > 50) {
+                    div.textContent = String.fromCodePoint(0x1F446) + String.fromCodePoint(0x1F4CB);
+                    div.style.fontSize = '20px';
+                    div.style.display = 'flex';
+                    div.style.justifyContent = 'center';
+                    div.style.backgroundColor = '#f4f4f4';
+                    div.style.border = '1px solid #d4d4d4';
+                    div.style.borderRadius = '5px';
+                    div.style.height = '30px';
+                    div.style.width = '60px';
+                }
+            }
 
             // Add click event listener to copy text to the clipboard
             div.onclick = function() {
@@ -58,13 +71,19 @@
                 });
             };
 
+            // on right click, open a new plain text tab whose contents are the cell's value
+            div.oncontextmenu = function() {
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write('<pre>' + params.value + '</pre>');
+                newWindow.document.close();
+            };
+
             // Return the div as the cell's DOM
             return div;
         }
 
         async function setupGrid() {			
 			const rowData = await fetchJsonlData('model_table.jsonl');
-			console.log(rowData)
             
             const columnGroups = {};
 
@@ -75,6 +94,7 @@
                 }
                 const keyParts = key.split('.');
                 if (keyParts.length === 2) {
+                    // column in a group
                     const groupName = keyParts[0];
                     const fieldName = keyParts[1];
                     if (!columnGroups[groupName]) {
@@ -89,9 +109,13 @@
                         field: key,
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
                         cellRenderer: myCellRenderer,
-                        columnGroupShow: 'open',
+                        columnGroupShow: columnGroups[groupName].children.length < 1 ? null : 'open',
+                        width: Math.min(Math.max(130, key.length * 5), 500),
+                        // numeric if it's a number
+                        type: typeof rowData[0][key] === 'number' ? 'numericColumn' : 'textColumn',
                     });
                 } else {
+                    // solo column
                     columnGroups[key] = {
                         headerName: key,
                         field: key,
@@ -100,6 +124,13 @@
                     };
                 }
             });
+
+            // special modifications
+            columnGroups['model_type'].width = 130;
+            columnGroups['cfg'].width = 110;
+            columnGroups['config'].openByDefault = true;
+            columnGroups['tensor_shapes'].width = 200;
+            columnGroups['tensor_shapes'].openByDefault = true;
 
             const columnDefs = Object.values(columnGroups);
 
@@ -117,10 +148,14 @@
                 defaultColDef: {
                     resizable: true,
                     filter: true,
+                    floatingFilter: true,
+                    // disable filter hamburger menu (for space)
+                    menuTabs: [],
                 },
                 suppressFieldDotNotation: true,
                 domLayout: 'autoHeight',
-                suppressHorizontalScroll: true,
+                suppressHorizontalScroll: false,
+                suppressAutoSize: false,
             };
 
             new agGrid.createGrid(document.getElementById('modelTable'), gridOptions);
