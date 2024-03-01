@@ -1,5 +1,8 @@
 from pathlib import Path
 import warnings
+import multiprocessing
+from multiprocessing import Pool
+from functools import partial
 
 import pandas as pd
 import tqdm
@@ -132,30 +135,72 @@ def get_model_info(
         },
     ))
 
-    return model_info
+    return model_name, model_info
 
 
+def safe_try_get_model_info(model_name: str, kwargs: dict|None = None) -> dict|None:
+    if kwargs is None:
+        kwargs = {}
+    try:
+        return get_model_info(model_name, **kwargs)
+    except Exception as e:
+        warnings.warn(f"Failed to get model info for {model_name}: {e}")
+        return model_name, None
 
-def make_model_table(verbose: bool, **kwargs) -> pd.DataFrame:
+
+def make_model_table(
+        verbose: bool, 
+        allow_except: bool = False,
+        parallelize: bool|int = True,
+        **kwargs,
+    ) -> pd.DataFrame:
     """make table of all models. kwargs passed to `get_model_info()`"""
-    model_data: list[dict] = list()
+    model_names: list[str] = list(transformer_lens.loading.DEFAULT_MODEL_ALIASES)
+    model_data: list[tuple[str, dict|None]] = list()
 
-    with tqdm.tqdm(
-        transformer_lens.loading.DEFAULT_MODEL_ALIASES,
-        desc="Loading model info",
-        disable=not verbose,
-    ) as pbar:
-        for model_name in pbar:
-            pbar.set_postfix_str(f"model: {model_name}")
-            try:
-                model_data.append(get_model_info(model_name, **kwargs))
-            except Exception as e:
-                warnings.warn(f"Failed to get model info for {model_name}: {e}")
+    if parallelize:
+        # parallel
+        n_processes: int = parallelize if isinstance(parallelize, int) else multiprocessing.cpu_count()
+        with Pool(processes=multiprocessing.cpu_count()) as pool:
+            # Use imap for ordered results, wrapped with tqdm for progress bar
+            imap_results: list[dict|None] = list(tqdm.tqdm(
+                pool.imap(
+                    partial(safe_try_get_model_info, **kwargs),
+                    model_names,
+                ),
+                total=len(model_names),
+                desc="Loading model info",
+                disable=not verbose,
+            ))
+        
+        model_data = imap_results
+    
+    else:
 
-    model_table: pd.DataFrame = pd.DataFrame(model_data)
+        with tqdm.tqdm(
+            transformer_lens.loading.DEFAULT_MODEL_ALIASES,
+            desc="Loading model info",
+            disable=not verbose,
+        ) as pbar:
+            for model_name in pbar:
+                pbar.set_postfix_str(f"model: {model_name}")
+                try:
+                    model_data.append(get_model_info(model_name, **kwargs))
+                except Exception as e:
+                    warnings.warn(f"Failed to get model info for {model_name}: {e}")
+                    model_data.append(None)
 
-    return model_table
+    failed_models: list[str] = [model_name for model_name, result in model_data if result is None]
 
+    if not allow_except:
+        if failed_models:
+            raise ValueError(f"Failed to get model info for models: {failed_models}")        
+    else:
+        warnings.warn(f"Failed to get model info for models: {failed_models}")
+    
+    model_data_filtered: list[dict] = [result for _, result in model_data if result is not None]
+
+    return pd.DataFrame(model_data_filtered)
 
 def write_model_table(model_table: pd.DataFrame, path: Path = _MODEL_TABLE_PATH) -> None:
     # to jsonlines
@@ -170,6 +215,7 @@ def get_model_table(
         verbose: bool = True, 
         force_reload: bool = True,
         do_write: bool = True,
+        parallelize: bool|int = True,
         **kwargs,
     ) -> pd.DataFrame:
     """get the model table either by generating or reading from jsonl file
@@ -193,7 +239,7 @@ def get_model_table(
     """    
     
     if not _MODEL_TABLE_PATH.exists() or force_reload:
-        model_table: pd.DataFrame = make_model_table(verbose)
+        model_table: pd.DataFrame = make_model_table(verbose=verbose, parallelize=parallelize, **kwargs)
         if do_write:
             write_model_table(model_table, _MODEL_TABLE_PATH)
     else:
