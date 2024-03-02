@@ -40,8 +40,8 @@ The tables contain:
 
 # TODO:
 
- - [ ] proper CLI interface for script
- - [ ] truncated version (no config or tensor shapes) for markdown table, csv (not legible anyway)
-	 - [ ] interface to choose which formats to write in
- - [ ] add config as json to jsonl data
+ - [x] proper CLI interface for script
+ - [x] truncated version (no config or tensor shapes) for markdown table, csv (not legible anyway)
+	 - [x] interface to choose which formats to write in
+ - [x] add config as json to jsonl data
  - [ ] make PR to TransformerLens docs
