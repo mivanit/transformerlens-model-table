@@ -10,3 +10,5 @@ pandas
 tabulate
 # transfromer_lens crashes without pytest, no idea why
 pytest
+# for CLI
+fire

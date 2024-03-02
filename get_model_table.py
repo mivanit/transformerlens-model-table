@@ -4,21 +4,24 @@ from copy import deepcopy
 from functools import partial
 from multiprocessing import Pool
 from pathlib import Path
+from typing import Callable, Literal
 
 import pandas as pd
+
 # pytorch
 import torch
 import tqdm
+
 # transformerlens
 import transformer_lens
 import yaml
 from muutils.dictmagic import condense_tensor_dict
 from muutils.json_serialize import json_serialize
+
 # muutils
 from muutils.misc import shorten_numerical_to_str
 from transformer_lens import HookedTransformer, HookedTransformerConfig
-from transformer_lens.loading_from_pretrained import \
-    get_pretrained_model_config
+from transformer_lens.loading_from_pretrained import get_pretrained_model_config
 
 # forces everything to meta tensors
 DEVICE: torch.device = torch.device("meta")
@@ -65,6 +68,11 @@ CONFIG_ATTRS_COPY: list[str] = [
     "original_architecture",
     "normalization_type",
 ]
+
+# modify certain values when printing config as yaml
+CONFIG_VALUES_PROCESS: dict[str, Callable] = {
+    "initializer_range": float,
+}
 
 
 def get_model_info(
@@ -138,8 +146,16 @@ def get_model_info(
 
     # put the whole config as yaml (for readability)
     if include_cfg:
+        model_cfg_dict: dict = model_cfg.to_dict()
+        # modify certain values to make them pretty-printable
+        for key, func_process in CONFIG_VALUES_PROCESS.items():
+            if key in model_cfg_dict:
+                model_cfg_dict[key] = func_process(model_cfg_dict[key])
+        # dump to yaml
+        model_cfg_dict = json_serialize(model_cfg_dict)
+        model_info["cfg.raw__"] = model_cfg_dict
         model_info["cfg"] = yaml.dump(
-            json_serialize(model_cfg.to_dict()),
+            model_cfg_dict,
             default_flow_style=False,
             sort_keys=False,
             width=1000,
@@ -249,8 +265,16 @@ def make_model_table(
                 try:
                     model_data.append(get_model_info(model_name, **kwargs))
                 except Exception as e:
-                    warnings.warn(f"Failed to get model info for {model_name}: {e}")
-                    model_data.append(None)
+                    if allow_except:
+                        # warn and continue if we allow exceptions
+                        warnings.warn(f"Failed to get model info for {model_name}: {e}")
+                        model_data.append(None)
+                    else:
+                        # raise exception right away if we don't allow exceptions
+                        # note that this differs from the parallel version, which will only except at the end
+                        raise ValueError(
+                            f"Failed to get model info for {model_name}"
+                        ) from e
 
     # figure out what to do with failed models
     failed_models: list[str] = [
@@ -273,15 +297,39 @@ def make_model_table(
     return pd.DataFrame(model_data_filtered)
 
 
+OutputFormat = Literal["jsonl", "csv", "md"]
+
+
 def write_model_table(
-    model_table: pd.DataFrame, path: Path = _MODEL_TABLE_PATH
+    model_table: pd.DataFrame,
+    path: Path = _MODEL_TABLE_PATH,
+    format: OutputFormat = "jsonl",
 ) -> None:
-    # to jsonlines
-    model_table.to_json(path, orient="records", lines=True)
-    # to csv
-    model_table.to_csv(path.with_suffix(".csv"), index=False)
-    # to markdown table
-    model_table.to_markdown(path.with_suffix(".md"), index=False)
+    """write the model table to disk in the specified format"""
+    match format:
+        case "jsonl":
+            model_table.to_json(path, orient="records", lines=True)
+        case "csv":
+            model_table.to_csv(path.with_suffix(".csv"), index=False)
+        case "md":
+            model_table.to_markdown(path.with_suffix(".md"), index=False)
+        case _:
+            raise KeyError(f"Invalid format: {format}")
+
+
+def abridge_model_table(
+    model_table: pd.DataFrame,
+    max_mean_col_len: int = 100,
+) -> pd.DataFrame:
+    """remove columns which are too long from the model table, returning a new table
+
+    primarily used to make the csv and md versions of the table readable
+    """
+    column_lengths: pd.Series = model_table.applymap(str).applymap(len).mean()
+    columns_to_drop: list[str] = column_lengths[
+        column_lengths > max_mean_col_len
+    ].index.tolist()
+    return model_table.drop(columns=columns_to_drop)
 
 
 def get_model_table(
@@ -317,7 +365,12 @@ def get_model_table(
             verbose=verbose, parallelize=parallelize, **kwargs
         )
         if do_write:
-            write_model_table(model_table, _MODEL_TABLE_PATH)
+            # full data as jsonl
+            write_model_table(model_table, _MODEL_TABLE_PATH, format="jsonl")
+            # abridged data as csv, md
+            abridged_table: pd.DataFrame = abridge_model_table(model_table)
+            write_model_table(abridged_table, _MODEL_TABLE_PATH, format="csv")
+            write_model_table(abridged_table, _MODEL_TABLE_PATH, format="md")
     else:
         # generate it from scratch
         model_table: pd.DataFrame = pd.read_json(
@@ -327,5 +380,39 @@ def get_model_table(
     return model_table
 
 
+def main(**kwargs):
+    """CLI for getting the model table and writing it to disk
+
+    # Parameters:
+    - `verbose : bool`
+        whether to show progress bar
+       (defaults to `True`)
+    - `force_reload : bool`
+        force creating the table from scratch, even if file exists
+        (defaults to `True`)
+    - `do_write : bool`
+        whether to write the table to disk, if generating
+        (defaults to `True`)
+    - `parallelize : bool | int`
+        whether to parallelize the model info loading. if an int, specifies the number of processes
+        (defaults to `True`)
+    - `allow_except : bool`
+        whether to allow exceptions when loading model info. If true, returns a table without rows for failed models
+        (defaults to `False`)
+    - `include_cfg : bool`
+        whether to include the model config as a yaml string in the table (not included in csv or md, only jsonl)
+        (defaults to `True`)
+    - `include_tensor_dims : bool`
+        whether to include the model tensor shapes (state dict, activation cache) in the table (not included in csv or md, only jsonl)
+        (defaults to `True`)
+    - `tensor_dims_fmt : Literal["yaml", "json", "dict"]`
+        the format of the tensor shapes, passed to muutils.dictmagic.condense_tensor_dict
+        (defaults to `"yaml"`)
+    """
+    model_table: pd.DataFrame = get_model_table(verbose=True)
+
+
 if __name__ == "__main__":
-    get_model_table(verbose=True, force_reload=True)
+    import fire
+
+    fire.Fire(main)
