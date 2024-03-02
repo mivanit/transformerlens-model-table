@@ -68,7 +68,10 @@
             // on right click, open a new plain text tab whose contents are the cell's value
             div.oncontextmenu = function() {
                 const newWindow = window.open('', '_blank');
+                // set the contents of the new window to the cell's value
                 newWindow.document.write('<pre>' + params.value + '</pre>');
+                // set the title of the page to the rows "name.default_alias" and the column's header
+                newWindow.document.title = params.node.data['name.default_alias'] + ' : ' + params.colDef.headerName;
                 newWindow.document.close();
             };
 
