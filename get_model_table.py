@@ -32,6 +32,8 @@ _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
 
 try:
     _hf_token = os.environ.get("HF_TOKEN", None)
+    if not _hf_token.startswith("hf_"):
+        raise ValueError("Invalid Hugging Face token")
 except Exception as e:
     warnings.warn(f"Failed to get Hugging Face token -- mixtral models won't work\n{e}")
 
