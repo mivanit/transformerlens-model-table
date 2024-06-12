@@ -117,28 +117,36 @@
                         };
                     }
                     // add the column to the group
-                    columnGroups[groupName].children.push({
+                    const columnDef = {
                         headerName: fieldName,
                         field: key,
                         // if it's an object, stringify it
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
-                        // custom cell renderer
-                        cellRenderer: myCellRenderer, // TODO: only use for the really long ones, cell renderer is slow
                         // only show the first child if there are many (we modify this later in some special cases)
                         columnGroupShow: columnGroups[groupName].children.length < 1 ? null : 'open',
                         // hacky width calculation (doesn't work great)
                         width: Math.min(Math.max(130, key.length * 5), 500),
                         // numeric if it's a number
                         type: typeof rowData[0][key] === 'number' ? 'numericColumn' : 'textColumn',
-                    });
+                    };
+
+                    // special renderer for tensor shapes
+                    if (groupName === 'tensor_shapes') {
+                        columnDef.cellRenderer = myCellRenderer;
+                    }
+                    columnGroups[groupName].children.push(columnDef);
                 } else {
                     // solo column
-                    columnGroups[key] = {
+                    const columnDef = {
                         headerName: key,
                         field: key,
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
-                        cellRenderer: myCellRenderer,
                     };
+                    // special renderer for full cfg
+                    if (key === 'cfg') {
+                        columnDef.cellRenderer = myCellRenderer;
+                    }
+                    columnGroups[key] = columnDef;
                 }
             });
 
