@@ -186,6 +186,13 @@
                 // try to prevent having two scrollbars (this is broken)
                 suppressHorizontalScroll: false,
                 suppressAutoSize: false,
+                // Enable column virtualization
+                ensureDomOrder: false,
+                maintainColumnOrder: true,
+                // define column type to avoid warning
+                columnTypes: {
+                    textColumn: {},
+                },
             };
             
             // create the grid
