@@ -1,3 +1,4 @@
+import os
 import multiprocessing
 import warnings
 from copy import deepcopy
@@ -28,6 +29,11 @@ DEVICE: torch.device = torch.device("meta")
 torch.set_default_device(DEVICE)
 
 _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
+
+try:
+    _hf_token = os.environ.get("HF_TOKEN", None)
+except Exception as e:
+    warnings.warn(f"Failed to get Hugging Face token -- mixtral models won't work\n{e}")
 
 # manually defined known model types
 KNOWN_MODEL_TYPES: list[str] = [
