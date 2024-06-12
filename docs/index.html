@@ -182,17 +182,21 @@
                 },
                 // we assume dots are groups, don't treat them as field notation
                 suppressFieldDotNotation: true,
-                domLayout: 'autoHeight',
-                // try to prevent having two scrollbars (this is broken)
-                suppressHorizontalScroll: false,
-                suppressAutoSize: false,
-                // Enable column virtualization
-                ensureDomOrder: false,
-                maintainColumnOrder: true,
                 // define column type to avoid warning
                 columnTypes: {
                     textColumn: {},
                 },
+                // this disables animations, but makes the horizontal scrolling not painfully slow
+                domLayout: 'print',
+                // try to prevent having two scrollbars (this is broken)
+                // suppressHorizontalScroll: true,
+                // suppressAutoSize: false,
+                // Enable column virtualization
+                // ensureDomOrder: false,
+                // maintainColumnOrder: true,
+                // suppressColumnVirtualisation: true,
+                // rowBuffer: 20,
+                // autoHeight: false,
             };
             
             // create the grid
