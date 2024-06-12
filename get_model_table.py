@@ -211,15 +211,15 @@ def get_model_info(
     return model_name, model_info
 
 
-def safe_try_get_model_info(model_name: str, kwargs: dict | None = None) -> dict | None:
-    """for parallel processing, to catch exceptions and return None instead of raising them"""
+def safe_try_get_model_info(model_name: str, kwargs: dict | None = None) -> dict | Exception:
+    """for parallel processing, to catch exceptions and return the exception instead of raising them"""
     if kwargs is None:
         kwargs = {}
     try:
         return get_model_info(model_name, **kwargs)
     except Exception as e:
         warnings.warn(f"Failed to get model info for {model_name}: {e}")
-        return model_name, None
+        return model_name, e
 
 
 def make_model_table(
@@ -230,7 +230,7 @@ def make_model_table(
 ) -> pd.DataFrame:
     """make table of all models. kwargs passed to `get_model_info()`"""
     model_names: list[str] = list(transformer_lens.loading.DEFAULT_MODEL_ALIASES)
-    model_data: list[tuple[str, dict | None]] = list()
+    model_data: list[tuple[str, dict | Exception]] = list()
 
     if parallelize:
         # parallel
@@ -239,7 +239,7 @@ def make_model_table(
         )
         with Pool(processes=multiprocessing.cpu_count()) as pool:
             # Use imap for ordered results, wrapped with tqdm for progress bar
-            imap_results: list[dict | None] = list(
+            imap_results: list[dict | Exception] = list(
                 tqdm.tqdm(
                     pool.imap(
                         partial(safe_try_get_model_info, **kwargs),
@@ -268,7 +268,7 @@ def make_model_table(
                     if allow_except:
                         # warn and continue if we allow exceptions
                         warnings.warn(f"Failed to get model info for {model_name}: {e}")
-                        model_data.append(None)
+                        model_data.append(e)
                     else:
                         # raise exception right away if we don't allow exceptions
                         # note that this differs from the parallel version, which will only except at the end
@@ -277,22 +277,25 @@ def make_model_table(
                         ) from e
 
     # figure out what to do with failed models
-    failed_models: list[str] = [
-        model_name for model_name, result in model_data if result is None
-    ]
+    failed_models: dict[str, Exception] = {
+        model_name: result
+        for model_name, result in model_data
+        if isinstance(result, Exception)
+    }
     msg: str = (
-        f"Failed to get model info for {len(failed_models)}/{len(model_names)} models: {failed_models}"
+        f"Failed to get model info for {len(failed_models)}/{len(model_names)} models: {failed_models}\n"
+        + "\n".join(f"\t{model_name}: {expt}" for model_name, expt in failed_models.items())
     )
     if not allow_except:
         if failed_models:
             # raise exception if we don't allow exceptions
-            raise ValueError(msg)
+            raise ValueError(msg + "\n\n" + "="*80 + "\n\n" + "NO DATA WRITTEN")
     else:
-        warnings.warn(msg)
+        warnings.warn(msg + "\n\n" + "-"*80 + "\n\n" + "WRITING PARTIAL DATA")
 
     # filter out failed models if we allow exceptions
     model_data_filtered: list[dict] = [
-        result for _, result in model_data if result is not None
+        result for _, result in model_data if not isinstance(result, Exception)
     ]
     return pd.DataFrame(model_data_filtered)
 
@@ -304,8 +307,23 @@ def write_model_table(
     model_table: pd.DataFrame,
     path: Path = _MODEL_TABLE_PATH,
     format: OutputFormat = "jsonl",
+    include_TL_version: bool = True,
 ) -> None:
     """write the model table to disk in the specified format"""
+    if include_TL_version:
+        # get `transformer_lens` version
+        tl_version: str = "unknown"
+        try:
+            from importlib.metadata import version, PackageNotFoundError
+            tl_version = version("transformer_lens")
+        except PackageNotFoundError as e:
+            warnings.warn(f"Failed to get transformer_lens version: package not found\n{e}")
+        except Exception as e:
+            warnings.warn(f"Failed to get transformer_lens version: {e}")
+
+        with open(path.with_suffix(".version"), "w") as f:
+            f.write(tl_version)
+
     match format:
         case "jsonl":
             model_table.to_json(path, orient="records", lines=True)
@@ -325,7 +343,7 @@ def abridge_model_table(
 
     primarily used to make the csv and md versions of the table readable
     """
-    column_lengths: pd.Series = model_table.applymap(str).applymap(len).mean()
+    column_lengths: pd.Series = model_table.map(str).map(len).mean()
     columns_to_drop: list[str] = column_lengths[
         column_lengths > max_mean_col_len
     ].index.tolist()
@@ -409,10 +427,15 @@ def main(**kwargs):
         the format of the tensor shapes, passed to muutils.dictmagic.condense_tensor_dict
         (defaults to `"yaml"`)
     """
-    model_table: pd.DataFrame = get_model_table(verbose=True)
+    get_model_table(**kwargs)
 
 
 if __name__ == "__main__":
-    import fire
+    import sys
 
+    if "-h" in sys.argv or "--help" in sys.argv:
+        print(main.__doc__)
+        sys.exit(0)
+
+    import fire
     fire.Fire(main)
