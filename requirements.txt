@@ -1,5 +1,5 @@
 # force cpu pytorch (for actions)
-torch>=2.2.1+cpu -f https://download.pytorch.org/whl/cpu
+torch>=2.2.1
 # for the actual data
 transformer_lens
 # shortening numerical values to strings, concatenating tensor dicts
