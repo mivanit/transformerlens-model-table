@@ -40,6 +40,16 @@
             const text = await response.text();
             return text.trim().split('\n').map(line => JSON.parse(line));
         }
+
+        async function fetchVersion() {
+            try {
+                const response = await fetch('model_table.version');
+                return response.text().then(text => text.trim());
+            } catch (error) {
+                console.error('Could not fetch version: ', error);
+                return 'unknown';
+            }
+        }
         
         // fancy cell rendering -- hover/copy/open the data, make it emojis if its too long
         function myCellRenderer(params) {
@@ -80,6 +90,9 @@
         }
 
         async function setupGrid() {
+            const version = await fetchVersion();
+            document.querySelector('header').innerHTML = `Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a> v${version}. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, left click to copy to clipboard, right click to open contents in new tab.`;
+            
             // read the data
 			const rowData = await fetchJsonlData('model_table.jsonl');
             const columnGroups = {};
@@ -101,7 +114,6 @@
                         columnGroups[groupName] = {
                             headerName: groupName,
                             children: [],
-                            marryChildren: true,
                         };
                     }
                     // add the column to the group
@@ -111,7 +123,7 @@
                         // if it's an object, stringify it
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
                         // custom cell renderer
-                        cellRenderer: myCellRenderer,
+                        cellRenderer: myCellRenderer, // TODO: only use for the really long ones, cell renderer is slow
                         // only show the first child if there are many (we modify this later in some special cases)
                         columnGroupShow: columnGroups[groupName].children.length < 1 ? null : 'open',
                         // hacky width calculation (doesn't work great)
