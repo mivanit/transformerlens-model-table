@@ -90,17 +90,22 @@ attn-only-2l-demo,NeelNanda/Attn-Only-2L512W-Shortformer-6B-big-lr,"['attn-only-
 solu-1l-wiki,NeelNanda/SoLU_1L512W_Wiki_Finetune,"['solu-1l-wiki', 'solu-1l-wiki-finetune', 'solu-1l-finetune']",solu,SoLU_1L512W_Wiki_Finetune,3.1M,3145728,,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN
 solu-4l-wiki,NeelNanda/SoLU_4L512W_Wiki_Finetune,"['solu-4l-wiki', 'solu-4l-wiki-finetune', 'solu-4l-finetune']",solu,SoLU_4L512W_Wiki_Finetune,13M,12582912,,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN
 redwood_attn_2l,ArthurConmy/redwood_attn_2l,['redwood_attn_2l'],,redwood_attn_2l,524K,524288,,524288,2,8,256,50259,gelu_new,shortformer,False,neel,LN
-llama-7b,llama-7b-hf,['llama-7b'],llama,llama-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
-llama-13b,llama-13b-hf,['llama-13b'],llama,llama-13b-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
-llama-30b,llama-30b-hf,['llama-30b'],llama,llama-30b-hf,25B,24945623040,30b,24945623040,60,52,6656,32000,silu,rotary,False,LlamaForCausalLM,RMS
-llama-65b,llama-65b-hf,['llama-65b'],llama,llama-65b-hf,50B,50331648000,65b,50331648000,80,64,8192,32000,silu,rotary,False,LlamaForCausalLM,RMS
-Llama-2-7b,,[],Llama-2,Llama-2-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
-Llama-2-7b-chat,,[],Llama-2,Llama-2-7b-chat-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
-Llama-2-13b,,[],Llama-2,Llama-2-13b-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
-Llama-2-13b-chat,,[],Llama-2,Llama-2-13b-chat-hf,9.9B,9856614400,13b,9856614400,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
-CodeLlamallama-2-7b,,[],llama,CodeLlama-7b-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS
-CodeLlama-7b-python,,[],CodeLlama,CodeLlama-7b-Python-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
-CodeLlama-7b-instruct,,[],CodeLlama,CodeLlama-7b-Instruct-hf,5.0B,5033164800,7b,5033164800,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS
+llama-7b,llama-7b-hf,['llama-7b'],llama,llama-7b-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
+llama-13b,llama-13b-hf,['llama-13b'],llama,llama-13b-hf,13B,12687769600,13b,12687769600,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
+llama-30b,llama-30b-hf,['llama-30b'],llama,llama-30b-hf,32B,32102154240,30b,32102154240,60,52,6656,32000,silu,rotary,False,LlamaForCausalLM,RMS
+llama-65b,llama-65b-hf,['llama-65b'],llama,llama-65b-hf,65B,64760053760,65b,64760053760,80,64,8192,32000,silu,rotary,False,LlamaForCausalLM,RMS
+Llama-2-7b,,[],Llama-2,Llama-2-7b-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
+Llama-2-7b-chat,,[],Llama-2,Llama-2-7b-chat-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
+Llama-2-13b,,[],Llama-2,Llama-2-13b-hf,13B,12687769600,13b,12687769600,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
+Llama-2-13b-chat,,[],Llama-2,Llama-2-13b-chat-hf,13B,12687769600,13b,12687769600,40,40,5120,32000,silu,rotary,False,LlamaForCausalLM,RMS
+Llama-2-70b-chat,,[],Llama-2,Llama-2-70b-chat-hf,78B,77846282240,70b,77846282240,80,64,8192,32000,silu,rotary,False,LlamaForCausalLM,RMS
+CodeLlamallama-2-7b,,[],llama,CodeLlama-7b-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS
+CodeLlama-7b-python,,[],CodeLlama,CodeLlama-7b-Python-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32000,silu,rotary,False,LlamaForCausalLM,RMS
+CodeLlama-7b-instruct,,[],CodeLlama,CodeLlama-7b-Instruct-hf,6.5B,6476005376,7b,6476005376,32,32,4096,32016,silu,rotary,False,LlamaForCausalLM,RMS
+meta-llama/Meta-Llama-3-8B,,[],llama,Meta-Llama-3-8B,7.8B,7784628224,8B,7784628224,32,32,4096,128256,silu,rotary,False,LlamaForCausalLM,RMS
+meta-llama/Meta-Llama-3-8B-Instruct,,[],llama,Meta-Llama-3-8B-Instruct,7.8B,7784628224,8B,7784628224,32,32,4096,128256,silu,rotary,False,LlamaForCausalLM,RMS
+meta-llama/Meta-Llama-3-70B,,[],llama,Meta-Llama-3-70B,78B,77846282240,70B,77846282240,80,64,8192,128256,silu,rotary,False,LlamaForCausalLM,RMS
+meta-llama/Meta-Llama-3-70B-Instruct,,[],llama,Meta-Llama-3-70B-Instruct,78B,77846282240,70B,77846282240,80,64,8192,128256,silu,rotary,False,LlamaForCausalLM,RMS
 othello-gpt,Baidicoot/Othello-GPT-Transformer-Lens,['othello-gpt'],,Othello-GPT-Transformer-Lens,25M,25165824,,25165824,8,8,512,61,gelu,standard,False,mingpt,LN
 bert-base-cased,bert-base-cased,[],bert,bert-base-cased,85M,84934656,,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN
 tiny-stories-1M,,[],tiny-stories,TinyStories-1M,393K,393216,1M,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN
@@ -121,17 +126,41 @@ stablelm-base-alpha-3b,stabilityai/stablelm-base-alpha-3b,"['stablelm-base-alpha
 stablelm-base-alpha-7b,stabilityai/stablelm-base-alpha-7b,"['stablelm-base-alpha-7b', 'stablelm-base-7b']",stablelm,stablelm-base-alpha-7b,7.2B,7247757312,7b,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN
 stablelm-tuned-alpha-3b,stabilityai/stablelm-tuned-alpha-3b,"['stablelm-tuned-alpha-3b', 'stablelm-tuned-3b']",stablelm,stablelm-tuned-alpha-3b,3.2B,3221225472,3b,3221225472,16,32,4096,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN
 stablelm-tuned-alpha-7b,stabilityai/stablelm-tuned-alpha-7b,"['stablelm-tuned-alpha-7b', 'stablelm-tuned-7b']",stablelm,stablelm-tuned-alpha-7b,7.2B,7247757312,7b,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN
-mistral-7b,mistralai/Mistral-7B-v0.1,['mistral-7b'],mistral,Mistral-7B-v0.1,5.9B,5905580032,7b,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS
-mistral-7b-instruct,mistralai/Mistral-7B-Instruct-v0.1,['mistral-7b-instruct'],mistral,Mistral-7B-Instruct-v0.1,5.9B,5905580032,7b,5905580032,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS
 bloom-560m,bigscience/bloom-560m,['bloom-560m'],bloom,bloom-560m,302M,301989888,560m,301989888,24,16,1024,250880,gelu_fast,alibi,False,BloomForCausalLM,LN
 bloom-1b1,bigscience/bloom-1b1,['bloom-1b1'],bloom,bloom-1b1,679M,679477248,,679477248,24,16,1536,250880,gelu_fast,alibi,False,BloomForCausalLM,LN
 bloom-1b7,bigscience/bloom-1b7,['bloom-1b7'],bloom,bloom-1b7,1.2B,1207959552,,1207959552,24,16,2048,250880,gelu_fast,alibi,False,BloomForCausalLM,LN
 bloom-3b,bigscience/bloom-3b,['bloom-3b'],bloom,bloom-3b,2.4B,2359296000,3b,2359296000,30,32,2560,250880,gelu_fast,alibi,False,BloomForCausalLM,LN
 bloom-7b1,bigscience/bloom-7b1,['bloom-7b1'],bloom,bloom-7b1,6.0B,6039797760,,6039797760,30,32,4096,250880,gelu_fast,alibi,False,BloomForCausalLM,LN
 santacoder,bigcode/santacoder,['santacoder'],,santacoder,1.2B,1207959552,,1207959552,24,16,2048,49280,gelu_fast,standard,False,GPT2LMHeadCustomModel,LN
-qwen-1.8b,Qwen/Qwen-1_8B,['qwen-1.8b'],qwen,Qwen-1_8B,944M,943718400,1.8b,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS
-qwen-7b,Qwen/Qwen-7B,['qwen-7b'],qwen,Qwen-7B,5.0B,5033164800,7b,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS
-qwen-14b,Qwen/Qwen-14B,['qwen-14b'],qwen,Qwen-14B,9.8B,9804185600,14b,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS
-qwen-1.8b-chat,Qwen/Qwen-1_8B-Chat,['qwen-1.8b-chat'],qwen,Qwen-1_8B-Chat,944M,943718400,1.8b,943718400,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS
-qwen-7b-chat,Qwen/Qwen-7B-Chat,['qwen-7b-chat'],qwen,Qwen-7B-Chat,5.0B,5033164800,7b,5033164800,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS
-qwen-14b-chat,Qwen/Qwen-14B-Chat,['qwen-14b-chat'],qwen,Qwen-14B-Chat,9.8B,9804185600,14b,9804185600,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-1.8b,Qwen/Qwen-1_8B,['qwen-1.8b'],qwen,Qwen-1_8B,1.2B,1214251008,1.8b,1214251008,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-7b,Qwen/Qwen-7B,['qwen-7b'],qwen,Qwen-7B,6.5B,6476005376,7b,6476005376,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-14b,Qwen/Qwen-14B,['qwen-14b'],qwen,Qwen-14B,13B,12609126400,14b,12609126400,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-1.8b-chat,Qwen/Qwen-1_8B-Chat,['qwen-1.8b-chat'],qwen,Qwen-1_8B-Chat,1.2B,1214251008,1.8b,1214251008,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-7b-chat,Qwen/Qwen-7B-Chat,['qwen-7b-chat'],qwen,Qwen-7B-Chat,6.5B,6476005376,7b,6476005376,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS
+qwen-14b-chat,Qwen/Qwen-14B-Chat,['qwen-14b-chat'],qwen,Qwen-14B-Chat,13B,12609126400,14b,12609126400,40,40,5120,152064,silu,rotary,False,QWenLMHeadModel,RMS
+qwen1.5-0.5b,Qwen/Qwen1.5-0.5B,['qwen1.5-0.5b'],qwen,Qwen1.5-0.5B,308M,308281344,0.5b,308281344,24,16,1024,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-0.5b-chat,Qwen/Qwen1.5-0.5B-Chat,['qwen1.5-0.5b-chat'],qwen,Qwen1.5-0.5B-Chat,308M,308281344,0.5b,308281344,24,16,1024,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-1.8b,Qwen/Qwen1.5-1.8B,['qwen1.5-1.8b'],qwen,Qwen1.5-1.8B,1.2B,1214251008,1.8b,1214251008,24,16,2048,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-1.8b-chat,Qwen/Qwen1.5-1.8B-Chat,['qwen1.5-1.8b-chat'],qwen,Qwen1.5-1.8B-Chat,1.2B,1214251008,1.8b,1214251008,24,16,2048,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-4b,Qwen/Qwen1.5-4B,['qwen1.5-4b'],qwen,Qwen1.5-4B,3.2B,3171942400,4b,3171942400,40,20,2560,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-4b-chat,Qwen/Qwen1.5-4B-Chat,['qwen1.5-4b-chat'],qwen,Qwen1.5-4B-Chat,3.2B,3171942400,4b,3171942400,40,20,2560,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-7b,Qwen/Qwen1.5-7B,['qwen1.5-7b'],qwen,Qwen1.5-7B,6.5B,6476005376,7b,6476005376,32,32,4096,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-7b-chat,Qwen/Qwen1.5-7B-Chat,['qwen1.5-7b-chat'],qwen,Qwen1.5-7B-Chat,6.5B,6476005376,7b,6476005376,32,32,4096,151936,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-14b,Qwen/Qwen1.5-14B,['qwen1.5-14b'],qwen,Qwen1.5-14B,13B,12609126400,14b,12609126400,40,40,5120,152064,silu,rotary,False,Qwen2ForCausalLM,RMS
+qwen1.5-14b-chat,Qwen/Qwen1.5-14B-Chat,['qwen1.5-14b-chat'],qwen,Qwen1.5-14B-Chat,13B,12609126400,14b,12609126400,40,40,5120,152064,silu,rotary,False,Qwen2ForCausalLM,RMS
+phi-1,microsoft/phi-1,['phi-1'],,phi-1,1.2B,1207959552,,1207959552,24,32,2048,51200,gelu_new,rotary,True,PhiForCausalLM,LN
+phi-1_5,microsoft/phi-1_5,['phi-1_5'],,phi-1_5,1.2B,1207959552,,1207959552,24,32,2048,51200,gelu_new,rotary,True,PhiForCausalLM,LN
+phi-2,microsoft/phi-2,['phi-2'],,phi-2,2.5B,2516582400,,2516582400,32,32,2560,51200,gelu_new,rotary,True,PhiForCausalLM,LN
+phi-3,microsoft/Phi-3-mini-4k-instruct,['phi-3'],,Phi-3-mini-4k-instruct,3.6B,3623878656,,3623878656,32,32,3072,32064,silu,rotary,False,Phi3ForCausalLM,RMS
+gemma-2b,google/gemma-2b,['gemma-2b'],,gemma-2b,2.1B,2113929216,2b,2113929216,18,8,2048,256000,gelu_new,rotary,False,GemmaForCausalLM,RMS
+gemma-7b,google/gemma-7b,['gemma-7b'],,gemma-7b,7.8B,7751073792,7b,7751073792,28,16,3072,256000,gelu_new,rotary,False,GemmaForCausalLM,RMS
+gemma-2b-it,google/gemma-2b-it,['gemma-2b-it'],,gemma-2b-it,2.1B,2113929216,2b,2113929216,18,8,2048,256000,gelu_new,rotary,False,GemmaForCausalLM,RMS
+gemma-7b-it,google/gemma-7b-it,['gemma-7b-it'],,gemma-7b-it,7.8B,7751073792,7b,7751073792,28,16,3072,256000,gelu_new,rotary,False,GemmaForCausalLM,RMS
+yi-6b,01-ai/Yi-6B,"['yi-6b', 'Yi-6B']",,Yi-6B,6.5B,6476005376,6b,6476005376,32,32,4096,64000,silu,rotary,False,LlamaForCausalLM,RMS
+yi-34b,01-ai/Yi-34B,"['yi-34b', 'Yi-34B']",,Yi-34B,39B,38755368960,34b,38755368960,60,56,7168,64000,silu,rotary,False,LlamaForCausalLM,RMS
+yi-6b-chat,01-ai/Yi-6B-Chat,"['yi-6b-chat', 'Yi-6B-Chat']",,Yi-6B-Chat,6.5B,6476005376,6b,6476005376,32,32,4096,64000,silu,rotary,False,LlamaForCausalLM,RMS
+yi-34b-chat,01-ai/Yi-34B-Chat,"['yi-34b-chat', 'Yi-34B-Chat']",,Yi-34B-Chat,39B,38755368960,34b,38755368960,60,56,7168,64000,silu,rotary,False,LlamaForCausalLM,RMS
+t5-small,google-t5/t5-small,['t5-small'],,t5-small,19M,18874368,,18874368,6,8,512,32128,relu,relative_positional_bias,False,T5ForConditionalGeneration,LN
+t5-base,google-t5/t5-base,['t5-base'],,t5-base,85M,84934656,,84934656,12,12,768,32128,relu,relative_positional_bias,False,T5ForConditionalGeneration,LN
+t5-large,google-t5/t5-large,['t5-large'],,t5-large,302M,301989888,,301989888,24,16,1024,32128,relu,relative_positional_bias,False,T5ForConditionalGeneration,LN
+mGPT,,[],,mGPT,1.2B,1207959552,,1207959552,24,16,2048,100000,gelu_new,standard,False,GPT2LMHeadModel,LN
