@@ -8,19 +8,17 @@ from pathlib import Path
 from typing import Callable, Literal
 
 import pandas as pd
-
-# pytorch
-import torch
-import tqdm
-
-# transformerlens
-import transformer_lens
 import yaml
-from muutils.dictmagic import condense_tensor_dict
-from muutils.json_serialize import json_serialize
+import tqdm
+import torch
 
 # muutils
 from muutils.misc import shorten_numerical_to_str
+from muutils.dictmagic import condense_tensor_dict
+from muutils.json_serialize import json_serialize
+
+# transformerlens
+import transformer_lens
 from transformer_lens import HookedTransformer, HookedTransformerConfig
 from transformer_lens.loading_from_pretrained import get_pretrained_model_config
 
