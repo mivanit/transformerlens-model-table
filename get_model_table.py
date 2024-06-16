@@ -217,7 +217,9 @@ def get_model_info(
     return model_name, model_info
 
 
-def safe_try_get_model_info(model_name: str, kwargs: dict | None = None) -> dict | Exception:
+def safe_try_get_model_info(
+    model_name: str, kwargs: dict | None = None
+) -> dict | Exception:
     """for parallel processing, to catch exceptions and return the exception instead of raising them"""
     if kwargs is None:
         kwargs = {}
@@ -290,14 +292,16 @@ def make_model_table(
     }
     msg: str = (
         f"Failed to get model info for {len(failed_models)}/{len(model_names)} models: {failed_models}\n"
-        + "\n".join(f"\t{model_name}: {expt}" for model_name, expt in failed_models.items())
+        + "\n".join(
+            f"\t{model_name}: {expt}" for model_name, expt in failed_models.items()
+        )
     )
     if not allow_except:
         if failed_models:
             # raise exception if we don't allow exceptions
-            raise ValueError(msg + "\n\n" + "="*80 + "\n\n" + "NO DATA WRITTEN")
+            raise ValueError(msg + "\n\n" + "=" * 80 + "\n\n" + "NO DATA WRITTEN")
     else:
-        warnings.warn(msg + "\n\n" + "-"*80 + "\n\n" + "WRITING PARTIAL DATA")
+        warnings.warn(msg + "\n\n" + "-" * 80 + "\n\n" + "WRITING PARTIAL DATA")
 
     # filter out failed models if we allow exceptions
     model_data_filtered: list[dict] = [
@@ -321,9 +325,12 @@ def write_model_table(
         tl_version: str = "unknown"
         try:
             from importlib.metadata import version, PackageNotFoundError
+
             tl_version = version("transformer_lens")
         except PackageNotFoundError as e:
-            warnings.warn(f"Failed to get transformer_lens version: package not found\n{e}")
+            warnings.warn(
+                f"Failed to get transformer_lens version: package not found\n{e}"
+            )
         except Exception as e:
             warnings.warn(f"Failed to get transformer_lens version: {e}")
 
@@ -444,4 +451,5 @@ if __name__ == "__main__":
         sys.exit(0)
 
     import fire
+
     fire.Fire(main)
