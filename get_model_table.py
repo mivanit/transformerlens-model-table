@@ -57,6 +57,10 @@ KNOWN_MODEL_TYPES: list[str] = [
     "qwen",
     "mistral",
     "CodeLlama",
+    "phi",
+    "gemma",
+    "yi",
+    "t5",
 ]
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
@@ -107,14 +111,14 @@ def get_model_info(
         raise ValueError(f"Model name {model_name} not found in default aliases")
 
     # get the names and model types
-    official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
+    official_name: str = MODEL_ALIASES_MAP.get(model_name, "")
     model_info: dict = {
         "name.default_alias": model_name,
         "name.official": official_name,
-        "name.aliases": list(
+        "name.aliases": ", ".join(list(
             transformer_lens.loading.MODEL_ALIASES.get(official_name, [])
-        ),
-        "model_type": None,
+        )),
+        "model_type": "",
     }
 
     # Split the model name into parts
