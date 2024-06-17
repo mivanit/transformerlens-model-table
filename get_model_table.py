@@ -217,7 +217,7 @@ def get_model_info(
             "n_params.as_int": model_cfg.n_params,
             "n_params.from_name": param_count_from_name,
             **{
-                f"config.{attr}": getattr(model_cfg, attr) for attr in CONFIG_ATTRS_COPY
+                f"cfg.{attr}": getattr(model_cfg, attr) for attr in CONFIG_ATTRS_COPY
             },
         }
     )
@@ -231,8 +231,8 @@ def get_model_info(
                 model_cfg_dict[key] = func_process(model_cfg_dict[key])
         # dump to yaml
         model_cfg_dict = json_serialize(model_cfg_dict)
-        model_info["cfg.raw__"] = model_cfg_dict
-        model_info["cfg"] = yaml.dump(
+        model_info["config.raw__"] = model_cfg_dict
+        model_info["config"] = yaml.dump(
             model_cfg_dict,
             default_flow_style=False,
             sort_keys=False,
