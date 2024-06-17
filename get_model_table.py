@@ -17,7 +17,6 @@ from transformers import PreTrainedTokenizer
 # muutils
 from muutils.misc import shorten_numerical_to_str
 from muutils.dictmagic import condense_tensor_dict
-from muutils.json_serialize import json_serialize
 
 # transformerlens
 import transformer_lens
@@ -256,14 +255,15 @@ def get_model_info(
 
     # put the whole config as yaml (for readability)
     if include_cfg:
-        model_cfg_dict: dict = model_cfg.to_dict()
         # modify certain values to make them pretty-printable
-        for key, func_process in CONFIG_VALUES_PROCESS.items():
-            if key in model_cfg_dict:
-                model_cfg_dict[key] = func_process(model_cfg_dict[key])
-        # dump to yaml
-        model_cfg_dict = json_serialize(model_cfg_dict)
+        model_cfg_dict: dict = {
+            key: val if key not in CONFIG_VALUES_PROCESS else CONFIG_VALUES_PROCESS[key](val)
+            for key, val in model_cfg.to_dict().items()
+        }
+
+        # raw config
         model_info["config.raw__"] = model_cfg_dict
+        # dump to yaml
         model_info["config"] = yaml.dump(
             model_cfg_dict,
             default_flow_style=False,
