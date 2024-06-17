@@ -6,11 +6,14 @@ from functools import partial
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Callable, Literal
+import hashlib
+import base64
 
 import pandas as pd
 import yaml
 import tqdm
 import torch
+from transformers import PreTrainedTokenizer
 
 # muutils
 from muutils.misc import shorten_numerical_to_str
@@ -84,11 +87,73 @@ CONFIG_VALUES_PROCESS: dict[str, Callable] = {
     "initializer_range": float,
 }
 
+def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -> dict:
+    """get the tensor shapes from a model"""
+    model_info: dict = dict()
+    # state dict
+    model_info["tensor_shapes.state_dict"] = condense_tensor_dict(
+        model.state_dict(), fmt=tensor_dims_fmt
+    )
+    model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(
+        model.state_dict(), fmt="dict"
+    )
+    # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
+    input_shape: tuple[int, int, int] = (847, model.cfg.n_ctx - 7)
+    # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
+    dims_names_map: dict[int, str] = {
+        input_shape[0]: "batch",
+        input_shape[1]: "seq_len",
+    }
+    # run with cache to activation cache
+    _, cache = model.run_with_cache(
+        torch.empty(input_shape, dtype=torch.long, device=DEVICE)
+    )
+    # condense using muutils and store
+    model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
+        cache,
+        fmt=tensor_dims_fmt,
+        dims_names_map=dims_names_map,
+    )
+    model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
+        cache,
+        fmt="dict",
+        dims_names_map=dims_names_map,
+    )
+
+    return model_info
+
+def tokenizer_vocab_hash(tokenizer: PreTrainedTokenizer) -> str:
+    # sort
+    vocab_hashable: list[tuple[str, int]] = list(sorted(
+        tokenizer.vocab.items(),
+        key=lambda x: x[1],
+    ))
+    # hash it
+    hash_obj = hashlib.sha1(bytes(str(vocab_hashable), "UTF-8"))
+    # convert to base64
+    return base64.b64encode(
+        hash_obj.digest(),
+        altchars=b"-_", # - and _ as altchars
+    ).decode("UTF-8").rstrip("=")
+
+def get_tokenizer_info(model: HookedTransformer) -> dict:
+    tokenizer: PreTrainedTokenizer = model.tokenizer
+    model_info: dict = dict()
+    # basic info
+    model_info["tokenizer.name"] = tokenizer.name_or_path
+    model_info["tokenizer.vocab_size"] = int(tokenizer.vocab_size)
+    model_info["tokenizer.max_len"] = int(tokenizer.model_max_length)
+    model_info["tokenizer.class"] = tokenizer.__class__.__name__
+
+    # vocab hash
+    model_info["tokenizer.vocab_hash"] = tokenizer_vocab_hash(tokenizer)
+    return model_info
 
 def get_model_info(
     model_name: str,
     include_cfg: bool = True,
     include_tensor_dims: bool = True,
+    include_tokenizer_info: bool = True,
     tensor_dims_fmt: str = "yaml",
 ) -> dict:
     """get information about the model from the default alias model name
@@ -102,6 +167,9 @@ def get_model_info(
      - `include_tensor_dims : bool`
         whether to include the model tensor shapes
        (defaults to `True`)
+     - `include_tokenizer_info : bool`
+        whether to include the tokenizer info
+        (defaults to `True`)
      - `tensor_dims_fmt : str`
         the format of the tensor shapes. one of "yaml", "json", "dict"
        (defaults to `"yaml"`)
@@ -172,51 +240,40 @@ def get_model_info(
         )
 
     # get tensor shapes
-    if include_tensor_dims:
+    if include_tensor_dims or include_tokenizer_info:
+        got_model: bool = False
         try:
             # copy the config, so we can modify it
             model_cfg_copy: HookedTransformerConfig = deepcopy(model_cfg)
             # set device to "meta" -- don't actually initialize the model with real tensors
             model_cfg_copy.device = DEVICE
-            # don't need to download the tokenizer
-            model_cfg_copy.tokenizer_name = None
+            if not include_tokenizer_info:
+                # don't need to download the tokenizer
+                model_cfg_copy.tokenizer_name = None
             # init the fake model
             model: HookedTransformer = HookedTransformer(
                 model_cfg_copy, move_to_device=True
             )
-            # state dict
-            model_info["tensor_shapes.state_dict"] = condense_tensor_dict(
-                model.state_dict(), fmt=tensor_dims_fmt
-            )
-            model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(
-                model.state_dict(), fmt="dict"
-            )
-            # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
-            input_shape: tuple[int, int, int] = (847, model_cfg.n_ctx - 7)
-            # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
-            dims_names_map: dict[int, str] = {
-                input_shape[0]: "batch",
-                input_shape[1]: "seq_len",
-            }
-            # run with cache to activation cache
-            _, cache = model.run_with_cache(
-                torch.empty(input_shape, dtype=torch.long, device=DEVICE)
-            )
-            # condense using muutils and store
-            model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
-                cache,
-                fmt=tensor_dims_fmt,
-                dims_names_map=dims_names_map,
-            )
-            model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
-                cache,
-                fmt="dict",
-                dims_names_map=dims_names_map,
-            )
-
+            got_model = True
         except Exception as e:
-            warnings.warn(f"Failed to get tensor shapes for model {model_name}: {e}")
-            return model_name, model_info
+            warnings.warn(f"Failed to init model {model_name}, can't get tensor shapes or tokenizer info:\n{e}")
+        
+        if got_model:
+            if include_tokenizer_info:
+                try:
+                    tokenizer_info: dict = get_tokenizer_info(model)
+                    model_info.update(tokenizer_info)
+                except Exception as e:
+                    warnings.warn(f"Failed to get tokenizer info for model {model_name}:\n{e}")
+
+            if include_tensor_dims:
+                try:
+                    tensor_shapes_info: dict = get_tensor_shapes(model, tensor_dims_fmt)
+                    model_info.update(tensor_shapes_info)
+                except Exception as e:
+                    warnings.warn(f"Failed to get tensor shapes for model {model_name}:\n{e}")
+
+        
 
     return model_name, model_info
 
@@ -238,11 +295,20 @@ def make_model_table(
     verbose: bool,
     allow_except: bool = False,
     parallelize: bool | int = True,
+    model_names_pattern: str|None = None,
     **kwargs,
 ) -> pd.DataFrame:
     """make table of all models. kwargs passed to `get_model_info()`"""
     model_names: list[str] = list(transformer_lens.loading.DEFAULT_MODEL_ALIASES)
     model_data: list[tuple[str, dict | Exception]] = list()
+
+    # filter by regex pattern if provided
+    if model_names_pattern:
+        model_names = [
+            model_name 
+            for model_name in model_names 
+            if model_names_pattern in model_name
+        ]
 
     if parallelize:
         # parallel
@@ -343,7 +409,7 @@ def write_model_table(
 
     match format:
         case "jsonl":
-            model_table.to_json(path, orient="records", lines=True)
+            model_table.to_json(path.with_suffix(".jsonl"), orient="records", lines=True)
         case "csv":
             model_table.to_csv(path.with_suffix(".csv"), index=False)
         case "md":
@@ -372,6 +438,7 @@ def get_model_table(
     force_reload: bool = True,
     do_write: bool = True,
     parallelize: bool | int = True,
+    model_names_pattern: str|None = None,
     **kwargs,
 ) -> pd.DataFrame:
     """get the model table either by generating or reading from jsonl file
@@ -386,6 +453,9 @@ def get_model_table(
      - `do_write : bool`
         whether to write the table to disk, if generating
        (defaults to `True`)
+     - `model_names_pattern : str|None`
+        filter the model names by making them include this string. passed to `make_model_table()`. no filtering if `None`
+        (defaults to `None`)
      - `**kwargs`
         eventually passed to `get_model_info()`
 
@@ -394,22 +464,32 @@ def get_model_table(
         the model table. rows are models, columns are model attributes
     """
 
-    if not _MODEL_TABLE_PATH.exists() or force_reload:
+    model_table_path: Path = _MODEL_TABLE_PATH
+
+    if model_names_pattern is not None:
+        model_table_path = model_table_path.with_name(
+            model_table_path.stem + f"-{model_names_pattern}"
+        )
+
+    if not model_table_path.exists() or force_reload:
         # generate it from scratch
         model_table: pd.DataFrame = make_model_table(
-            verbose=verbose, parallelize=parallelize, **kwargs
+            verbose=verbose,
+            parallelize=parallelize,
+            model_names_pattern=model_names_pattern,
+            **kwargs,
         )
         if do_write:
             # full data as jsonl
-            write_model_table(model_table, _MODEL_TABLE_PATH, format="jsonl")
+            write_model_table(model_table, model_table_path, format="jsonl")
             # abridged data as csv, md
             abridged_table: pd.DataFrame = abridge_model_table(model_table)
-            write_model_table(abridged_table, _MODEL_TABLE_PATH, format="csv")
-            write_model_table(abridged_table, _MODEL_TABLE_PATH, format="md")
+            write_model_table(abridged_table, model_table_path, format="csv")
+            write_model_table(abridged_table, model_table_path, format="md")
     else:
         # read the table from jsonl
         model_table: pd.DataFrame = pd.read_json(
-            _MODEL_TABLE_PATH, orient="records", lines=True
+            model_table_path, orient="records", lines=True
         )
 
     return model_table
@@ -431,6 +511,9 @@ def main(**kwargs):
     - `parallelize : bool | int`
         whether to parallelize the model info loading. if an int, specifies the number of processes
         (defaults to `True`)
+    - `model_names_pattern : str|None`
+        filter the model names by making them include this string. passed to `make_model_table()`. no filtering if `None`
+        (defaults to `None`)
     - `allow_except : bool`
         whether to allow exceptions when loading model info. If true, returns a table without rows for failed models
         (defaults to `False`)
