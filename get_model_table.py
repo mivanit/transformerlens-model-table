@@ -391,7 +391,7 @@ def get_model_table(
     """
 
     if not _MODEL_TABLE_PATH.exists() or force_reload:
-        # read the table from jsonl
+        # generate it from scratch
         model_table: pd.DataFrame = make_model_table(
             verbose=verbose, parallelize=parallelize, **kwargs
         )
@@ -403,7 +403,7 @@ def get_model_table(
             write_model_table(abridged_table, _MODEL_TABLE_PATH, format="csv")
             write_model_table(abridged_table, _MODEL_TABLE_PATH, format="md")
     else:
-        # generate it from scratch
+        # read the table from jsonl
         model_table: pd.DataFrame = pd.read_json(
             _MODEL_TABLE_PATH, orient="records", lines=True
         )
