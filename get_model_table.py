@@ -487,7 +487,7 @@ def abridge_model_table(
 
     output: pd.DataFrame = model_table.copy()
     # filter columns
-    output = output[columns_keep]
+    output = output[list(columns_keep)]
 
     if null_to_empty:
         output = output.fillna("")
