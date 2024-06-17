@@ -56,6 +56,7 @@
         function longCellRenderer(params) {
             // Create the div element
             var div = document.createElement('div');
+            div.title = params.value; // Set the title text to the full text
             div.style.cursor = 'pointer'; // Ensure the cursor style is set
             // If its too long, make it emojis
             if (params.value !== null) {
