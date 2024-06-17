@@ -168,7 +168,7 @@
                         valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
                     };
                     // special renderer for full cfg
-                    if (key === 'cfg') {
+                    if (key === 'config') {
                         columnDef.cellRenderer = longCellRenderer;
                     }
                     columnGroups[key] = columnDef;
@@ -177,11 +177,11 @@
 
             // special modifications
             columnGroups['model_type'].width = 130;
-            columnGroups['cfg'].width = 110;
+            columnGroups['config'].width = 100;
             columnGroups['tensor_shapes'].width = 200;
             // open these groups by default
             columnGroups['tensor_shapes'].openByDefault = true;
-            columnGroups['config'].openByDefault = true;
+            columnGroups['cfg'].openByDefault = true;
 
             const columnDefs = Object.values(columnGroups);
 
