@@ -36,7 +36,7 @@ try:
     if not _hf_token.startswith("hf_"):
         raise ValueError("Invalid Hugging Face token")
 except Exception as e:
-    warnings.warn(f"Failed to get Hugging Face token -- mixtral models won't work\n{e}")
+    warnings.warn(f"Failed to get Hugging Face token -- info about certain models will be limited\n{e}")
 
 # manually defined known model types
 KNOWN_MODEL_TYPES: list[str] = [
