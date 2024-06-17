@@ -1,13 +1,13 @@
 # force cpu pytorch (for actions)
 torch>=2.2.1
 # for the actual data
-transformer_lens
+transformer_lens>=2.1.0
 # shortening numerical values to strings, concatenating tensor dicts
-muutils
+muutils>=0.5.12
 # for the table
-pandas
+pandas>=2.2.2
 # for writing the pandas dataframe to markdown
-tabulate
+tabulate>=0.9.0
 # transfromer_lens crashes without pytest, no idea why
 pytest
 # for CLI
