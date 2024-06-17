@@ -53,11 +53,9 @@
         }
         
         // fancy cell rendering -- hover/copy/open the data, make it emojis if its too long
-        function myCellRenderer(params) {
+        function longCellRenderer(params) {
             // Create the div element
             var div = document.createElement('div');
-            div.title = params.value;
-            div.textContent = params.value;
             div.style.cursor = 'pointer'; // Ensure the cursor style is set
             // If its too long, make it emojis
             if (params.value !== null) {
@@ -89,6 +87,22 @@
                 return false; // Prevent the default context menu from appearing
             };
 
+            // Return the div as the cell's DOM
+            return div;
+        }
+
+        // huggingface model name cell renderer -- add a link to the model page
+        function hf_link_cell_renderer(params) {
+            // Create the div element
+            var div = document.createElement('div');
+            div.style.cursor = 'pointer'; // Ensure the cursor style is set
+            // If its too long, make it emojis
+            if (params.value !== null) {
+                // make a link with the text of the value, pointing to https://huggingface.co/{x}
+                // make it open in a new tab
+                div.innerHTML = `<a href="https://huggingface.co/${params.value}" target="_blank" rel="noopener noreferrer">${params.value}</a>`;
+                div.style.cssText = 'cursor: pointer;';
+            }
             // Return the div as the cell's DOM
             return div;
         }
@@ -136,8 +150,14 @@
 
                     // special renderer for tensor shapes
                     if (groupName === 'tensor_shapes') {
-                        columnDef.cellRenderer = myCellRenderer;
+                        columnDef.cellRenderer = longCellRenderer;
                     }
+                    
+                    // special renderer for huggingface model name
+                    if (groupName === 'name' && fieldName === 'official') {
+                        columnDef.cellRenderer = hf_link_cell_renderer;
+                    }
+
                     columnGroups[groupName].children.push(columnDef);
                 } else {
                     // solo column
@@ -148,7 +168,7 @@
                     };
                     // special renderer for full cfg
                     if (key === 'cfg') {
-                        columnDef.cellRenderer = myCellRenderer;
+                        columnDef.cellRenderer = longCellRenderer;
                     }
                     columnGroups[key] = columnDef;
                 }

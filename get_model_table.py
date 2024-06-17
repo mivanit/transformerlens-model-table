@@ -182,7 +182,7 @@ def get_model_info(
     official_name: str = MODEL_ALIASES_MAP.get(model_name, "")
     model_info: dict = {
         "name.default_alias": model_name,
-        "name.official": official_name,
+        "name.huggingface": official_name,
         "name.aliases": ", ".join(list(
             transformer_lens.loading.MODEL_ALIASES.get(official_name, [])
         )),
@@ -382,12 +382,22 @@ def make_model_table(
 
 OutputFormat = Literal["jsonl", "csv", "md"]
 
+def huggingface_name_to_url(df: pd.DataFrame) -> pd.DataFrame:
+    """convert the huggingface model name to a url"""
+    df_new: pd.DataFrame = df.copy()
+    df_new["name.huggingface"] = df_new["name.huggingface"].map(
+        lambda x: f"[{x}](https://huggingface.co/{x})" if x else x
+    )
+    return df_new
+
+
 
 def write_model_table(
     model_table: pd.DataFrame,
     path: Path = _MODEL_TABLE_PATH,
     format: OutputFormat = "jsonl",
     include_TL_version: bool = True,
+    md_hf_links: bool = True,
 ) -> None:
     """write the model table to disk in the specified format"""
     if include_TL_version:
@@ -413,7 +423,11 @@ def write_model_table(
         case "csv":
             model_table.to_csv(path.with_suffix(".csv"), index=False)
         case "md":
-            model_table.to_markdown(path.with_suffix(".md"), index=False)
+            model_table_processed: pd.DataFrame = model_table
+            # convert huggingface name to url
+            if md_hf_links:
+                model_table_processed = huggingface_name_to_url(model_table_processed)
+            model_table_processed.to_markdown(path.with_suffix(".md"), index=False)
         case _:
             raise KeyError(f"Invalid format: {format}")
 
