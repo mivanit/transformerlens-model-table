@@ -36,7 +36,9 @@ try:
     if not _hf_token.startswith("hf_"):
         raise ValueError("Invalid Hugging Face token")
 except Exception as e:
-    warnings.warn(f"Failed to get Hugging Face token -- info about certain models will be limited\n{e}")
+    warnings.warn(
+        f"Failed to get Hugging Face token -- info about certain models will be limited\n{e}"
+    )
 
 # manually defined known model types
 KNOWN_MODEL_TYPES: list[str] = [
@@ -87,6 +89,7 @@ CONFIG_VALUES_PROCESS: dict[str, Callable] = {
     "initializer_range": float,
 }
 
+
 def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -> dict:
     """get the tensor shapes from a model"""
     model_info: dict = dict()
@@ -122,19 +125,27 @@ def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -
 
     return model_info
 
+
 def tokenizer_vocab_hash(tokenizer: PreTrainedTokenizer) -> str:
     # sort
-    vocab_hashable: list[tuple[str, int]] = list(sorted(
-        tokenizer.vocab.items(),
-        key=lambda x: x[1],
-    ))
+    vocab_hashable: list[tuple[str, int]] = list(
+        sorted(
+            tokenizer.vocab.items(),
+            key=lambda x: x[1],
+        )
+    )
     # hash it
     hash_obj = hashlib.sha1(bytes(str(vocab_hashable), "UTF-8"))
     # convert to base64
-    return base64.b64encode(
-        hash_obj.digest(),
-        altchars=b"-_", # - and _ as altchars
-    ).decode("UTF-8").rstrip("=")
+    return (
+        base64.b64encode(
+            hash_obj.digest(),
+            altchars=b"-_",  # - and _ as altchars
+        )
+        .decode("UTF-8")
+        .rstrip("=")
+    )
+
 
 def get_tokenizer_info(model: HookedTransformer) -> dict:
     tokenizer: PreTrainedTokenizer = model.tokenizer
@@ -148,6 +159,7 @@ def get_tokenizer_info(model: HookedTransformer) -> dict:
     # vocab hash
     model_info["tokenizer.vocab_hash"] = tokenizer_vocab_hash(tokenizer)
     return model_info
+
 
 def get_model_info(
     model_name: str,
@@ -183,9 +195,9 @@ def get_model_info(
     model_info: dict = {
         "name.default_alias": model_name,
         "name.huggingface": official_name,
-        "name.aliases": ", ".join(list(
-            transformer_lens.loading.MODEL_ALIASES.get(official_name, [])
-        )),
+        "name.aliases": ", ".join(
+            list(transformer_lens.loading.MODEL_ALIASES.get(official_name, []))
+        ),
         "model_type": None,
     }
 
@@ -216,9 +228,7 @@ def get_model_info(
             "n_params.as_str": shorten_numerical_to_str(model_cfg.n_params),
             "n_params.as_int": model_cfg.n_params,
             "n_params.from_name": param_count_from_name,
-            **{
-                f"cfg.{attr}": getattr(model_cfg, attr) for attr in CONFIG_ATTRS_COPY
-            },
+            **{f"cfg.{attr}": getattr(model_cfg, attr) for attr in CONFIG_ATTRS_COPY},
         }
     )
 
@@ -256,24 +266,28 @@ def get_model_info(
             )
             got_model = True
         except Exception as e:
-            warnings.warn(f"Failed to init model {model_name}, can't get tensor shapes or tokenizer info:\n{e}")
-        
+            warnings.warn(
+                f"Failed to init model {model_name}, can't get tensor shapes or tokenizer info:\n{e}"
+            )
+
         if got_model:
             if include_tokenizer_info:
                 try:
                     tokenizer_info: dict = get_tokenizer_info(model)
                     model_info.update(tokenizer_info)
                 except Exception as e:
-                    warnings.warn(f"Failed to get tokenizer info for model {model_name}:\n{e}")
+                    warnings.warn(
+                        f"Failed to get tokenizer info for model {model_name}:\n{e}"
+                    )
 
             if include_tensor_dims:
                 try:
                     tensor_shapes_info: dict = get_tensor_shapes(model, tensor_dims_fmt)
                     model_info.update(tensor_shapes_info)
                 except Exception as e:
-                    warnings.warn(f"Failed to get tensor shapes for model {model_name}:\n{e}")
-
-        
+                    warnings.warn(
+                        f"Failed to get tensor shapes for model {model_name}:\n{e}"
+                    )
 
     return model_name, model_info
 
@@ -295,7 +309,7 @@ def make_model_table(
     verbose: bool,
     allow_except: bool = False,
     parallelize: bool | int = True,
-    model_names_pattern: str|None = None,
+    model_names_pattern: str | None = None,
     **kwargs,
 ) -> pd.DataFrame:
     """make table of all models. kwargs passed to `get_model_info()`"""
@@ -305,8 +319,8 @@ def make_model_table(
     # filter by regex pattern if provided
     if model_names_pattern:
         model_names = [
-            model_name 
-            for model_name in model_names 
+            model_name
+            for model_name in model_names
             if model_names_pattern in model_name
         ]
 
@@ -382,6 +396,7 @@ def make_model_table(
 
 OutputFormat = Literal["jsonl", "csv", "md"]
 
+
 def huggingface_name_to_url(df: pd.DataFrame) -> pd.DataFrame:
     """convert the huggingface model name to a url"""
     df_new: pd.DataFrame = df.copy()
@@ -389,7 +404,6 @@ def huggingface_name_to_url(df: pd.DataFrame) -> pd.DataFrame:
         lambda x: f"[{x}](https://huggingface.co/{x})" if x else x
     )
     return df_new
-
 
 
 def write_model_table(
@@ -419,7 +433,9 @@ def write_model_table(
 
     match format:
         case "jsonl":
-            model_table.to_json(path.with_suffix(".jsonl"), orient="records", lines=True)
+            model_table.to_json(
+                path.with_suffix(".jsonl"), orient="records", lines=True
+            )
         case "csv":
             model_table.to_csv(path.with_suffix(".csv"), index=False)
         case "md":
@@ -461,7 +477,7 @@ def get_model_table(
     force_reload: bool = True,
     do_write: bool = True,
     parallelize: bool | int = True,
-    model_names_pattern: str|None = None,
+    model_names_pattern: str | None = None,
     **kwargs,
 ) -> pd.DataFrame:
     """get the model table either by generating or reading from jsonl file
