@@ -4,7 +4,7 @@ import warnings
 from copy import deepcopy
 from functools import partial
 from pathlib import Path
-from typing import Callable, Literal
+from typing import Callable, Literal, Sequence
 import hashlib
 import base64
 
@@ -40,7 +40,7 @@ except Exception as e:
     )
 
 # manually defined known model types
-KNOWN_MODEL_TYPES: list[str] = [
+KNOWN_MODEL_TYPES: Sequence[str] = (
     "gpt2",
     "distillgpt2",
     "opt",
@@ -65,12 +65,12 @@ KNOWN_MODEL_TYPES: list[str] = [
     "gemma",
     "yi",
     "t5",
-]
+)
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
 
 # these will be copied as table columns
-CONFIG_ATTRS_COPY: list[str] = [
+CONFIG_ATTRS_COPY: Sequence[str] = (
     "n_params",
     "n_layers",
     "n_heads",
@@ -81,12 +81,35 @@ CONFIG_ATTRS_COPY: list[str] = [
     "parallel_attn_mlp",
     "original_architecture",
     "normalization_type",
-]
+)
 
-# modify certain values when printing config as yaml
+# modify certain values when saving config
 CONFIG_VALUES_PROCESS: dict[str, Callable] = {
     "initializer_range": float,
+    "dtype": str,
+    "device": str,
 }
+
+COLUMNS_ABRIDGED: Sequence[str] = (
+    'name.default_alias',
+    'name.huggingface',
+    'n_params.as_str',
+    'n_params.as_int',
+    'cfg.n_params',
+    'cfg.n_layers',
+    'cfg.n_heads',
+    'cfg.d_model',
+    'cfg.d_vocab',
+    'cfg.act_fn',
+    'cfg.positional_embedding_type',
+    'cfg.parallel_attn_mlp',
+    'cfg.original_architecture',
+    'cfg.normalization_type',
+    'tokenizer.name',
+    'tokenizer.class',
+    'tokenizer.vocab_size',
+    'tokenizer.vocab_hash',
+)
 
 
 def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -> dict:
@@ -451,21 +474,19 @@ def write_model_table(
 
 def abridge_model_table(
     model_table: pd.DataFrame,
-    max_mean_col_len: int = 100,
+    columns_keep: Sequence[str] = COLUMNS_ABRIDGED,
     null_to_empty: bool = True,
 ) -> pd.DataFrame:
-    """remove columns which are too long from the model table, returning a new table
+    """keep only columns in COLUMNS_ABRIDGED
 
     primarily used to make the csv and md versions of the table readable
 
     also replaces `None` with empty string if `null_to_empty` is `True`
     """
-    column_lengths: pd.Series = model_table.map(str).map(len).mean()
-    columns_to_drop: list[str] = column_lengths[
-        column_lengths > max_mean_col_len
-    ].index.tolist()
 
-    output: pd.DataFrame = model_table.drop(columns=columns_to_drop)
+    output: pd.DataFrame = model_table.copy()
+    # filter columns
+    output = output[columns_keep]
 
     if null_to_empty:
         output = output.fillna("")
