@@ -472,6 +472,7 @@ def abridge_model_table(
 
 
 def get_model_table(
+    model_table_path: Path|str = _MODEL_TABLE_PATH,
     verbose: bool = True,
     force_reload: bool = True,
     do_write: bool = True,
@@ -482,6 +483,9 @@ def get_model_table(
     """get the model table either by generating or reading from jsonl file
 
     # Parameters:
+     - `model_table_path : Path|str`
+        the path to the model table file, and the base name for the csv and md files
+        (defaults to `_MODEL_TABLE_PATH`)
      - `verbose : bool`
         whether to show progress bar
        (defaults to `True`)
@@ -502,8 +506,9 @@ def get_model_table(
         the model table. rows are models, columns are model attributes
     """
 
-    model_table_path: Path = _MODEL_TABLE_PATH
-
+    # convert to Path, and modify the name if a pattern is provided
+    model_table_path = Path(model_table_path)
+    
     if model_names_pattern is not None:
         model_table_path = model_table_path.with_name(
             model_table_path.stem + f"-{model_names_pattern}"
