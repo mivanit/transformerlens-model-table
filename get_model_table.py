@@ -326,8 +326,10 @@ def make_model_table(
     if parallelize:
         # parallel
         n_processes: int = (
-            parallelize if isinstance(parallelize, int) else multiprocessing.cpu_count()
+            parallelize if int(parallelize) > 1 else multiprocessing.cpu_count()
         )
+        if verbose:
+            print(f"running in parallel with {n_processes = }")
         with multiprocessing.Pool(processes=n_processes) as pool:
             # Use imap for ordered results, wrapped with tqdm for progress bar
             imap_results: list[dict | Exception] = list(
