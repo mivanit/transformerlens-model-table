@@ -3,7 +3,6 @@ import multiprocessing
 import warnings
 from copy import deepcopy
 from functools import partial
-from multiprocessing import Pool
 from pathlib import Path
 from typing import Callable, Literal
 import hashlib
@@ -329,7 +328,7 @@ def make_model_table(
         n_processes: int = (
             parallelize if isinstance(parallelize, int) else multiprocessing.cpu_count()
         )
-        with Pool(processes=n_processes) as pool:
+        with multiprocessing.Pool(processes=n_processes) as pool:
             # Use imap for ordered results, wrapped with tqdm for progress bar
             imap_results: list[dict | Exception] = list(
                 tqdm.tqdm(
