@@ -179,14 +179,14 @@ def get_model_info(
         raise ValueError(f"Model name {model_name} not found in default aliases")
 
     # get the names and model types
-    official_name: str = MODEL_ALIASES_MAP.get(model_name, "")
+    official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
     model_info: dict = {
         "name.default_alias": model_name,
         "name.huggingface": official_name,
         "name.aliases": ", ".join(list(
             transformer_lens.loading.MODEL_ALIASES.get(official_name, [])
         )),
-        "model_type": "",
+        "model_type": None,
     }
 
     # Split the model name into parts
@@ -435,16 +435,25 @@ def write_model_table(
 def abridge_model_table(
     model_table: pd.DataFrame,
     max_mean_col_len: int = 100,
+    null_to_empty: bool = True,
 ) -> pd.DataFrame:
     """remove columns which are too long from the model table, returning a new table
 
     primarily used to make the csv and md versions of the table readable
+
+    also replaces `None` with empty string if `null_to_empty` is `True`
     """
     column_lengths: pd.Series = model_table.map(str).map(len).mean()
     columns_to_drop: list[str] = column_lengths[
         column_lengths > max_mean_col_len
     ].index.tolist()
-    return model_table.drop(columns=columns_to_drop)
+
+    output: pd.DataFrame = model_table.drop(columns=columns_to_drop)
+
+    if null_to_empty:
+        output = output.fillna("")
+
+    return output
 
 
 def get_model_table(

@@ -108,6 +108,13 @@
             return div;
         }
 
+        function value_formatter(params) {
+            if (params.value === null) {
+                return '';
+            }
+            return typeof params.value === 'object' ? JSON.stringify(params.value) : params.value;
+        }
+
         async function setupGrid() {
             const version = await fetchVersion();
             document.querySelector('header').innerHTML = `Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a> v${version}. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell with [${CLICK_TO_COPY_EMOJI}] to view full text, left click to copy to clipboard, right click to open contents in new tab.`;
@@ -140,7 +147,7 @@
                         headerName: fieldName,
                         field: key,
                         // if it's an object, stringify it
-                        valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
+                        valueFormatter: value_formatter,
                         // only show the first child if there are many (we modify this later in some special cases)
                         columnGroupShow: columnGroups[groupName].children.length < 1 ? null : 'open',
                         // hacky width calculation (doesn't work great)
@@ -165,7 +172,7 @@
                     const columnDef = {
                         headerName: key,
                         field: key,
-                        valueFormatter: params => typeof params.value === 'object' ? JSON.stringify(params.value) : params.value,
+                        valueFormatter: value_formatter,
                     };
                     // special renderer for full cfg
                     if (key === 'config') {
