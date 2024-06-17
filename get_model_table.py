@@ -409,7 +409,8 @@ def make_model_table(
             # raise exception if we don't allow exceptions
             raise ValueError(msg + "\n\n" + "=" * 80 + "\n\n" + "NO DATA WRITTEN")
     else:
-        warnings.warn(msg + "\n\n" + "-" * 80 + "\n\n" + "WRITING PARTIAL DATA")
+        if failed_models:
+            warnings.warn(msg + "\n\n" + "-" * 80 + "\n\n" + "WRITING PARTIAL DATA")
 
     # filter out failed models if we allow exceptions
     model_data_filtered: list[dict] = [
