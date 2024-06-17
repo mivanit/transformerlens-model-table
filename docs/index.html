@@ -34,6 +34,7 @@
     <div id="modelTable" class="ag-theme-alpine"></div>
 
     <script>
+        const CLICK_TO_COPY_EMOJI = String.fromCodePoint(0x1F446) + String.fromCodePoint(0x1F4CB);
         // read a jsonl file
         async function fetchJsonlData(url) {
             const response = await fetch(url);
@@ -57,12 +58,12 @@
             var div = document.createElement('div');
             div.title = params.value;
             div.textContent = params.value;
-            div.style.cursor = 'pointer';
-            // if its too long, make it emojis
+            div.style.cursor = 'pointer'; // Ensure the cursor style is set
+            // If its too long, make it emojis
             if (params.value !== null) {
                 if (params.value.length > 50) {
-                    div.textContent = String.fromCodePoint(0x1F446) + String.fromCodePoint(0x1F4CB);
-                    div.style.cssText = 'font-size: 20px; display: flex; justify-content: center; align-items: center; background-color: #f4f4f4; border: 1px solid #d4d4d4; border-radius: 5px; height: 30px; width: 60px;';
+                    div.textContent = CLICK_TO_COPY_EMOJI;
+                    div.style.cssText = 'font-size: 20px; display: flex; justify-content: center; align-items: center; background-color: #f4f4f4; border: 1px solid #d4d4d4; border-radius: 5px; height: 30px; width: 60px; cursor: pointer;';
                 }
             }
 
@@ -75,14 +76,17 @@
                 });
             };
 
-            // on right click, open a new plain text tab whose contents are the cell's value
-            div.oncontextmenu = function() {
-                const newWindow = window.open('', '_blank');
-                // set the contents of the new window to the cell's value
+            // On right click, open a new plain text tab whose contents are the cell's value
+            div.oncontextmenu = function(event) {
+                event.preventDefault(); // Prevent the default context menu from appearing
+                const newWindowName = params.node.data['name.default_alias'] + ' : ' + params.colDef.headerName;
+                const newWindow = window.open('', newWindowName);
+                // Set the title of the page to the rows "name.default_alias" and the column's header
+                newWindow.document.write('<title>' + newWindowName + '</title>');
+                // Set the contents of the new window to the cell's value
                 newWindow.document.write('<pre>' + params.value + '</pre>');
-                // set the title of the page to the rows "name.default_alias" and the column's header
-                newWindow.document.title = params.node.data['name.default_alias'] + ' : ' + params.colDef.headerName;
-                newWindow.document.close();
+                // newWindow.document.close();
+                return false; // Prevent the default context menu from appearing
             };
 
             // Return the div as the cell's DOM
@@ -91,7 +95,7 @@
 
         async function setupGrid() {
             const version = await fetchVersion();
-            document.querySelector('header').innerHTML = `Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a> v${version}. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, left click to copy to clipboard, right click to open contents in new tab.`;
+            document.querySelector('header').innerHTML = `Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a> v${version}. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell with [${CLICK_TO_COPY_EMOJI}] to view full text, left click to copy to clipboard, right click to open contents in new tab.`;
             
             // read the data
 			const rowData = await fetchJsonlData('model_table.jsonl');
@@ -188,15 +192,6 @@
                 },
                 // this disables animations, but makes the horizontal scrolling not painfully slow
                 domLayout: 'print',
-                // try to prevent having two scrollbars (this is broken)
-                // suppressHorizontalScroll: true,
-                // suppressAutoSize: false,
-                // Enable column virtualization
-                // ensureDomOrder: false,
-                // maintainColumnOrder: true,
-                // suppressColumnVirtualisation: true,
-                // rowBuffer: 20,
-                // autoHeight: false,
             };
             
             // create the grid
