@@ -182,10 +182,10 @@ def get_model_info(
             )
             # state dict
             model_info["tensor_shapes.state_dict"] = condense_tensor_dict(
-                model.state_dict(), return_format=tensor_dims_fmt
+                model.state_dict(), fmt=tensor_dims_fmt
             )
             model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(
-                model.state_dict(), return_format="dict"
+                model.state_dict(), fmt="dict"
             )
             # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
             input_shape: tuple[int, int, int] = (847, model_cfg.n_ctx - 7)
@@ -201,12 +201,12 @@ def get_model_info(
             # condense using muutils and store
             model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
                 cache,
-                return_format=tensor_dims_fmt,
+                fmt=tensor_dims_fmt,
                 dims_names_map=dims_names_map,
             )
             model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
                 cache,
-                return_format="dict",
+                fmt="dict",
                 dims_names_map=dims_names_map,
             )
 
