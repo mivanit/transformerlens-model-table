@@ -70,7 +70,7 @@ solu-6l-pile,NeelNanda/SoLU_6L_v13_old,42M,42467328,42467328,6,12,768,50278,solu
 solu-8l-pile,NeelNanda/SoLU_8L_v21_old,101M,100663296,100663296,8,16,1024,50278,solu_ln,standard,False,neel-solu-old,LNPre,EleutherAI/gpt-neox-20b,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 solu-10l-pile,NeelNanda/SoLU_10L_v22_old,197M,196608000,196608000,10,20,1280,50278,solu_ln,standard,False,neel-solu-old,LNPre,EleutherAI/gpt-neox-20b,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 solu-12l-pile,NeelNanda/SoLU_12L_v23_old,340M,339738624,339738624,12,24,1536,50278,solu_ln,standard,False,neel-solu-old,LN,EleutherAI/gpt-neox-20b,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
-solu-1l,NeelNanda/SoLU_1L512W_C4_Code,3.1M,3145728,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,,,,
+solu-1l,NeelNanda/SoLU_1L512W_C4_Code,3.1M,3145728,3145728,1,8,512,48262,solu_ln,standard,False,neel,LN,NeelNanda/gpt-neox-tokenizer-digits,PreTrainedTokenizerFast,48262.0,AsGo9tS8Sq4-rlVHM2o3-GyDkJU
 solu-2l,NeelNanda/SoLU_2L512W_C4_Code,6.3M,6291456,6291456,2,8,512,48262,solu_ln,standard,False,neel,LN,NeelNanda/gpt-neox-tokenizer-digits,PreTrainedTokenizerFast,48262.0,AsGo9tS8Sq4-rlVHM2o3-GyDkJU
 solu-3l,NeelNanda/SoLU_3L512W_C4_Code,9.4M,9437184,9437184,3,8,512,48262,solu_ln,standard,False,neel,LN,NeelNanda/gpt-neox-tokenizer-digits,PreTrainedTokenizerFast,48262.0,AsGo9tS8Sq4-rlVHM2o3-GyDkJU
 solu-4l,NeelNanda/SoLU_4L512W_C4_Code,13M,12582912,12582912,4,8,512,48262,solu_ln,standard,False,neel,LN,NeelNanda/gpt-neox-tokenizer-digits,PreTrainedTokenizerFast,48262.0,AsGo9tS8Sq4-rlVHM2o3-GyDkJU
