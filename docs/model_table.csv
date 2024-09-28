@@ -106,6 +106,10 @@ meta-llama/Meta-Llama-3-8B,,7.8B,7784628224,7784628224,32,32,4096,128256,silu,ro
 meta-llama/Meta-Llama-3-8B-Instruct,,7.8B,7784628224,7784628224,32,32,4096,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
 meta-llama/Meta-Llama-3-70B,,78B,77846282240,77846282240,80,64,8192,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
 meta-llama/Meta-Llama-3-70B-Instruct,,78B,77846282240,77846282240,80,64,8192,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
+meta-llama/Llama-3.2-1B,,1.1B,1073741824,1073741824,16,32,2048,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
+meta-llama/Llama-3.2-3B,,3.2B,3170893824,3170893824,28,24,3072,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
+meta-llama/Llama-3.2-1B-Instruct,,1.1B,1073741824,1073741824,16,32,2048,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
+meta-llama/Llama-3.2-3B-Instruct,,3.2B,3170893824,3170893824,28,24,3072,128256,silu,rotary,False,LlamaForCausalLM,RMS,,,,
 othello-gpt,Baidicoot/Othello-GPT-Transformer-Lens,25M,25165824,25165824,8,8,512,61,gelu,standard,False,mingpt,LN,,,,
 bert-base-cased,bert-base-cased,85M,84934656,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN,bert-base-cased,BertTokenizerFast,28996.0,SSKvHuFYtPbvgwMSLSIhfFE_kF8
 tiny-stories-1M,,393K,393216,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,roneneldan/TinyStories-1M,GPT2TokenizerFast,50257.0,v8xfIj5kwZX5RwgLU66lZNZUlE4
