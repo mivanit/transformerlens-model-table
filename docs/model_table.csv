@@ -56,7 +56,7 @@ pythia-70m-deduped-v0,EleutherAI/pythia-70m-deduped-v0,19M,18874368,18874368,6,8
 pythia-160m-deduped-v0,EleutherAI/pythia-160m-deduped-v0,85M,84934656,84934656,12,12,768,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-160m-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 pythia-410m-deduped-v0,EleutherAI/pythia-410m-deduped-v0,302M,301989888,301989888,24,16,1024,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-410m-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 pythia-1b-deduped-v0,EleutherAI/pythia-1b-deduped-v0,805M,805306368,805306368,16,8,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-1b-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
-pythia-1.4b-deduped-v0,EleutherAI/pythia-1.4b-deduped-v0,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,,,,
+pythia-1.4b-deduped-v0,EleutherAI/pythia-1.4b-deduped-v0,1.2B,1207959552,1207959552,24,16,2048,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-1.4b-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 pythia-2.8b-deduped-v0,EleutherAI/pythia-2.8b-deduped-v0,2.5B,2516582400,2516582400,32,32,2560,50304,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-2.8b-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 pythia-6.9b-deduped-v0,EleutherAI/pythia-6.9b-deduped-v0,6.4B,6442450944,6442450944,32,32,4096,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-6.9b-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
 pythia-12b-deduped-v0,EleutherAI/pythia-12b-deduped-v0,11B,11324620800,11324620800,36,40,5120,50688,gelu,rotary,True,GPTNeoXForCausalLM,LN,EleutherAI/pythia-12b-deduped-v0,GPTNeoXTokenizerFast,50254.0,96EawM8Lij99W7OBTk0KW2ELUrQ
@@ -138,7 +138,7 @@ bloom-560m,bigscience/bloom-560m,302M,301989888,301989888,24,16,1024,250880,gelu
 bloom-1b1,bigscience/bloom-1b1,679M,679477248,679477248,24,16,1536,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,bigscience/bloom-1b1,BloomTokenizerFast,250680.0,OO9NZoesMCpWsijo1O2DAbq9GqI
 bloom-1b7,bigscience/bloom-1b7,1.2B,1207959552,1207959552,24,16,2048,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,bigscience/bloom-1b7,BloomTokenizerFast,250680.0,OO9NZoesMCpWsijo1O2DAbq9GqI
 bloom-3b,bigscience/bloom-3b,2.4B,2359296000,2359296000,30,32,2560,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,bigscience/bloom-3b,BloomTokenizerFast,250680.0,OO9NZoesMCpWsijo1O2DAbq9GqI
-bloom-7b1,bigscience/bloom-7b1,6.0B,6039797760,6039797760,30,32,4096,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,,,,
+bloom-7b1,bigscience/bloom-7b1,6.0B,6039797760,6039797760,30,32,4096,250880,gelu_fast,alibi,False,BloomForCausalLM,LN,bigscience/bloom-7b1,BloomTokenizerFast,250680.0,OO9NZoesMCpWsijo1O2DAbq9GqI
 santacoder,bigcode/santacoder,1.2B,1207959552,1207959552,24,16,2048,49280,gelu_fast,standard,False,GPT2LMHeadCustomModel,LN,bigcode/santacoder,GPT2TokenizerFast,49152.0,GiKC-dU7fpR4sGNkpwn7JKK6qys
 qwen-1.8b,Qwen/Qwen-1_8B,1.2B,1214251008,1214251008,24,16,2048,151936,silu,rotary,False,QWenLMHeadModel,RMS,,,,
 qwen-7b,Qwen/Qwen-7B,6.5B,6476005376,6476005376,32,32,4096,151936,silu,rotary,False,QWenLMHeadModel,RMS,,,,
