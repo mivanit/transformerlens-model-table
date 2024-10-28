@@ -1,3 +1,7 @@
+![TransformerLens version for last successful build](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/mivanit/transformerlens-model-table/main/docs/model_table.version&query=$.version&label=TransformerLens%20version%20for%20last%20successful%20build&color=blue&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mivanit/transformerlens-model-table/main.yml?branch=main)
+
+
 This is a utility for viewing all models available in the [TransformerLens](https://github.com/neelnanda-io/TransformerLens) package as a nice table, which you can view at [`miv.name/transformerlens-model-table/`](https://miv.name/transformerlens-model-table/).
 
 You can also get the table as:
@@ -36,6 +40,8 @@ The tables contain:
 ![screenshot of the table](docs/img/s1.png)
 
 ![pretty printing of tensor shapes](docs/img/s2.png)
+
+![animated gif of table features](docs/img/demo.gif)
 
 
 # TODO:
