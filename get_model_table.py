@@ -1,3 +1,4 @@
+import json
 import os
 import multiprocessing
 import warnings
@@ -455,7 +456,7 @@ def write_model_table(
             warnings.warn(f"Failed to get transformer_lens version: {e}")
 
         with open(path.with_suffix(".version"), "w") as f:
-            f.write(tl_version)
+            json.dump({"version": tl_version}, f)
 
     match format:
         case "jsonl":
