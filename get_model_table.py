@@ -70,6 +70,8 @@ KNOWN_MODEL_TYPES: Sequence[str] = (
     "gemma",
     "yi",
     "t5",
+    "mixtral",
+    "Qwen2",
 )
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
