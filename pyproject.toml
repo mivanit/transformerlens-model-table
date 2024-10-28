@@ -11,6 +11,8 @@ dependencies = [
 	"transformer_lens>=2.1.0",
 	# shortening numerical values to strings, concatenating tensor dicts
 	"muutils>=0.5.12",
+	# some models require tiktoken
+	"tiktoken>=0.8.0",
 	# for the table
 	"pandas>=2.2.2",
 	# for writing the pandas dataframe to markdown
