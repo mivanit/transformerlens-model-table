@@ -13,7 +13,7 @@ import pandas as pd
 import yaml
 import tqdm
 import torch
-from transformers import PreTrainedTokenizer
+from transformers import PreTrainedTokenizer, AutoTokenizer
 
 # muutils
 from muutils.misc import shorten_numerical_to_str
@@ -22,17 +22,22 @@ from muutils.dictmagic import condense_tensor_dict
 # transformerlens
 import transformer_lens
 from transformer_lens import HookedTransformer, HookedTransformerConfig
-from transformer_lens.loading_from_pretrained import get_pretrained_model_config
+from transformer_lens.loading_from_pretrained import get_pretrained_model_config, NON_HF_HOSTED_MODEL_NAMES
 
-# forces everything to meta tensors
 DEVICE: torch.device = torch.device("meta")
+# forces everything to meta tensors
 torch.set_default_device(DEVICE)
 
+# disable the symlink warning
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+
+
 _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
+# where to save the model table
 
 try:
-    _hf_token = os.environ.get("HF_TOKEN", None)
-    if not _hf_token.startswith("hf_"):
+    HF_TOKEN = os.environ.get("HF_TOKEN", None)
+    if not HF_TOKEN.startswith("hf_"):
         raise ValueError("Invalid Hugging Face token")
 except Exception as e:
     warnings.warn(
@@ -112,7 +117,11 @@ COLUMNS_ABRIDGED: Sequence[str] = (
 )
 
 
-def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -> dict:
+def get_tensor_shapes(
+        model: HookedTransformer,
+        tensor_dims_fmt: str = "yaml",
+        except_if_forward_fails: bool = False,
+    ) -> dict:
     """get the tensor shapes from a model"""
     model_info: dict = dict()
     # state dict
@@ -122,38 +131,53 @@ def get_tensor_shapes(model: HookedTransformer, tensor_dims_fmt: str = "yaml") -
     model_info["tensor_shapes.state_dict.raw__"] = condense_tensor_dict(
         model.state_dict(), fmt="dict"
     )
-    # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
-    input_shape: tuple[int, int, int] = (847, model.cfg.n_ctx - 7)
-    # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
-    dims_names_map: dict[int, str] = {
-        input_shape[0]: "batch",
-        input_shape[1]: "seq_len",
-    }
-    # run with cache to activation cache
-    with torch.no_grad():
-        _, cache = model.run_with_cache(
-            torch.empty(input_shape, dtype=torch.long, device=DEVICE)
+
+    try:
+        
+        # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
+        input_shape: tuple[int, int] = (847, model.cfg.n_ctx - 7)
+        # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
+        dims_names_map: dict[int, str] = {
+            input_shape[0]: "batch",
+            input_shape[1]: "seq_len",
+        }
+        # run with cache to activation cache
+        with torch.no_grad():
+            _, cache = model.run_with_cache(
+                torch.empty(input_shape, dtype=torch.long, device=DEVICE)
+            )
+        # condense using muutils and store
+        model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
+            cache,
+            fmt=tensor_dims_fmt,
+            dims_names_map=dims_names_map,
         )
-    # condense using muutils and store
-    model_info["tensor_shapes.activation_cache"] = condense_tensor_dict(
-        cache,
-        fmt=tensor_dims_fmt,
-        dims_names_map=dims_names_map,
-    )
-    model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
-        cache,
-        fmt="dict",
-        dims_names_map=dims_names_map,
-    )
+        model_info["tensor_shapes.activation_cache.raw__"] = condense_tensor_dict(
+            cache,
+            fmt="dict",
+            dims_names_map=dims_names_map,
+        )
+    except Exception as e:
+        msg: str = f"Failed to get activation cache for '{model.cfg.model_name}':\n{e}"
+        if except_if_forward_fails:
+            raise ValueError(msg) from e
+        else:
+            warnings.warn(msg)
 
     return model_info
 
 
 def tokenizer_vocab_hash(tokenizer: PreTrainedTokenizer) -> str:
     # sort
+    vocab: dict[str, int]
+    try:
+        vocab = tokenizer.vocab
+    except Exception:
+        vocab = tokenizer.get_vocab()
+
     vocab_hashable: list[tuple[str, int]] = list(
         sorted(
-            tokenizer.vocab.items(),
+            vocab.items(),
             key=lambda x: x[1],
         )
     )
@@ -166,7 +190,6 @@ def tokenizer_vocab_hash(tokenizer: PreTrainedTokenizer) -> str:
             altchars=b"-_",  # - and _ as altchars
         )
         .decode("UTF-8")
-        .rstrip("=")
     )
 
 
@@ -190,6 +213,7 @@ def get_model_info(
     include_tensor_dims: bool = True,
     include_tokenizer_info: bool = True,
     tensor_dims_fmt: str = "yaml",
+    allow_warn: bool = True,
 ) -> dict:
     """get information about the model from the default alias model name
 
@@ -211,7 +235,7 @@ def get_model_info(
     """
     # assumes the input is a default alias
     if model_name not in transformer_lens.loading.DEFAULT_MODEL_ALIASES:
-        raise ValueError(f"Model name {model_name} not found in default aliases")
+        raise ValueError(f"Model name '{model_name}' not found in default aliases")
 
     # get the names and model types
     official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
@@ -288,11 +312,23 @@ def get_model_info(
             model: HookedTransformer = HookedTransformer(
                 model_cfg_copy, move_to_device=True
             )
+            # HACK: use https://huggingface.co/huggyllama to get tokenizers for original llama models
+            if model.cfg.tokenizer_name in NON_HF_HOSTED_MODEL_NAMES:
+                model.set_tokenizer(
+                    AutoTokenizer.from_pretrained(
+                        f"huggyllama/{model.cfg.tokenizer_name.removesuffix('-hf')}",
+                        add_bos_token=True,
+                        token=HF_TOKEN,
+                        legacy=False,
+                    )
+                )
             got_model = True
         except Exception as e:
-            warnings.warn(
-                f"Failed to init model {model_name}, can't get tensor shapes or tokenizer info:\n{e}"
-            )
+            msg: str = f"Failed to init model '{model_name}', can't get tensor shapes or tokenizer info"
+            if allow_warn:
+                warnings.warn(f"{msg}:\n{e}")
+            else:
+                raise ValueError(msg) from e
 
         if got_model:
             if include_tokenizer_info:
@@ -300,18 +336,22 @@ def get_model_info(
                     tokenizer_info: dict = get_tokenizer_info(model)
                     model_info.update(tokenizer_info)
                 except Exception as e:
-                    warnings.warn(
-                        f"Failed to get tokenizer info for model {model_name}:\n{e}"
-                    )
+                    msg: str = f"Failed to get tokenizer info for model '{model_name}'"
+                    if allow_warn:
+                        warnings.warn(f"{msg}:\n{e}")
+                    else:
+                        raise ValueError(msg) from e
 
             if include_tensor_dims:
                 try:
                     tensor_shapes_info: dict = get_tensor_shapes(model, tensor_dims_fmt)
                     model_info.update(tensor_shapes_info)
                 except Exception as e:
-                    warnings.warn(
-                        f"Failed to get tensor shapes for model {model_name}:\n{e}"
-                    )
+                    msg: str = f"Failed to get tensor shapes for model '{model_name}'"
+                    if allow_warn:
+                        warnings.warn(f"{msg}:\n{e}")
+                    else:
+                        raise ValueError(msg) from e
 
     return model_name, model_info
 
@@ -325,7 +365,7 @@ def safe_try_get_model_info(
     try:
         return get_model_info(model_name, **kwargs)
     except Exception as e:
-        warnings.warn(f"Failed to get model info for {model_name}: {e}")
+        warnings.warn(f"Failed to get model info for '{model_name}': {e}")
         return model_name, e
 
 
@@ -379,19 +419,19 @@ def make_model_table(
             disable=not verbose,
         ) as pbar:
             for model_name in pbar:
-                pbar.set_postfix_str(f"model: {model_name}")
+                pbar.set_postfix_str(f"model: '{model_name}'")
                 try:
                     model_data.append(get_model_info(model_name, **kwargs))
                 except Exception as e:
                     if allow_except:
                         # warn and continue if we allow exceptions
-                        warnings.warn(f"Failed to get model info for {model_name}: {e}")
+                        warnings.warn(f"Failed to get model info for '{model_name}': {e}")
                         model_data.append(e)
                     else:
                         # raise exception right away if we don't allow exceptions
                         # note that this differs from the parallel version, which will only except at the end
                         raise ValueError(
-                            f"Failed to get model info for {model_name}"
+                            f"Failed to get model info for '{model_name}'"
                         ) from e
 
     # figure out what to do with failed models
@@ -403,7 +443,7 @@ def make_model_table(
     msg: str = (
         f"Failed to get model info for {len(failed_models)}/{len(model_names)} models: {failed_models}\n"
         + "\n".join(
-            f"\t{model_name}: {expt}" for model_name, expt in failed_models.items()
+            f"\t'{model_name}': {expt}" for model_name, expt in failed_models.items()
         )
     )
     if not allow_except:
