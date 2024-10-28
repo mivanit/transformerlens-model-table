@@ -26,11 +26,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install uv
-        uv pip install -r requirements.txt --upgrade --system
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        uv sync
 
     - name: Run script
-      run: python get_model_table.py
+      run: uv run python get_model_table.py
       env:
         HF_TOKEN:  ${{ secrets.HF_TOKEN }}
 
