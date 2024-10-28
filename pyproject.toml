@@ -15,12 +15,12 @@ dependencies = [
 	"pandas>=2.2.2",
 	# for writing the pandas dataframe to markdown
 	"tabulate>=0.9.0",
+	# for CLI
+	"fire",
 	# # transfromer_lens crashes without pytest, no idea why
 	# "pytest",
 	# # numpy 2.0.0 breaks wandb for now
 	# "numpy<2.0.0",
-	# for CLI
-	"fire",
 ]
 
 [dependency-groups]
