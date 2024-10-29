@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TransformerLens models</title>
-	<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <style>
         header {
             background-color: #f4f4f4;
             padding: 10px;
             text-align: left;
         }
-        body, html {
+
+        body,
+        html {
             margin: 0;
             padding: 0;
-            width: 100%; /* Ensure the body takes up full viewport width */
+            width: 100%;
+            /* Ensure the body takes up full viewport width */
         }
+
         .ag-theme-alpine {
             height: 80%;
-            width: 100%; /* This should already keep the grid within the page width */
-            box-sizing: border-box; /* Ensure padding and borders are included in the width */
+            width: 100%;
+            /* This should already keep the grid within the page width */
+            box-sizing: border-box;
+            /* Ensure padding and borders are included in the width */
         }
+
         .ag-paging-panel {
             /* Aligns children (the pagination buttons) to the start of the container, i.e., left side */
-            justify-content: flex-start; 
-            align-items: center; 
+            justify-content: flex-start;
+            align-items: center;
         }
     </style>
 </head>
+
 <body>
     <header>
-        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell to view full text, left click to copy to clipboard, right click to open contents in new tab.
+        Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a>. Source code: <a
+            href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>.
+        Hover a cell to view full text, left click to copy to clipboard, right click to open contents in new tab.
     </header>
 
     <div id="modelTable" class="ag-theme-alpine"></div>
@@ -52,7 +63,7 @@
                 return 'unknown';
             }
         }
-        
+
         // fancy cell rendering -- hover/copy/open the data, make it emojis if its too long
         function longCellRenderer(params) {
             // Create the div element
@@ -68,16 +79,16 @@
             }
 
             // Add click event listener to copy text to the clipboard
-            div.onclick = function() {
-                navigator.clipboard.writeText(params.value).then(function() {
+            div.onclick = function () {
+                navigator.clipboard.writeText(params.value).then(function () {
                     console.log('Successfully copied to clipboard');
-                }).catch(function(err) {
+                }).catch(function (err) {
                     console.error('Could not copy text to clipboard: ', err);
                 });
             };
 
             // On right click, open a new plain text tab whose contents are the cell's value
-            div.oncontextmenu = function(event) {
+            div.oncontextmenu = function (event) {
                 event.preventDefault(); // Prevent the default context menu from appearing
                 const newWindowName = params.node.data['name.default_alias'] + ' : ' + params.colDef.headerName;
                 const newWindow = window.open('', newWindowName);
@@ -119,13 +130,13 @@
         async function setupGrid() {
             const version = await fetchVersion();
             document.querySelector('header').innerHTML = `Model table for <a href="https://github.com/neelnanda-io/TransformerLens">TransformerLens</a> v${version}. Source code: <a href="https://github.com/mivanit/transformerlens-model-table">github.com/mivanit/transformerlens-model-table</a>. Hover a cell with [${CLICK_TO_COPY_EMOJI}] to view full text, left click to copy to clipboard, right click to open contents in new tab.`;
-            
+
             // read the data
-			const rowData = await fetchJsonlData('model_table.jsonl');
+            const rowData = await fetchJsonlData('model_table.jsonl');
             const columnGroups = {};
-            
+
             // create the column definitions
-			Object.keys(rowData[0]).forEach(key => {
+            Object.keys(rowData[0]).forEach(key => {
                 // if key ends with "__", then ignore it (raw tensor shapes)
                 if (key.endsWith('__')) {
                     return;
@@ -161,7 +172,7 @@
                     if (groupName === 'tensor_shapes') {
                         columnDef.cellRenderer = longCellRenderer;
                     }
-                    
+
                     // special renderer for huggingface model name
                     if (groupName === 'name' && fieldName === 'huggingface') {
                         columnDef.cellRenderer = hf_link_cell_renderer;
@@ -193,17 +204,17 @@
 
             const columnDefs = Object.values(columnGroups);
 
-			// create the grid
+            // create the grid
             const gridOptions = {
                 columnDefs: columnDefs,
                 rowData: rowData,
                 rowSelection: 'multiple',
                 // customize pagination
-				pagination: true,
-				paginationPageSize: 500,
-				paginationPageSizeSelector: [10, 25, 50, 100, 500, 1000],
-				enableCellTextSelection: true,
-				enableBrowserTooltips: true,
+                pagination: true,
+                paginationPageSize: 500,
+                paginationPageSizeSelector: [10, 25, 50, 100, 500, 1000],
+                enableCellTextSelection: true,
+                enableBrowserTooltips: true,
                 // default column options
                 defaultColDef: {
                     resizable: true,
@@ -222,7 +233,7 @@
                 // this disables animations, but makes the horizontal scrolling not painfully slow
                 domLayout: 'print',
             };
-            
+
             // create the grid
             new agGrid.createGrid(document.getElementById('modelTable'), gridOptions);
         }
@@ -230,4 +241,5 @@
         setupGrid();
     </script>
 </body>
+
 </html>
