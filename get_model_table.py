@@ -1,28 +1,27 @@
+import base64
+import hashlib
 import json
-import os
 import multiprocessing
+import os
 import warnings
 from copy import deepcopy
 from functools import partial
 from pathlib import Path
 from typing import Callable, Literal, Sequence
-import hashlib
-import base64
 
 import pandas as pd
-import yaml
-import tqdm
 import torch
-from transformers import PreTrainedTokenizer, AutoTokenizer
-
-# muutils
-from muutils.misc import shorten_numerical_to_str
-from muutils.dictmagic import condense_tensor_dict
-
+import tqdm
 # transformerlens
 import transformer_lens
+import yaml
+from muutils.dictmagic import condense_tensor_dict
+# muutils
+from muutils.misc import shorten_numerical_to_str
 from transformer_lens import HookedTransformer, HookedTransformerConfig
-from transformer_lens.loading_from_pretrained import get_pretrained_model_config, NON_HF_HOSTED_MODEL_NAMES
+from transformer_lens.loading_from_pretrained import (
+    NON_HF_HOSTED_MODEL_NAMES, get_pretrained_model_config)
+from transformers import AutoTokenizer, PreTrainedTokenizer
 
 DEVICE: torch.device = torch.device("meta")
 # forces everything to meta tensors
@@ -98,32 +97,32 @@ CONFIG_VALUES_PROCESS: dict[str, Callable] = {
 }
 
 COLUMNS_ABRIDGED: Sequence[str] = (
-    'name.default_alias',
-    'name.huggingface',
-    'n_params.as_str',
-    'n_params.as_int',
-    'cfg.n_params',
-    'cfg.n_layers',
-    'cfg.n_heads',
-    'cfg.d_model',
-    'cfg.d_vocab',
-    'cfg.act_fn',
-    'cfg.positional_embedding_type',
-    'cfg.parallel_attn_mlp',
-    'cfg.original_architecture',
-    'cfg.normalization_type',
-    'tokenizer.name',
-    'tokenizer.class',
-    'tokenizer.vocab_size',
-    'tokenizer.vocab_hash',
+    "name.default_alias",
+    "name.huggingface",
+    "n_params.as_str",
+    "n_params.as_int",
+    "cfg.n_params",
+    "cfg.n_layers",
+    "cfg.n_heads",
+    "cfg.d_model",
+    "cfg.d_vocab",
+    "cfg.act_fn",
+    "cfg.positional_embedding_type",
+    "cfg.parallel_attn_mlp",
+    "cfg.original_architecture",
+    "cfg.normalization_type",
+    "tokenizer.name",
+    "tokenizer.class",
+    "tokenizer.vocab_size",
+    "tokenizer.vocab_hash",
 )
 
 
 def get_tensor_shapes(
-        model: HookedTransformer,
-        tensor_dims_fmt: str = "yaml",
-        except_if_forward_fails: bool = False,
-    ) -> dict:
+    model: HookedTransformer,
+    tensor_dims_fmt: str = "yaml",
+    except_if_forward_fails: bool = False,
+) -> dict:
     """get the tensor shapes from a model"""
     model_info: dict = dict()
     # state dict
@@ -135,7 +134,7 @@ def get_tensor_shapes(
     )
 
     try:
-        
+
         # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
         input_shape: tuple[int, int] = (847, model.cfg.n_ctx - 7)
         # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
@@ -186,13 +185,10 @@ def tokenizer_vocab_hash(tokenizer: PreTrainedTokenizer) -> str:
     # hash it
     hash_obj = hashlib.sha1(bytes(str(vocab_hashable), "UTF-8"))
     # convert to base64
-    return (
-        base64.b64encode(
-            hash_obj.digest(),
-            altchars=b"-_",  # - and _ as altchars
-        )
-        .decode("UTF-8")
-    )
+    return base64.b64encode(
+        hash_obj.digest(),
+        altchars=b"-_",  # - and _ as altchars
+    ).decode("UTF-8")
 
 
 def get_tokenizer_info(model: HookedTransformer) -> dict:
@@ -285,7 +281,11 @@ def get_model_info(
     if include_cfg:
         # modify certain values to make them pretty-printable
         model_cfg_dict: dict = {
-            key: val if key not in CONFIG_VALUES_PROCESS else CONFIG_VALUES_PROCESS[key](val)
+            key: (
+                val
+                if key not in CONFIG_VALUES_PROCESS
+                else CONFIG_VALUES_PROCESS[key](val)
+            )
             for key, val in model_cfg.to_dict().items()
         }
 
@@ -326,7 +326,9 @@ def get_model_info(
                 )
             got_model = True
         except Exception as e:
-            msg: str = f"Failed to init model '{model_name}', can't get tensor shapes or tokenizer info"
+            msg: str = (
+                f"Failed to init model '{model_name}', can't get tensor shapes or tokenizer info"
+            )
             if allow_warn:
                 warnings.warn(f"{msg}:\n{e}")
             else:
@@ -427,7 +429,9 @@ def make_model_table(
                 except Exception as e:
                     if allow_except:
                         # warn and continue if we allow exceptions
-                        warnings.warn(f"Failed to get model info for '{model_name}': {e}")
+                        warnings.warn(
+                            f"Failed to get model info for '{model_name}': {e}"
+                        )
                         model_data.append(e)
                     else:
                         # raise exception right away if we don't allow exceptions
@@ -487,7 +491,7 @@ def write_model_table(
         # get `transformer_lens` version
         tl_version: str = "unknown"
         try:
-            from importlib.metadata import version, PackageNotFoundError
+            from importlib.metadata import PackageNotFoundError, version
 
             tl_version = version("transformer_lens")
         except PackageNotFoundError as e:
@@ -540,7 +544,7 @@ def abridge_model_table(
 
 
 def get_model_table(
-    model_table_path: Path|str = _MODEL_TABLE_PATH,
+    model_table_path: Path | str = _MODEL_TABLE_PATH,
     verbose: bool = True,
     force_reload: bool = True,
     do_write: bool = True,
@@ -576,7 +580,7 @@ def get_model_table(
 
     # convert to Path, and modify the name if a pattern is provided
     model_table_path = Path(model_table_path)
-    
+
     if model_names_pattern is not None:
         model_table_path = model_table_path.with_name(
             model_table_path.stem + f"-{model_names_pattern}"
