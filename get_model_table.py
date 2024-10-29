@@ -7,21 +7,22 @@ import warnings
 from copy import deepcopy
 from functools import partial
 from pathlib import Path
-from typing import Callable, Literal, Sequence
+from typing import Callable, Literal, Optional, Sequence
 
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 import torch
-import tqdm
-# transformerlens
-import transformer_lens
-import yaml
-from muutils.dictmagic import condense_tensor_dict
-# muutils
+import tqdm  # type: ignore[import-untyped]
+import transformer_lens  # type: ignore[import-untyped]
+import yaml  # type: ignore[import-untyped]
+from muutils.dictmagic import TensorDictFormats, condense_tensor_dict
 from muutils.misc import shorten_numerical_to_str
 from transformer_lens import HookedTransformer, HookedTransformerConfig
-from transformer_lens.loading_from_pretrained import (
-    NON_HF_HOSTED_MODEL_NAMES, get_pretrained_model_config)
-from transformers import AutoTokenizer, PreTrainedTokenizer
+from transformer_lens.loading_from_pretrained import (  # type: ignore[import-untyped]
+    NON_HF_HOSTED_MODEL_NAMES,
+    get_pretrained_model_config,
+)
+from transformers import AutoTokenizer  # type: ignore[import-untyped]
+from transformers import PreTrainedTokenizer
 
 DEVICE: torch.device = torch.device("meta")
 # forces everything to meta tensors
@@ -35,7 +36,7 @@ _MODEL_TABLE_PATH: Path = Path("docs/model_table.jsonl")
 # where to save the model table
 
 try:
-    HF_TOKEN = os.environ.get("HF_TOKEN", None)
+    HF_TOKEN = os.environ.get("HF_TOKEN", "")
     if not HF_TOKEN.startswith("hf_"):
         raise ValueError("Invalid Hugging Face token")
 except Exception as e:
@@ -120,7 +121,7 @@ COLUMNS_ABRIDGED: Sequence[str] = (
 
 def get_tensor_shapes(
     model: HookedTransformer,
-    tensor_dims_fmt: str = "yaml",
+    tensor_dims_fmt: TensorDictFormats = "yaml",
     except_if_forward_fails: bool = False,
 ) -> dict:
     """get the tensor shapes from a model"""
@@ -210,9 +211,9 @@ def get_model_info(
     include_cfg: bool = True,
     include_tensor_dims: bool = True,
     include_tokenizer_info: bool = True,
-    tensor_dims_fmt: str = "yaml",
+    tensor_dims_fmt: TensorDictFormats = "yaml",
     allow_warn: bool = True,
-) -> dict:
+) -> tuple[str, dict]:
     """get information about the model from the default alias model name
 
     # Parameters:
@@ -227,7 +228,7 @@ def get_model_info(
      - `include_tokenizer_info : bool`
         whether to include the tokenizer info
         (defaults to `True`)
-     - `tensor_dims_fmt : str`
+     - `tensor_dims_fmt : TensorDictFormats`
         the format of the tensor shapes. one of "yaml", "json", "dict"
        (defaults to `"yaml"`)
     """
@@ -236,7 +237,7 @@ def get_model_info(
         raise ValueError(f"Model name '{model_name}' not found in default aliases")
 
     # get the names and model types
-    official_name: str = MODEL_ALIASES_MAP.get(model_name, None)
+    official_name: Optional[str] = MODEL_ALIASES_MAP.get(model_name, None)
     model_info: dict = {
         "name.default_alias": model_name,
         "name.huggingface": official_name,
@@ -340,7 +341,7 @@ def get_model_info(
                     tokenizer_info: dict = get_tokenizer_info(model)
                     model_info.update(tokenizer_info)
                 except Exception as e:
-                    msg: str = f"Failed to get tokenizer info for model '{model_name}'"
+                    msg = f"Failed to get tokenizer info for model '{model_name}'"
                     if allow_warn:
                         warnings.warn(f"{msg}:\n{e}")
                     else:
@@ -351,7 +352,7 @@ def get_model_info(
                     tensor_shapes_info: dict = get_tensor_shapes(model, tensor_dims_fmt)
                     model_info.update(tensor_shapes_info)
                 except Exception as e:
-                    msg: str = f"Failed to get tensor shapes for model '{model_name}'"
+                    msg = f"Failed to get tensor shapes for model '{model_name}'"
                     if allow_warn:
                         warnings.warn(f"{msg}:\n{e}")
                     else:
@@ -362,7 +363,7 @@ def get_model_info(
 
 def safe_try_get_model_info(
     model_name: str, kwargs: dict | None = None
-) -> dict | Exception:
+) -> tuple[str, dict | Exception]:
     """for parallel processing, to catch exceptions and return the exception instead of raising them"""
     if kwargs is None:
         kwargs = {}
@@ -401,7 +402,7 @@ def make_model_table(
             print(f"running in parallel with {n_processes = }")
         with multiprocessing.Pool(processes=n_processes) as pool:
             # Use imap for ordered results, wrapped with tqdm for progress bar
-            imap_results: list[dict | Exception] = list(
+            imap_results: list[tuple[str, dict | Exception]] = list(
                 tqdm.tqdm(
                     pool.imap(
                         partial(safe_try_get_model_info, **kwargs),
@@ -432,7 +433,7 @@ def make_model_table(
                         warnings.warn(
                             f"Failed to get model info for '{model_name}': {e}"
                         )
-                        model_data.append(e)
+                        model_data.append((model_name, e))
                     else:
                         # raise exception right away if we don't allow exceptions
                         # note that this differs from the parallel version, which will only except at the end
@@ -586,9 +587,10 @@ def get_model_table(
             model_table_path.stem + f"-{model_names_pattern}"
         )
 
+    model_table: pd.DataFrame
     if not model_table_path.exists() or force_reload:
         # generate it from scratch
-        model_table: pd.DataFrame = make_model_table(
+        model_table = make_model_table(
             verbose=verbose,
             parallelize=parallelize,
             model_names_pattern=model_names_pattern,
@@ -603,9 +605,7 @@ def get_model_table(
             write_model_table(abridged_table, model_table_path, format="md")
     else:
         # read the table from jsonl
-        model_table: pd.DataFrame = pd.read_json(
-            model_table_path, orient="records", lines=True
-        )
+        model_table = pd.read_json(model_table_path, orient="records", lines=True)
 
     return model_table
 
@@ -652,6 +652,6 @@ if __name__ == "__main__":
         print(main.__doc__)
         sys.exit(0)
 
-    import fire
+    import fire  # type: ignore[import-untyped]
 
     fire.Fire(main)
