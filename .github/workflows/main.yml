@@ -29,6 +29,9 @@ jobs:
     
     - name: Install dependencies
       run: uv sync
+    
+    - name: Latest TransformerLens
+      run: uv lock --upgrade-package transformer_lens
 
     - name: Run script
       run: uv run python get_model_table.py
