@@ -1378,7 +1378,7 @@ wheels = [
 
 [[package]]
 name = "transformer-lens"
-version = "2.11.0"
+version = "2.14.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "accelerate" },
@@ -1395,13 +1395,14 @@ dependencies = [
     { name = "torch" },
     { name = "tqdm" },
     { name = "transformers" },
+    { name = "transformers-stream-generator" },
     { name = "typeguard" },
     { name = "typing-extensions" },
     { name = "wandb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/af/d5/955e11c357e62bfcaf25916da6ef54b09df3de33ad357232797eb04a8e86/transformer_lens-2.11.0.tar.gz", hash = "sha256:a9d2e334357fdcf9ee8452a2e56684e7b7a81e7022fad33c4d10696ba8c49808", size = 145889 }
+sdist = { url = "https://files.pythonhosted.org/packages/e2/11/1bade52e95a62b56d33e1b3a4475c2014eb19c64ee9896bc21587b2a592c/transformer_lens-2.14.1.tar.gz", hash = "sha256:8adc30b0e6568e820ac79517d72a5122d75aa0b65475950b9a321c79542a699e", size = 148718 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/f6/9af5c6b8e670303f97a23f0a73e111db56b6abf4f8b1c14ada0b4bfa8ffd/transformer_lens-2.11.0-py3-none-any.whl", hash = "sha256:a09cea7549220d89245938cbabd4b79424d6e345f61b609766d62747c5c2d7a2", size = 177606 },
+    { url = "https://files.pythonhosted.org/packages/15/e3/aad0b3bf3015dc238ae454021596d64941e772078626383b837d1d87ad1b/transformer_lens-2.14.1-py3-none-any.whl", hash = "sha256:fccd3cc8f6e2513b972181818da274ce45c50e268c9368116d723e1145bf2730", size = 183011 },
 ]
 
 [[package]]
@@ -1457,6 +1458,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/21/6b/caf620fae7fbf3594
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7b/9f/92d3091c44cb19add044064af1bf1345cd35fbb84d32a3690f912800a295/transformers-4.48.1-py3-none-any.whl", hash = "sha256:24be0564b0a36d9e433d9a65de248f1545b6f6edce1737669605eb6a8141bbbb", size = 9665001 },
 ]
+
+[[package]]
+name = "transformers-stream-generator"
+version = "0.0.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "transformers" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/42/c2/65f13aec253100e1916e9bd7965fe17bde796ebabeb1265f45191ab4ddc0/transformers-stream-generator-0.0.5.tar.gz", hash = "sha256:271deace0abf9c0f83b36db472c8ba61fdc7b04d1bf89d845644acac2795ed57", size = 13033 }
 
 [[package]]
 name = "triton"
