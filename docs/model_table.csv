@@ -116,7 +116,10 @@ meta-llama/Llama-3.2-1B-Instruct,,1.1B,1073741824,1073741824,16,32,2048,128256,s
 meta-llama/Llama-3.2-3B-Instruct,,3.2B,3170893824,3170893824,28,24,3072,128256,silu,rotary,False,LlamaForCausalLM,RMS,meta-llama/Llama-3.2-3B-Instruct,PreTrainedTokenizerFast,128000.0,j9N50ddC7mjCgS4GseU9LmKZDKk=
 meta-llama/Llama-3.3-70B-Instruct,,78B,77846282240,77846282240,80,64,8192,128256,silu,rotary,False,LlamaForCausalLM,RMS,meta-llama/Llama-3.3-70B-Instruct,PreTrainedTokenizerFast,128000.0,j9N50ddC7mjCgS4GseU9LmKZDKk=
 othello-gpt,Baidicoot/Othello-GPT-Transformer-Lens,25M,25165824,25165824,8,8,512,61,gelu,standard,False,mingpt,LN,,,,
-bert-base-cased,bert-base-cased,85M,84934656,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN,bert-base-cased,BertTokenizerFast,28996.0,SSKvHuFYtPbvgwMSLSIhfFE_kF8=
+bert-base-cased,google-bert/bert-base-cased,85M,84934656,84934656,12,12,768,28996,gelu,standard,False,BertForMaskedLM,LN,google-bert/bert-base-cased,BertTokenizerFast,28996.0,SSKvHuFYtPbvgwMSLSIhfFE_kF8=
+bert-base-uncased,google-bert/bert-base-uncased,85M,84934656,84934656,12,12,768,30522,gelu,standard,False,BertForMaskedLM,LN,google-bert/bert-base-uncased,BertTokenizerFast,30522.0,G9iEWgpI_JY73i8Lym9gBVhq4BI=
+bert-large-cased,google-bert/bert-large-cased,302M,301989888,301989888,24,16,1024,28996,gelu,standard,False,BertForMaskedLM,LN,google-bert/bert-large-cased,BertTokenizerFast,28996.0,SSKvHuFYtPbvgwMSLSIhfFE_kF8=
+bert-large-uncased,google-bert/bert-large-uncased,302M,301989888,301989888,24,16,1024,30522,gelu,standard,False,BertForMaskedLM,LN,google-bert/bert-large-uncased,BertTokenizerFast,30522.0,G9iEWgpI_JY73i8Lym9gBVhq4BI=
 tiny-stories-1M,,393K,393216,393216,8,16,64,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,roneneldan/TinyStories-1M,GPT2TokenizerFast,50257.0,v8xfIj5kwZX5RwgLU66lZNZUlE4=
 tiny-stories-3M,,1.6M,1572864,1572864,8,16,128,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,roneneldan/TinyStories-3M,GPT2TokenizerFast,50257.0,v8xfIj5kwZX5RwgLU66lZNZUlE4=
 tiny-stories-8M,,6.3M,6291456,6291456,8,16,256,50257,gelu_new,standard,False,GPTNeoForCausalLM,LN,roneneldan/TinyStories-8M,GPT2TokenizerFast,50257.0,v8xfIj5kwZX5RwgLU66lZNZUlE4=
@@ -137,6 +140,7 @@ stablelm-tuned-alpha-3b,stabilityai/stablelm-tuned-alpha-3b,3.2B,3221225472,3221
 stablelm-tuned-alpha-7b,stabilityai/stablelm-tuned-alpha-7b,7.2B,7247757312,7247757312,16,48,6144,50432,gelu,rotary,True,GPTNeoXForCausalLM,LN,stabilityai/stablelm-tuned-alpha-7b,GPTNeoXTokenizerFast,50254.0,RD3vcWSd_TiTpqo5dHyICzaXtGQ=
 mistral-7b,mistralai/Mistral-7B-v0.1,7.8B,7784628224,7784628224,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,mistralai/Mistral-7B-v0.1,LlamaTokenizerFast,32000.0,kkCQxUk-PF9Ay_ZKDdKCh02YaGQ=
 mistral-7b-instruct,mistralai/Mistral-7B-Instruct-v0.1,7.8B,7784628224,7784628224,32,32,4096,32000,silu,rotary,False,MistralForCausalLM,RMS,mistralai/Mistral-7B-Instruct-v0.1,LlamaTokenizerFast,32000.0,kkCQxUk-PF9Ay_ZKDdKCh02YaGQ=
+mistralai/Mistral-Small-24B-Base-2501,,23B,23488102400,23488102400,40,32,5120,131072,silu,rotary,False,MistralForCausalLM,RMS,mistralai/Mistral-Small-24B-Base-2501,LlamaTokenizerFast,131072.0,GEwgZayWxpmhQxtMq-WrVFJEfqM=
 mistral-nemo-base-2407,mistralai/Mistral-Nemo-Base-2407,12B,12163481600,12163481600,40,32,5120,131072,silu,rotary,False,MistralForCausalLM,RMS,mistralai/Mistral-Nemo-Base-2407,PreTrainedTokenizerFast,131072.0,0xs_eSvVgsyZGbcLSIpGUn4Gdms=
 mixtral,mistralai/Mixtral-8x7B-v0.1,47B,47245688832,47245688832,32,32,4096,32000,silu,rotary,False,MixtralForCausalLM,RMS,mistralai/Mixtral-8x7B-v0.1,LlamaTokenizerFast,32000.0,kkCQxUk-PF9Ay_ZKDdKCh02YaGQ=
 mixtral-instruct,mistralai/Mixtral-8x7B-Instruct-v0.1,47B,47245688832,47245688832,32,32,4096,32000,silu,rotary,False,MixtralForCausalLM,RMS,mistralai/Mixtral-8x7B-Instruct-v0.1,LlamaTokenizerFast,32000.0,kkCQxUk-PF9Ay_ZKDdKCh02YaGQ=
