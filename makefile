@@ -1,9 +1,9 @@
 HF_TOKEN=$(shell cat .hf-token)
 
-BUILD_KWARGS ?=
+BUILD_KWARGS ?= --verbose
 
 dep:
 	uv sync
 
 build:
-	HF_TOKEN=$(HF_TOKEN) uv run python get_model_table.py --verbose $(BUILD_KWARGS)
+	HF_TOKEN=$(HF_TOKEN) uv run python get_model_table.py $(BUILD_KWARGS)
