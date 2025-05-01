@@ -208,47 +208,6 @@ def get_tokenizer_info(model: HookedTransformer) -> dict:
     model_info["tokenizer.vocab_hash"] = tokenizer_vocab_hash(tokenizer)
     return model_info
 
-def repo_requires_hf_token(
-    repo_id: str,
-    hf_token: str | None = None,
-) -> Optional[bool]:
-    """Return whether a Hugging Face repo is gated.
-
-    The function performs two probes:
-
-    1. Anonymous `model_info` call - if this succeeds, the repo is public (`False`).
-    2. Authenticated call with `hf_token` - if only this succeeds, the repo is gated
-       and accessible with a token (`True`).
-
-    If both probes fail (repo missing, off-HF, network error), the function returns
-    `None`.
-
-    # Parameters
-     - `repo_id : str`
-        Repository ID such as `"meta-llama/Llama-2-7b-hf"`.
-     - `hf_token : str | None`
-        HF access token used for the second probe.
-        (defaults to `None`)
-
-    # Returns
-     - `Optional[bool]`
-        `True`  → gated/private  
-        `False` → public  
-        `None`  → unknown / not on HF
-    """
-    api: HfApi = HfApi()
-
-    try:
-        api.model_info(repo_id, token=None)  # anonymous probe
-        return False
-    except Exception:
-        try:
-            api.model_info(repo_id, token=hf_token or None)
-            return True
-        except Exception:
-            return None
-
-
 def get_model_info(
     model_name: str,
     include_cfg: bool = True,
@@ -280,14 +239,19 @@ def get_model_info(
         raise ValueError(f"Model name '{model_name}' not found in default aliases")
 
     # get the names and model types
-    official_name: Optional[str] = MODEL_ALIASES_MAP.get(model_name, None)
+    official_name: Optional[str] = MODEL_ALIASES_MAP.get(
+        model_name,
+        MODEL_ALIASES_MAP.get(model_name.lower(), None),
+    )
+    if official_name is None:
+        warnings.warn(f"couldn't find official name for '{model_name}'")
     model_info: dict = {
         "name.default_alias": model_name,
         "name.huggingface": official_name,
         "name.aliases": ", ".join(
             list(transformer_lens.loading.MODEL_ALIASES.get(official_name, []))
         ),
-        "name.is_gated": False,
+        "name.is_gated": "unknown",
         "name.model_type": None,
     }
 
@@ -309,11 +273,16 @@ def get_model_info(
         ):
             param_count_from_name = part
             break
-    
-    model_info["requires_hf_token"] = repo_requires_hf_token(
-        official_name or model_name,
-        hf_token=HF_TOKEN,
-    )
+
+    # try to figure out if the model is gated
+    try:
+        hf_api: HfApi = HfApi()
+        model_info["name.is_gated"] = hf_api.model_info(official_name or model_name, token=HF_TOKEN).gated
+    except Exception as e:
+        # warnings.warn(
+        #     f"assuming model is not on HF '{model_name}':\t{e}"
+        # )
+        model_info["name.is_gated"] = "non_hf"
 
     # update model info from config
     model_cfg: HookedTransformerConfig = get_pretrained_model_config(model_name)
