@@ -74,9 +74,7 @@ KNOWN_MODEL_TYPES: Sequence[str] = (
     "Qwen2",
 )
 
-MODELS_NO_TOKENIZERS: Sequence[str] = (
-    "othello-gpt",
-)
+MODELS_NO_TOKENIZERS: Sequence[str] = ("othello-gpt",)
 
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
 
@@ -139,7 +137,6 @@ def get_tensor_shapes(
     )
 
     try:
-
         # input shape for activations -- "847"~="bat", subtract 7 for the context window to make it unique
         input_shape: tuple[int, int] = (847, model.cfg.n_ctx - 7)
         # why? to replace the batch and seq_len dims with "batch" and "seq_len" in the yaml
@@ -331,9 +328,7 @@ def get_model_info(
                 )
             got_model = True
         except Exception as e:
-            msg: str = (
-                f"Failed to init model '{model_name}', can't get tensor shapes or tokenizer info"
-            )
+            msg: str = f"Failed to init model '{model_name}', can't get tensor shapes or tokenizer info"
             if allow_warn:
                 warnings.warn(f"{msg}:\n{e}")
             else:
