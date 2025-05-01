@@ -278,9 +278,9 @@ def get_model_info(
     # try to figure out if the model is gated
     try:
         hf_api: HfApi = HfApi()
-        model_info["name.is_gated"] = hf_api.model_info(
-            official_name or model_name, token=HF_TOKEN
-        ).gated
+        model_info["name.is_gated"] = str(
+            hf_api.model_info(official_name or model_name, token=HF_TOKEN).gated
+        )
     except Exception:
         model_info["name.is_gated"] = "non_hf"
 
