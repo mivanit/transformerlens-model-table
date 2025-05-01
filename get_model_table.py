@@ -74,6 +74,10 @@ KNOWN_MODEL_TYPES: Sequence[str] = (
     "Qwen2",
 )
 
+MODELS_NO_TOKENIZERS: Sequence[str] = (
+    "othello-gpt",
+)
+
 MODEL_ALIASES_MAP: dict[str, str] = transformer_lens.loading.make_model_alias_map()
 
 # these will be copied as table columns
@@ -341,11 +345,12 @@ def get_model_info(
                     tokenizer_info: dict = get_tokenizer_info(model)
                     model_info.update(tokenizer_info)
                 except Exception as e:
-                    msg = f"Failed to get tokenizer info for model '{model_name}'"
-                    if allow_warn:
-                        warnings.warn(f"{msg}:\n{e}")
-                    else:
-                        raise ValueError(msg) from e
+                    if model_name not in MODELS_NO_TOKENIZERS:
+                        msg = f"Failed to get tokenizer info for model '{model_name}'"
+                        if allow_warn:
+                            warnings.warn(f"{msg}:\n{e}")
+                        else:
+                            raise ValueError(msg) from e
 
             if include_tensor_dims:
                 try:
