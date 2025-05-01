@@ -208,6 +208,7 @@ def get_tokenizer_info(model: HookedTransformer) -> dict:
     model_info["tokenizer.vocab_hash"] = tokenizer_vocab_hash(tokenizer)
     return model_info
 
+
 def get_model_info(
     model_name: str,
     include_cfg: bool = True,
@@ -277,11 +278,10 @@ def get_model_info(
     # try to figure out if the model is gated
     try:
         hf_api: HfApi = HfApi()
-        model_info["name.is_gated"] = hf_api.model_info(official_name or model_name, token=HF_TOKEN).gated
-    except Exception as e:
-        # warnings.warn(
-        #     f"assuming model is not on HF '{model_name}':\t{e}"
-        # )
+        model_info["name.is_gated"] = hf_api.model_info(
+            official_name or model_name, token=HF_TOKEN
+        ).gated
+    except Exception:
         model_info["name.is_gated"] = "non_hf"
 
     # update model info from config
