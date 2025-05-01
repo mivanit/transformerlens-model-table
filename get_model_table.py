@@ -23,6 +23,7 @@ from transformer_lens.loading_from_pretrained import (  # type: ignore[import-un
 )
 from transformers import AutoTokenizer  # type: ignore[import-untyped]
 from transformers import PreTrainedTokenizer
+from huggingface_hub import HfApi
 
 DEVICE: torch.device = torch.device("meta")
 # forces everything to meta tensors
@@ -102,6 +103,7 @@ CONFIG_VALUES_PROCESS: dict[str, Callable] = {
 COLUMNS_ABRIDGED: Sequence[str] = (
     "name.default_alias",
     "name.huggingface",
+    "name.is_gated",
     "n_params.as_str",
     "n_params.as_int",
     "cfg.n_params",
@@ -206,6 +208,46 @@ def get_tokenizer_info(model: HookedTransformer) -> dict:
     model_info["tokenizer.vocab_hash"] = tokenizer_vocab_hash(tokenizer)
     return model_info
 
+def repo_requires_hf_token(
+    repo_id: str,
+    hf_token: str | None = None,
+) -> Optional[bool]:
+    """Return whether a Hugging Face repo is gated.
+
+    The function performs two probes:
+
+    1. Anonymous `model_info` call - if this succeeds, the repo is public (`False`).
+    2. Authenticated call with `hf_token` - if only this succeeds, the repo is gated
+       and accessible with a token (`True`).
+
+    If both probes fail (repo missing, off-HF, network error), the function returns
+    `None`.
+
+    # Parameters
+     - `repo_id : str`
+        Repository ID such as `"meta-llama/Llama-2-7b-hf"`.
+     - `hf_token : str | None`
+        HF access token used for the second probe.
+        (defaults to `None`)
+
+    # Returns
+     - `Optional[bool]`
+        `True`  → gated/private  
+        `False` → public  
+        `None`  → unknown / not on HF
+    """
+    api: HfApi = HfApi()
+
+    try:
+        api.model_info(repo_id, token=None)  # anonymous probe
+        return False
+    except Exception:
+        try:
+            api.model_info(repo_id, token=hf_token or None)
+            return True
+        except Exception:
+            return None
+
 
 def get_model_info(
     model_name: str,
@@ -245,7 +287,8 @@ def get_model_info(
         "name.aliases": ", ".join(
             list(transformer_lens.loading.MODEL_ALIASES.get(official_name, []))
         ),
-        "model_type": None,
+        "name.is_gated": False,
+        "name.model_type": None,
     }
 
     # Split the model name into parts
@@ -254,7 +297,7 @@ def get_model_info(
     # identify model type by known types
     for known_type in KNOWN_MODEL_TYPES:
         if known_type in model_name:
-            model_info["model_type"] = known_type
+            model_info["name.model_type"] = known_type
             break
 
     # search for model size in name
@@ -266,6 +309,11 @@ def get_model_info(
         ):
             param_count_from_name = part
             break
+    
+    model_info["requires_hf_token"] = repo_requires_hf_token(
+        official_name or model_name,
+        hf_token=HF_TOKEN,
+    )
 
     # update model info from config
     model_cfg: HookedTransformerConfig = get_pretrained_model_config(model_name)
