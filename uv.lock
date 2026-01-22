@@ -2348,7 +2348,7 @@ wheels = [
 
 [[package]]
 name = "transformer-lens"
-version = "2.16.1"
+version = "2.17.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "accelerate" },
@@ -2357,9 +2357,11 @@ dependencies = [
     { name = "datasets" },
     { name = "einops" },
     { name = "fancy-einsum" },
+    { name = "huggingface-hub" },
     { name = "jaxtyping" },
     { name = "numpy", marker = "python_full_version < '3.13'" },
     { name = "pandas" },
+    { name = "protobuf" },
     { name = "rich" },
     { name = "sentencepiece" },
     { name = "torch" },
@@ -2370,9 +2372,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "wandb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dd/91/96026f9de52e39e4385c503e2c79e355529ddf48eecade8c433fb9efa930/transformer_lens-2.16.1.tar.gz", hash = "sha256:62c92bb6b986af67cb5a1605da0f9b1a76a91cdf0cc05492c9faab716675b08e", size = 153889, upload-time = "2025-06-19T13:32:18.926Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0c/3b/e34b774ec23e146d307872920fec27e0e7d105507afb87cc155ab0f9954d/transformer_lens-2.17.0.tar.gz", hash = "sha256:93bfd6b6ac65e2b274edae430495663c8c8e99b53fd2c80ac428c4b0398e1272", size = 156918, upload-time = "2026-01-21T23:53:49.046Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/bf/fcf5e93e56d614025a5f732059ce924adac606cadf42b87c50e002ab7e5a/transformer_lens-2.16.1-py3-none-any.whl", hash = "sha256:fd59ab8c08d864d93a48f4e40ad20f437fc903e037e320cfd28c8d3f7a1817ce", size = 192023, upload-time = "2025-06-19T13:32:17.821Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/17/137f4e3791261f2cad2feee8f1ed31e0dea21ac7e7dec10ca133de841cbd/transformer_lens-2.17.0-py3-none-any.whl", hash = "sha256:7186cb9d29c4a20c5ea020dacc13579494e35f0b2316ebdbde972879fc4669f7", size = 195183, upload-time = "2026-01-21T23:53:50.076Z" },
 ]
 
 [[package]]
